@@ -1,0 +1,32 @@
+.loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: toRem(12);
+	height: toRem(12);
+	border-radius: 50%;
+	background-color: var(--primary);
+	animation: flash 0.5s ease-out infinite alternate;
+}
+
+@keyframes flash {
+	0% {
+		background-color: #fff2;
+		box-shadow:
+			toRem(24) 0 #fff2,
+			toRem(-24) 0 var(--primary);
+	}
+	50% {
+		background-color: var(--primary);
+		box-shadow:
+			toRem(24) 0 #fff2,
+			toRem(-24) 0 #fff2;
+	}
+	100% {
+		background-color: #fff2;
+		box-shadow:
+			toRem(24) 0 var(--primary),
+			toRem(-24) 0 #fff2;
+	}
+}

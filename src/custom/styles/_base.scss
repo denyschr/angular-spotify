@@ -1,0 +1,71 @@
+*,
+::after,
+::before {
+	box-sizing: border-box;
+}
+
+body,
+html {
+	height: 100%;
+}
+
+body {
+	min-width: toRem($minWidth);
+	color: var(--secondary);
+	background-color: var(--black);
+	font-family: $fontMain, sans-serif;
+	font-size: $fontSize;
+}
+
+img {
+	max-width: 100%;
+	object-fit: cover;
+	vertical-align: top;
+}
+
+a {
+	display: inline-block;
+	color: inherit;
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	margin: 0;
+}
+
+button {
+	cursor: pointer;
+	color: inherit;
+	background-color: transparent;
+}
+
+button,
+input,
+textarea {
+	font-size: inherit;
+	line-height: inherit;
+}
+
+[class*="_container"] {
+	padding: 0 toRem($containerOffset);
+	max-width: toRem($containerWidth);
+}

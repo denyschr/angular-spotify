@@ -1,0 +1,45 @@
+@import "mixins";
+
+.section {
+	// .section__top
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: toRem(16);
+	}
+	// .section__title
+	&__title {
+		font-size: toRem(28);
+		color: var(--primary);
+		&--offset {
+			margin-bottom: toRem(16);
+		}
+	}
+	// .section__show-more
+	&__show-more {
+		align-self: flex-end;
+		margin-left: auto;
+		padding: toRem(6) toRem(8);
+		border-radius: toRem(16);
+		border: toRem(1) solid var(--charade);
+		background-color: var(--smoke);
+		font-size: toRem(12);
+		font-weight: 400;
+		transition:
+			background 0.3s ease-in-out,
+			color 0.3s ease-in-out;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--charade);
+				color: var(--primary);
+			}
+		}
+	}
+	// .section__cards
+	&__cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(toRem(200), 1fr));
+		gap: toRem(16);
+		margin: 0 toRem(-12);
+	}
+}

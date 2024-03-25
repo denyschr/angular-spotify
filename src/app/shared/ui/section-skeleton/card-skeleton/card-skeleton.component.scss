@@ -1,0 +1,13 @@
+@import "mixins";
+
+.skeleton {
+	// .skeleton__card
+	&__card {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		padding: toRem(12);
+		background-color: var(--charade);
+		border-radius: toRem(12);
+	}
+}

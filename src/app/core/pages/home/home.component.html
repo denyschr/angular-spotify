@@ -1,0 +1,16 @@
+<div class="wrapper">
+	<app-sidebar></app-sidebar>
+	<div class="page">
+		<app-header-auth></app-header-auth>
+		<main class="main">
+			<ng-container *ngIf="vm$ | async as vm; else skeletonLoader">
+				<app-section [title]="'New Releases'" [dataArray]="{items:vm.newReleases}"></app-section>
+				<app-footer></app-footer>
+			</ng-container>
+		</main>
+	</div>
+</div>
+
+<ng-template #skeletonLoader>
+	<app-section-skeleton *ngFor="let item of obsList"></app-section-skeleton>
+</ng-template>

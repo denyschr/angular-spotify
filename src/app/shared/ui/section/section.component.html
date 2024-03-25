@@ -1,0 +1,15 @@
+<section class="main__section section" [ariaLabel]="title">
+	<div class="section__container">
+		<div class="section__top">
+			<h2 class="section__title" *ngIf="title">{{ title }}</h2>
+			<button class="section__show-more button" *ngIf="currentLengthOfItems < totalItems && isShowMore" showMore
+				[currentLength]="currentLengthOfItems" (newItemLength)="newItemLength($event)">Show
+				more</button>
+		</div>
+		<div class="section__cards">
+			<app-card *ngFor="let item of dataArray.items | slice:0:currentLengthOfItems" [data]="item"
+				[isImageRounded]="dataArray.isImageRounded" [isAlbumDate]="dataArray.isAlbumDate">
+			</app-card>
+		</div>
+	</div>
+</section>

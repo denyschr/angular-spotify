@@ -1,0 +1,8 @@
+<a class="category" [routerLink]="['']" #categoryItem>
+	<article class="category__article">
+		<h3 class="category__title">{{ data.name }}</h3>
+		<div class="category__img" *ngIf="data.icons[0].url">
+			<img [lazyLoad]="data.icons[0].url" [extractColor]="categoryItem" crossorigin [alt]="data.name">
+		</div>
+	</article>
+</a>

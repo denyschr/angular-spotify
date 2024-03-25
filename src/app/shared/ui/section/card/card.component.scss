@@ -1,0 +1,123 @@
+@import "mixins";
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: toRem(12);
+	border-radius: toRem(12);
+	overflow: hidden;
+	transition: background-color 0.3s ease-in-out;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: var(--charade);
+			.card__wrap-play {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+		}
+	}
+	// .card__top
+	&__top {
+		position: relative;
+		margin-bottom: toRem(16);
+	}
+	// .card__img
+	&__img {
+		aspect-ratio: 200 / 200;
+		overflow: hidden;
+		border-radius: toRem(4);
+		&._rounded {
+			border-radius: 50%;
+		}
+		img {
+			width: 100%;
+		}
+	}
+	// .card__wrap-play
+	&__wrap-play {
+		position: absolute;
+		z-index: 3;
+		right: toRem(8);
+		bottom: toRem(10);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(toRem(10));
+		transition:
+			opacity 0.3s ease-in-out,
+			visibility 0.3s ease-in-out,
+			transform 0.3s ease-in-out;
+	}
+	// .card__play
+	&__play {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: toRem(48);
+		height: toRem(48);
+		transform: scale(1.01);
+		border-radius: 50%;
+		border: none;
+		background: var(--cyan);
+		&::before {
+			color: var(--black);
+			transform: translate(toRem(1), toRem(1));
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				transform: scale(1.05);
+			}
+		}
+	}
+	// .card__info
+	&__info {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	// .card__title
+	&__title {
+		max-width: 100%;
+		margin-bottom: toRem(6);
+		font-weight: 700;
+		font-size: toRem(16);
+		color: var(--primary);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		&::before {
+			content: "";
+			position: absolute;
+			z-index: 1;
+			inset: 0;
+		}
+	}
+	// .card__artist
+	&__artists {
+		position: relative;
+		z-index: 2;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: toRem(14);
+		a {
+			display: inline;
+			line-height: 1.4;
+			@media (any-hover: hover) {
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	// .card__type
+	&__type {
+		font-size: toRem(14);
+		line-height: 1.2;
+		text-transform: capitalize;
+	}
+}

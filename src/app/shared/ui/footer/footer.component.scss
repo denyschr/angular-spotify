@@ -40,7 +40,6 @@
 	}
 	// .nav-footer__link
 	&__link {
-		font-size: toRem(18);
 		transition: color 0.3s ease-in-out;
 		@media (any-hover: hover) {
 			&:hover {

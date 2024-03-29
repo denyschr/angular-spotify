@@ -8,7 +8,6 @@ import {
   SidebarComponent,
   SectionComponent,
   SectionSkeletonComponent,
-  NgSkeletonComponent,
   CategoryComponent,
   CardSkeletonComponent
 } from './ui';
@@ -30,7 +29,6 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     ShowMoreDirective,
     NotFoundImagePipe,
     SectionSkeletonComponent,
-    NgSkeletonComponent,
     CardSkeletonComponent,
     PlayBtnLabelDirective
   ],

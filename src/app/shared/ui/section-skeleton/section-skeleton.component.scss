@@ -1,6 +1,11 @@
 @import "mixins";
 
 .skeleton {
+	// .skeleton__title
+	&__title {
+		width: 20%;
+		margin-bottom: toRem(16);
+	}
 	// .skeleton__cards
 	&__cards {
 		display: grid;

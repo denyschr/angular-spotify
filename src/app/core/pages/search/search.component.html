@@ -4,18 +4,25 @@
 		<app-header-auth>
 			<app-search-bar [currentSearchTerm]="searchTerm" class="search-bar"></app-search-bar>
 		</app-header-auth>
-		<main class="main">
-			<ng-container *ngIf="(vm$ | async) as vm; else loader">
+		<ng-container *ngIf="(vm$ | async) as vm; else loader">
+			<main class="main">
 				<ng-container [ngSwitch]="vm.search ? 'search' : 'categories'">
-					<ng-container *ngSwitchCase="'search'" [ngTemplateOutlet]="searchSection"
-						[ngTemplateOutletContext]="{$implicit: vm.search}"></ng-container>
 					<ng-container *ngSwitchCase="'categories'" [ngTemplateOutlet]="categorySection"
 						[ngTemplateOutletContext]="{$implicit: vm.categories}"></ng-container>
+					<ng-container *ngSwitchCase="'search'" [ngTemplateOutlet]="searchSection"
+						[ngTemplateOutletContext]="{$implicit: vm.search}"></ng-container>
 				</ng-container>
-			</ng-container>
-		</main>
+			</main>
+			<app-footer></app-footer>
+		</ng-container>
 	</div>
 </div>
+
+<ng-template #categorySection let-categories>
+	<ng-container *ngIf="categories">
+		<app-categories [categories]="categories"></app-categories>
+	</ng-container>
+</ng-template>
 
 <ng-template #searchSection let-search>
 	<ng-container *ngIf="search.searchResults; else noResults">
@@ -24,14 +31,6 @@
 		<app-section *ngIf="search.albums.items.length" [title]="'Albums'" [isShowMore]="false"
 			[dataArray]="{items: search.albums.items, isAlbumDate: true}">
 		</app-section>
-		<app-footer></app-footer>
-	</ng-container>
-</ng-template>
-
-<ng-template #categorySection let-categories>
-	<ng-container *ngIf="categories">
-		<app-categories [categories]="categories"></app-categories>
-		<app-footer></app-footer>
 	</ng-container>
 </ng-template>
 
@@ -44,7 +43,6 @@
 			</p>
 		</div>
 	</div>
-	<app-footer></app-footer>
 </ng-template>
 
 <ng-template #loader>

@@ -12,9 +12,9 @@ export class SectionComponent {
   public currentLengthOfItems = INITIAL_ITEM_LENGTH;
   public totalItems = ITEM_LIMIT;
 
-  @Input() title?: string;
+  @Input() sectionTitle?: string;
   @Input() isShowMore = true;
-  @Input() dataArray!: { items: (Album | Artist)[]; isAlbumDate?: boolean; isImageRounded?: boolean };
+  @Input() musicContent!: { items: (Album | Artist)[]; isAlbumDate?: boolean; isImageRounded?: boolean };
 
   newItemLength(value: number): void {
     this.currentLengthOfItems = value;

@@ -4,7 +4,7 @@
 		<app-header-auth></app-header-auth>
 		<ng-container *ngIf="vm$ | async as vm; else skeletonLoader">
 			<main class="main">
-				<app-section [title]="'New Releases'" [dataArray]="{items:vm.newReleases}"></app-section>
+				<app-section [sectionTitle]="'New Releases'" [musicContent]="{items:vm.newReleases}"></app-section>
 			</main>
 			<app-footer></app-footer>
 		</ng-container>

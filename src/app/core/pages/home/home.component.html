@@ -2,12 +2,12 @@
 	<app-sidebar></app-sidebar>
 	<div class="page">
 		<app-header-auth></app-header-auth>
-		<main class="main">
-			<ng-container *ngIf="vm$ | async as vm; else skeletonLoader">
+		<ng-container *ngIf="vm$ | async as vm; else skeletonLoader">
+			<main class="main">
 				<app-section [title]="'New Releases'" [dataArray]="{items:vm.newReleases}"></app-section>
-				<app-footer></app-footer>
-			</ng-container>
-		</main>
+			</main>
+			<app-footer></app-footer>
+		</ng-container>
 	</div>
 </div>
 

@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { INITIAL_ITEM_LENGTH, ITEM_LIMIT } from '../../../core/constants/app.constants';
-import { Album } from '../../../core/models/album.model';
-import { Artist } from '../../../core/models/artist.model';
+import { MusicContent } from '../../../core/models';
 
 @Component({
   selector: 'app-section',
@@ -14,7 +13,7 @@ export class SectionComponent {
 
   @Input() sectionTitle?: string;
   @Input() isShowMore = true;
-  @Input() musicContent!: { items: (Album | Artist)[]; isAlbumDate?: boolean; isImageRounded?: boolean };
+  @Input() musicContent!: MusicContent;
 
   newItemLength(value: number): void {
     this.currentLengthOfItems = value;

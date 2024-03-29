@@ -7,3 +7,4 @@ export { MenuItem } from './menu-item.model';
 export { SocialItem } from './social-item.model';
 export { Image } from './image.model';
 export { ItemCollection } from './item-collection.model';
+export { MusicContent } from './music-content.model';

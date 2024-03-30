@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Album, Artist } from '../../../../core/models';
+import { Album, Artist, Audiobook, Episode, Playlist, Show } from '../../../../core/models';
 
 @Component({
   selector: 'app-card',
@@ -7,7 +7,7 @@ import { Album, Artist } from '../../../../core/models';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
-  @Input() musicItem!: Album | Artist;
+  @Input() musicItem!: Album | Artist | Playlist | Show | Episode | Audiobook;
   @Input() isImageRounded?: boolean;
   @Input() isAlbumDate?: boolean;
 }

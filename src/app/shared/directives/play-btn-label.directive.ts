@@ -1,11 +1,11 @@
 import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
-import { Album, Artist, ArtistAlbum } from '../../core/models';
+import { Album, Artist, AlbumArtist, Audiobook, Episode, Playlist, Show } from '../../core/models';
 
 @Directive({
   selector: '[playBtnLabel]'
 })
 export class PlayBtnLabelDirective implements AfterViewInit {
-  @Input('playBtnLabel') data!: Album | Artist;
+  @Input('playBtnLabel') data!: Album | Artist | Playlist | Show | Episode | Audiobook;
 
   constructor(
     private _playBtnEl: ElementRef<HTMLButtonElement>,
@@ -22,7 +22,7 @@ export class PlayBtnLabelDirective implements AfterViewInit {
     }
   }
 
-  public formatArtistsNames(artists: ArtistAlbum[]): string {
+  public formatArtistsNames(artists: AlbumArtist[]): string {
     return artists
       .reduce((arr: string[], artist) => {
         arr.push(artist.name);

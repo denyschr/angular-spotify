@@ -1,4 +1,3 @@
-export interface SocialItem {
-  path: string;
-  icon: string;
-}
+import { MenuItem } from '../models';
+
+export interface SocialItem extends Required<Pick<MenuItem, 'icon'>>, Omit<MenuItem, 'name' | 'icon'> {}

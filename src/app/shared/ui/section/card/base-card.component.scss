@@ -1,4 +1,5 @@
 @import "mixins";
+@import "vars";
 
 .card {
 	position: relative;
@@ -71,8 +72,8 @@
 			}
 		}
 	}
-	// .card__info
-	&__info {
+	// .card__details
+	&__details {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -96,14 +97,11 @@
 	}
 	// .card__artist
 	&__artists {
+		@extend %ellipsis;
 		position: relative;
 		z-index: 2;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		overflow: hidden;
-		text-overflow: ellipsis;
 		font-size: toRem(14);
+		font-weight: 500;
 		a {
 			display: inline;
 			line-height: 1.4;
@@ -115,8 +113,10 @@
 		}
 	}
 	// .card__type
-	&__type {
+	&__subtitle {
+		@extend %ellipsis;
 		font-size: toRem(14);
+		font-weight: 500;
 		line-height: 1.2;
 		text-transform: capitalize;
 	}

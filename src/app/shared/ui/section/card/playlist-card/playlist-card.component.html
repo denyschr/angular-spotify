@@ -1,0 +1,16 @@
+<article class="card" *ngIf="mediaItem.type === 'playlist'">
+	<div class="card__top">
+		<div class="card__img" #cardImg>
+			<img [lazyLoad]="mediaItem.images | notFoundImage" [extractColor]="cardImg" crossorigin alt>
+		</div>
+		<div class="card__wrap-play">
+			<button type="button" class="card__play _icon-player" [playBtnLabel]="mediaItem"></button>
+		</div>
+	</div>
+	<div class="card__details">
+		<a [routerLink]="['/artist', mediaItem.id]" class="card__title">{{mediaItem.name}}</a>
+		<div class="card__subtitle">
+			<span>By {{ mediaItem.owner.display_name }}</span>
+		</div>
+	</div>
+</article>

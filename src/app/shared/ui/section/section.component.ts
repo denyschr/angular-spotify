@@ -13,7 +13,7 @@ export class SectionComponent {
 
   @Input() sectionTitle?: string;
   @Input() isShowMore = true;
-  @Input() musicContent!: MediaContent;
+  @Input() mediaContent!: MediaContent;
 
   newItemLength(value: number): void {
     this.currentLengthOfItems = value;

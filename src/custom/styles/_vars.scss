@@ -28,3 +28,11 @@ $tablet: em(991.98);
 $mobile: em(767.98);
 $mobileSmall: em(479.98);
 $mobileExtraSmall: em(389.98);
+
+%ellipsis {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

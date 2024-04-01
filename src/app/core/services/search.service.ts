@@ -12,7 +12,7 @@ export class SearchService {
   public search(term: string): Observable<SearchResponse | null> {
     return this._apiService
       .getRequest<SearchResponse>(
-        `${environment.baseUrl}/search?q=${term}&type=album%2Cartist%2Cshow%2Cepisode%2Caudiobook%2Cplaylist%2Ctrack&limit=${ITEM_LIMIT}`
+        `${environment.baseUrl}/search?q=${term}&type=album%2Cartist%2Cplaylist%2Ctrack&limit=${ITEM_LIMIT}`
       )
       .pipe(
         map((res) => {

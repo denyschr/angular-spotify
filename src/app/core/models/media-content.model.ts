@@ -1,7 +1,6 @@
-import { Album, Artist, Audiobook, Episode, Playlist, Podcast } from '.';
+import { Album, Artist, Playlist } from '.';
 
 export interface MediaContent {
-  items: (Album | Artist | Playlist | Podcast | Episode | Audiobook)[];
+  items: (Album | Artist | Playlist)[];
   isAlbumDate?: boolean;
-  isImageRounded?: boolean;
 }

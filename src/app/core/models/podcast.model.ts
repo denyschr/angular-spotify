@@ -1,6 +1,6 @@
-import { Audiobook, Episode, MediaCollection, MediaItem } from '../models';
+import { Audiobook, Episode, MediaBodyResponse, MediaItem } from '.';
 
-export interface Show
+export interface Podcast
   extends MediaItem,
     Pick<
       Audiobook,
@@ -11,6 +11,6 @@ export interface Show
   total_episodes: number;
 }
 
-export interface Shows extends MediaCollection<Show> {
-  items: Show[];
+export interface Podcasts extends MediaBodyResponse<Podcast> {
+  items: Podcast[];
 }

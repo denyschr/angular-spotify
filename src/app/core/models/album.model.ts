@@ -1,4 +1,4 @@
-import { MediaCollection, MediaItem, Restrictions } from '../models';
+import { MediaBodyResponse, MediaItem, Restrictions } from '../models';
 
 export interface Album extends MediaItem {
   album_type: AlbumType;
@@ -22,7 +22,7 @@ export interface AlbumArtist extends Omit<MediaItem, 'images'> {
   type: string;
 }
 
-export interface Albums extends MediaCollection<Album> {
+export interface Albums extends MediaBodyResponse<Album> {
   items: Album[];
 }
 

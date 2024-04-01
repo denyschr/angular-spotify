@@ -1,4 +1,4 @@
-import { Album, Audiobook, MediaCollection, MediaItem } from '../models';
+import { Album, Audiobook, MediaBodyResponse, MediaItem } from '../models';
 
 export interface Episode
   extends MediaItem,
@@ -17,6 +17,6 @@ export interface ResumePoint {
   resume_position_ms: number;
 }
 
-export interface Episodes extends MediaCollection<Episode> {
+export interface Episodes extends MediaBodyResponse<Episode> {
   items: Episode[];
 }

@@ -27,22 +27,13 @@
             "outputPath": "dist/angular-spotify",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/custom/styles/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/custom/styles/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/custom/styles/"
-              ]
+              "includePaths": ["src/custom/styles/"]
             },
             "scripts": []
           },
@@ -97,23 +88,13 @@
         "test": {
           "builder": "@ngx-env/builder:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/custom/styles/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/custom/styles/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/custom/styles/"
-              ]
+              "includePaths": ["src/custom/styles/"]
             },
             "scripts": []
           }
@@ -123,5 +104,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

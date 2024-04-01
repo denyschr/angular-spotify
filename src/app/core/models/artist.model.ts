@@ -1,4 +1,4 @@
-import { Followers, MediaCollection, MediaItem } from '../models';
+import { Followers, MediaBodyResponse, MediaItem } from '../models';
 
 export interface Artist extends MediaItem {
   followers: Followers;
@@ -7,7 +7,7 @@ export interface Artist extends MediaItem {
   type: 'artist';
 }
 
-export interface Artists extends MediaCollection<Artist> {
+export interface Artists extends MediaBodyResponse<Artist> {
   items: Artist[];
 }
 

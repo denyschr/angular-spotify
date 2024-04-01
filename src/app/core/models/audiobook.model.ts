@@ -1,4 +1,4 @@
-import { Copyright, MediaCollection, MediaItem } from '../models';
+import { Copyright, MediaBodyResponse, MediaItem } from '../models';
 
 export interface Audiobook extends MediaItem {
   authors: Author[];
@@ -24,6 +24,6 @@ export interface Narrator {
   name: string;
 }
 
-export interface Audiobooks extends MediaCollection<Audiobook> {
+export interface Audiobooks extends MediaBodyResponse<Audiobook> {
   items: Audiobook[];
 }

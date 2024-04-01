@@ -1,4 +1,4 @@
-import { Followers, MediaCollection, MediaItem } from '../models';
+import { Followers, MediaBodyResponse, MediaItem } from '../models';
 
 export interface Playlist extends MediaItem {
   collaborative: boolean;
@@ -21,6 +21,6 @@ interface Tracks {
   total: number;
 }
 
-export interface Playlists extends MediaCollection<Playlist> {
+export interface Playlists extends MediaBodyResponse<Playlist> {
   items: Playlist[];
 }

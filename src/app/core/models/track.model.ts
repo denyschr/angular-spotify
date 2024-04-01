@@ -1,4 +1,4 @@
-import { Album, Artist, Episode, MediaCollection, MediaItem } from '../models';
+import { Album, Artist, Episode, MediaBodyResponse, MediaItem } from '../models';
 
 export interface Track
   extends Omit<MediaItem, 'images'>,
@@ -22,6 +22,6 @@ export interface ExternalIds {
   upc: string;
 }
 
-export interface Tracks extends MediaCollection<Track> {
+export interface Tracks extends MediaBodyResponse<Track> {
   items: Track[];
 }

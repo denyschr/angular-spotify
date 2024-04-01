@@ -1,4 +1,4 @@
-export interface MediaCollection<T> {
+export interface MediaBodyResponse<T> {
   href: string;
   items: T[];
   limit: number;

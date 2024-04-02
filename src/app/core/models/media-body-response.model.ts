@@ -1,6 +1,6 @@
-export interface MediaBodyResponse<T> {
+export interface MediaBodyResponse<TItem> {
   href: string;
-  items: T[];
+  items: TItem[];
   limit: number;
   next: string | null;
   offset: number;

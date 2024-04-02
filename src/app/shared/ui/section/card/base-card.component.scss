@@ -30,47 +30,18 @@
 		aspect-ratio: 200 / 200;
 		overflow: hidden;
 		border-radius: toRem(4);
-		&._rounded {
-			border-radius: 50%;
-		}
 		img {
 			width: 100%;
+		}
+		&._rounded {
+			border-radius: 50%;
 		}
 	}
 	// .card__wrap-play
 	&__wrap-play {
-		position: absolute;
-		z-index: 3;
+		@extend %wrap-play;
 		right: toRem(8);
 		bottom: toRem(10);
-		opacity: 0;
-		visibility: hidden;
-		transform: translateY(toRem(10));
-		transition:
-			opacity 0.3s ease-in-out,
-			visibility 0.3s ease-in-out,
-			transform 0.3s ease-in-out;
-	}
-	// .card__play
-	&__play {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: toRem(48);
-		height: toRem(48);
-		transform: scale(1.01);
-		border-radius: 50%;
-		border: none;
-		background: var(--cyan);
-		&::before {
-			color: var(--black);
-			transform: translate(toRem(1), toRem(1));
-		}
-		@media (any-hover: hover) {
-			&:hover {
-				transform: scale(1.05);
-			}
-		}
 	}
 	// .card__details
 	&__details {

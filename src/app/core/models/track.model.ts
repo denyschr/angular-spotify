@@ -2,7 +2,7 @@ import { Album, Artist, MediaBodyResponse, MediaItem } from '../models';
 
 export interface Track extends Omit<MediaItem, 'images'>, Pick<Album, 'available_markets' | 'restrictions'> {
   album: Album;
-  artists: Artist;
+  artists: Artist[];
   disc_number: number;
   duration_ms: number;
   explicit: boolean;

@@ -7,6 +7,7 @@ import {
   AlbumCardComponent,
   ArtistCardComponent,
   PlaylistCardComponent,
+  TopResultCardComponent,
   FooterComponent,
   SidebarComponent,
   SectionComponent,
@@ -36,7 +37,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     PlayBtnLabelDirective,
     AlbumCardComponent,
     ArtistCardComponent,
-    PlaylistCardComponent
+    PlaylistCardComponent,
+    TopResultCardComponent
   ],
   imports: [CommonModule, SharedRoutingModule, LazyLoadImageModule],
   exports: [
@@ -46,7 +48,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     SectionComponent,
     CategoryComponent,
     FooterComponent,
-    SectionSkeletonComponent
+    SectionSkeletonComponent,
+    TopResultCardComponent
   ]
 })
 export class SharedModule {}

@@ -1,5 +1,13 @@
 @import "mixins";
 
+.main {
+	&__top {
+		display: flex;
+		align-items: flex-start;
+		gap: toRem(12);
+	}
+}
+
 .search-header {
 	position: relative;
 	flex-basis: toRem(340);

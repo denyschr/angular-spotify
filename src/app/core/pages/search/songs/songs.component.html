@@ -1,0 +1,11 @@
+<section class="main__section section" aria-label="Songs">
+	<div class="section__container">
+		<h2 class="section__title section__title--offset">Songs</h2>
+		<div class="section__songs">
+			<ng-container *ngIf="search.tracks.items.length">
+				<app-song-card *ngFor="let mediaItem of search.tracks.items | slice:0:4" [mediaItem]="mediaItem">
+				</app-song-card>
+			</ng-container>
+		</div>
+	</div>
+</section>

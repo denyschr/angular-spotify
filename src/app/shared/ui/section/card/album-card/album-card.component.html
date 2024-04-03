@@ -15,7 +15,7 @@
 			</time>
 			<ng-container *ngFor="let artist of mediaItem.artists | slice:0:3; let last = last">
 				<a [routerLink]="['/artist', artist.id]">{{ artist.name }}</a>
-				<ng-container>{{ !last ? ',' : (mediaItem.artists.length > 3 ? ' and more' : '') }}
+				<ng-container>{{ !last ? ', ' : (mediaItem.artists.length > 3 ? ' and more' : '') }}
 				</ng-container>
 			</ng-container>
 		</div>

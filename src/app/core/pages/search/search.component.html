@@ -27,6 +27,7 @@
 <ng-template #searchSection let-search>
 	<ng-container *ngIf="search.searchResults; else noResults">
 		<app-top-result [search]="search"></app-top-result>
+		<app-songs [search]="search"></app-songs>
 		<app-section *ngIf="search.artists.items.length" [sectionTitle]="'Artists'" [isShowMore]="false"
 			[mediaContent]="{items: search.artists.items}">
 		</app-section>

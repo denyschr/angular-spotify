@@ -1,4 +1,5 @@
 @import "mixins";
+@import "vars";
 
 .card {
 	position: relative;
@@ -29,50 +30,21 @@
 		aspect-ratio: 200 / 200;
 		overflow: hidden;
 		border-radius: toRem(4);
-		&._rounded {
-			border-radius: 50%;
-		}
 		img {
 			width: 100%;
+		}
+		&._rounded {
+			border-radius: 50%;
 		}
 	}
 	// .card__wrap-play
 	&__wrap-play {
-		position: absolute;
-		z-index: 3;
+		@extend %wrap-play;
 		right: toRem(8);
 		bottom: toRem(10);
-		opacity: 0;
-		visibility: hidden;
-		transform: translateY(toRem(10));
-		transition:
-			opacity 0.3s ease-in-out,
-			visibility 0.3s ease-in-out,
-			transform 0.3s ease-in-out;
 	}
-	// .card__play
-	&__play {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: toRem(48);
-		height: toRem(48);
-		transform: scale(1.01);
-		border-radius: 50%;
-		border: none;
-		background: var(--cyan);
-		&::before {
-			color: var(--black);
-			transform: translate(toRem(1), toRem(1));
-		}
-		@media (any-hover: hover) {
-			&:hover {
-				transform: scale(1.05);
-			}
-		}
-	}
-	// .card__info
-	&__info {
+	// .card__details
+	&__details {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -83,6 +55,7 @@
 		margin-bottom: toRem(6);
 		font-weight: 700;
 		font-size: toRem(16);
+		line-height: 1.2;
 		color: var(--primary);
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -96,14 +69,11 @@
 	}
 	// .card__artist
 	&__artists {
+		@extend %ellipsis;
 		position: relative;
 		z-index: 2;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		overflow: hidden;
-		text-overflow: ellipsis;
 		font-size: toRem(14);
+		font-weight: 500;
 		a {
 			display: inline;
 			line-height: 1.4;
@@ -115,8 +85,10 @@
 		}
 	}
 	// .card__type
-	&__type {
+	&__subtitle {
+		@extend %ellipsis;
 		font-size: toRem(14);
+		font-weight: 500;
 		line-height: 1.2;
 		text-transform: capitalize;
 	}

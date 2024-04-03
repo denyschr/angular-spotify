@@ -1,32 +1,14 @@
-import { Image, ItemCollection } from '../models';
+import { MediaBodyResponse, MediaItem, Restrictions } from '../models';
 
-export interface Album {
+export interface Album extends MediaItem {
   album_type: AlbumType;
-  artists: ArtistAlbum[];
+  total_tracks: number;
   available_markets: string[];
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  images: Image[];
-  name: string;
   release_date: string;
   release_date_precision: string;
-  total_tracks: number;
+  restrictions: Restrictions;
   type: 'album';
-  uri: string;
-}
-
-export interface ArtistAlbum {
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  name: string;
-  type: string;
-  uri: string;
-}
-
-export interface ExternalUrls {
-  spotify: string;
+  artists: AlbumArtist[];
 }
 
 export enum AlbumType {
@@ -36,7 +18,11 @@ export enum AlbumType {
   Ep = 'ep'
 }
 
-export interface Albums extends ItemCollection<Album> {
+export interface AlbumArtist extends Omit<MediaItem, 'images'> {
+  type: string;
+}
+
+export interface Albums extends MediaBodyResponse<Album> {
   items: Album[];
 }
 

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { INITIAL_ITEM_LENGTH, ITEM_LIMIT } from '../../../core/constants/app.constants';
-import { MusicContent } from '../../../core/models';
+import { MediaContent } from '../../../core/models';
 
 @Component({
   selector: 'app-section',
@@ -13,7 +13,7 @@ export class SectionComponent {
 
   @Input() sectionTitle?: string;
   @Input() isShowMore = true;
-  @Input() musicContent!: MusicContent;
+  @Input() mediaContent!: MediaContent;
 
   newItemLength(value: number): void {
     this.currentLengthOfItems = value;

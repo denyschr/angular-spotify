@@ -1,5 +1,6 @@
 .button {
 	display: inline-flex;
+	justify-content: center;
 	align-items: center;
 	text-align: center;
 	font-weight: 700;
@@ -20,6 +21,22 @@
 		border-radius: toRem(24);
 		background-color: var(--primary);
 		color: var(--black);
+		@media (any-hover: hover) {
+			&:hover {
+				transform: scale(1.05);
+			}
+		}
+	}
+	&--play {
+		width: toRem(48);
+		height: toRem(48);
+		transform: scale(1.01);
+		border-radius: 50%;
+		background: var(--cyan);
+		&::before {
+			color: var(--black);
+			transform: translate(toRem(1), toRem(1));
+		}
 		@media (any-hover: hover) {
 			&:hover {
 				transform: scale(1.05);

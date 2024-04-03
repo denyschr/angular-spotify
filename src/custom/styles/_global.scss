@@ -40,27 +40,3 @@ app-search-bar {
 app-footer {
 	margin-top: auto;
 }
-
-.social {
-	display: flex;
-	align-items: center;
-	gap: toRem(16);
-	// .social__item
-	&__item {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex: 0 0 toRem(40);
-		width: toRem(40);
-		height: toRem(40);
-		color: var(--primary);
-		border-radius: 50%;
-		background-color: var(--smoke);
-		transition: background 0.3s ease-in-out;
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: var(--mako);
-			}
-		}
-	}
-}

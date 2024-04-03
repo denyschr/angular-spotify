@@ -26,10 +26,16 @@
 
 <ng-template #searchSection let-search>
 	<ng-container *ngIf="search.searchResults; else noResults">
+		<app-top-result [search]="search"></app-top-result>
+		<app-songs [search]="search"></app-songs>
 		<app-section *ngIf="search.artists.items.length" [sectionTitle]="'Artists'" [isShowMore]="false"
-			[musicContent]="{items: search.artists.items, isImageRounded: true}"></app-section>
+			[mediaContent]="{items: search.artists.items}">
+		</app-section>
 		<app-section *ngIf="search.albums.items.length" [sectionTitle]="'Albums'" [isShowMore]="false"
-			[musicContent]="{items: search.albums.items, isAlbumDate: true}">
+			[mediaContent]="{items: search.albums.items, isAlbumDate: true}">
+		</app-section>
+		<app-section *ngIf="search.playlists.items.length" [sectionTitle]="'Playlists'" [isShowMore]="false"
+			[mediaContent]="{items: search.playlists.items}">
 		</app-section>
 	</ng-container>
 </ng-template>
@@ -48,5 +54,3 @@
 <ng-template #loader>
 	<span class="loader"></span>
 </ng-template>
-
-<!-- Buttons: All, Artists, Albums, Songs, Episodes, Playlists -->

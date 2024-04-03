@@ -1,0 +1,108 @@
+@import "mixins";
+@import "vars";
+
+.top-result {
+	position: relative;
+	padding: toRem(20);
+	border-radius: toRem(8);
+	background-color: var(--smoke);
+	transition: background-color 0.3s ease-in-out;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: var(--tuna);
+			.top-result__wrap-play {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+		}
+	}
+	// .top-result__img
+	&__img {
+		margin-bottom: toRem(20);
+		aspect-ratio: 92 / 92;
+		max-width: toRem(92);
+		overflow: hidden;
+		border-radius: toRem(4);
+		img {
+			width: 100%;
+		}
+	}
+	// .top-result__details
+	&__details {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	// .top-result__title
+	&__title {
+		max-width: 100%;
+		margin-bottom: toRem(12);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-size: toRem(32);
+		color: var(--primary);
+		font-weight: 700;
+		&::before {
+			content: "";
+			position: absolute;
+			z-index: 1;
+			inset: 0;
+		}
+	}
+	// .top-result__extra
+	&__extra {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: toRem(6);
+	}
+	// .top-result__explicit
+	&__explicit {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: toRem(16);
+		height: toRem(16);
+		flex-basis: toRem(16);
+		border-radius: toRem(2);
+		background-color: hsla(0, 0%, 100%, 0.6);
+		font-size: toRem(9);
+		font-weight: 500;
+		color: var(--shark);
+	}
+	// .top-result__type
+	&__type {
+		font-weight: 500;
+		font-size: toRem(14);
+		line-height: 1.2;
+		&::after {
+			content: "•";
+			margin-left: toRem(4);
+		}
+	}
+	// .top-result__artists
+	&__artists {
+		position: relative;
+		z-index: 2;
+		font-size: toRem(14);
+		font-weight: 500;
+		color: var(--primary);
+		a {
+			display: inline;
+			line-height: 1.4;
+			@media (any-hover: hover) {
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	// .top-result__wrap-play
+	&__wrap-play {
+		@extend %wrap-play;
+		right: toRem(24);
+		bottom: toRem(24);
+	}
+}

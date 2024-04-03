@@ -1,4 +1,4 @@
-<section class="main__section section" [ariaLabel]="sectionTitle">
+<section class="main__section section" *ngIf="mediaContent.items.length" [ariaLabel]="sectionTitle">
 	<div class="section__container">
 		<div class="section__top">
 			<h2 class="section__title" *ngIf="sectionTitle">{{ sectionTitle }}</h2>
@@ -7,9 +7,13 @@
 				more</button>
 		</div>
 		<div class="section__cards">
-			<app-card *ngFor="let musicItem of musicContent.items | slice:0:currentLengthOfItems" [musicItem]="musicItem"
-				[isImageRounded]="musicContent.isImageRounded" [isAlbumDate]="musicContent.isAlbumDate">
-			</app-card>
+			<ng-container *ngFor="let mediaItem of mediaContent.items | slice:0:currentLengthOfItems"
+				[ngSwitch]="mediaItem.type">
+				<app-album-card *ngSwitchCase="'album'" [mediaItem]="mediaItem"
+					[isAlbumDate]="mediaContent.isAlbumDate"></app-album-card>
+				<app-artist-card *ngSwitchCase="'artist'" [mediaItem]="mediaItem"></app-artist-card>
+				<app-playlist-card *ngSwitchCase="'playlist'" [mediaItem]="mediaItem"></app-playlist-card>
+			</ng-container>
 		</div>
 	</div>
 </section>

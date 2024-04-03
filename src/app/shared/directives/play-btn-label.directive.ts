@@ -1,11 +1,11 @@
 import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
-import { Album, Artist, ArtistAlbum } from '../../core/models';
+import { Album, Artist, AlbumArtist, Playlist, Track } from '../../core/models';
 
 @Directive({
   selector: '[playBtnLabel]'
 })
 export class PlayBtnLabelDirective implements AfterViewInit {
-  @Input('playBtnLabel') data!: Album | Artist;
+  @Input('playBtnLabel') data!: Album | Artist | Playlist | Track;
 
   constructor(
     private _playBtnEl: ElementRef<HTMLButtonElement>,
@@ -13,7 +13,7 @@ export class PlayBtnLabelDirective implements AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    if (this.data.type === 'album') {
+    if (this.data.type === 'album' || this.data.type === 'track') {
       const playBtnLabel = 'Play ' + this.data.name + ' by ' + this.formatArtistsNames(this.data.artists);
       this._renderer.setAttribute(this._playBtnEl.nativeElement, 'aria-label', playBtnLabel);
     } else {
@@ -22,7 +22,7 @@ export class PlayBtnLabelDirective implements AfterViewInit {
     }
   }
 
-  public formatArtistsNames(artists: ArtistAlbum[]): string {
+  public formatArtistsNames(artists: AlbumArtist[]): string {
     return artists
       .reduce((arr: string[], artist) => {
         arr.push(artist.name);

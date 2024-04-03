@@ -3,7 +3,12 @@ import { CommonModule } from '@angular/common';
 import {
   HeaderComponent,
   HeaderAuthComponent,
-  CardComponent,
+  BaseCardComponent,
+  AlbumCardComponent,
+  ArtistCardComponent,
+  PlaylistCardComponent,
+  TopResultCardComponent,
+  SongCardComponent,
   FooterComponent,
   SidebarComponent,
   SectionComponent,
@@ -23,14 +28,19 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     HeaderAuthComponent,
     SectionComponent,
     CategoryComponent,
-    CardComponent,
+    BaseCardComponent,
     FooterComponent,
     ExtractColorDirective,
     ShowMoreDirective,
     NotFoundImagePipe,
     SectionSkeletonComponent,
     CardSkeletonComponent,
-    PlayBtnLabelDirective
+    PlayBtnLabelDirective,
+    AlbumCardComponent,
+    ArtistCardComponent,
+    PlaylistCardComponent,
+    TopResultCardComponent,
+    SongCardComponent
   ],
   imports: [CommonModule, SharedRoutingModule, LazyLoadImageModule],
   exports: [
@@ -39,9 +49,10 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     HeaderAuthComponent,
     SectionComponent,
     CategoryComponent,
-    CardComponent,
     FooterComponent,
-    SectionSkeletonComponent
+    SectionSkeletonComponent,
+    TopResultCardComponent,
+    SongCardComponent
   ]
 })
 export class SharedModule {}

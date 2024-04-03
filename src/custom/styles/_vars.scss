@@ -13,6 +13,7 @@ $fontSize: toRem(16);
 	--cyan: #00ffff;
 	--silver: #a7a7a7;
 	--charade: #222326;
+	--tuna: #28282c;
 }
 
 // Adaptive grid
@@ -28,3 +29,23 @@ $tablet: em(991.98);
 $mobile: em(767.98);
 $mobileSmall: em(479.98);
 $mobileExtraSmall: em(389.98);
+
+%ellipsis {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+%wrap-play {
+	position: absolute;
+	z-index: 3;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(toRem(10));
+	transition:
+		opacity 0.3s ease-in-out,
+		visibility 0.3s ease-in-out,
+		transform 0.3s ease-in-out;
+}

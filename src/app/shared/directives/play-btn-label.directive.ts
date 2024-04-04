@@ -5,7 +5,7 @@ import { Album, Artist, AlbumArtist, Playlist, Track } from '../../core/models';
   selector: '[playBtnLabel]'
 })
 export class PlayBtnLabelDirective implements AfterViewInit {
-  @Input('playBtnLabel') data!: Album | Artist | Playlist | Track;
+  @Input('playBtnLabel') mediaItem!: Album | Artist | Playlist | Track;
 
   constructor(
     private _playBtnEl: ElementRef<HTMLButtonElement>,
@@ -13,11 +13,11 @@ export class PlayBtnLabelDirective implements AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    if (this.data.type === 'album' || this.data.type === 'track') {
-      const playBtnLabel = 'Play ' + this.data.name + ' by ' + this.formatArtistsNames(this.data.artists);
+    if (this.mediaItem.type === 'album' || this.mediaItem.type === 'track') {
+      const playBtnLabel = 'Play ' + this.mediaItem.name + ' by ' + this.formatArtistsNames(this.mediaItem.artists);
       this._renderer.setAttribute(this._playBtnEl.nativeElement, 'aria-label', playBtnLabel);
     } else {
-      const playBtnLabel = 'Play ' + this.data.name;
+      const playBtnLabel = 'Play ' + this.mediaItem.name;
       this._renderer.setAttribute(this._playBtnEl.nativeElement, 'aria-label', playBtnLabel);
     }
   }

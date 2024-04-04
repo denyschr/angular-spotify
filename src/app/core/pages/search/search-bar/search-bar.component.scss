@@ -5,13 +5,14 @@
 	// .search-header__input
 	&__input {
 		width: 100%;
-		padding: toRem(16) toRem(60) toRem(16) toRem(40);
-		border-radius: toRem(36);
+		padding: toRem(12) toRem(50) toRem(12) toRem(40);
+		border-radius: var(--corner-radius-larger-4);
 		background-image: url("../../../../../assets/icons/search.svg");
 		background-repeat: no-repeat;
 		background-position: toRem(12);
 		background-color: var(--smoke);
-		border: toRem(2) solid var(--charade);
+		border: toRem(1) solid var(--charade);
+		font-size: var(--text-size-smaller-2);
 		color: var(--primary);
 		transition: background 0.3s ease-in-out;
 		&::placeholder {
@@ -30,12 +31,12 @@
 	&__button {
 		position: absolute;
 		right: toRem(20);
-		top: 50%;
+		top: 52%;
 		transform: translateY(-50%);
 		display: flex;
 		align-items: center;
 		border: none;
-		font-size: toRem(24);
+		font-size: var(--text-size-larger);
 		color: var(--primary);
 	}
 }

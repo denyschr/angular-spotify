@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   HeaderComponent,
-  HeaderAuthComponent,
   BaseCardComponent,
   AlbumCardComponent,
   ArtistCardComponent,
@@ -25,7 +24,6 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
   declarations: [
     SidebarComponent,
     HeaderComponent,
-    HeaderAuthComponent,
     SectionComponent,
     CategoryComponent,
     BaseCardComponent,
@@ -46,7 +44,6 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
   exports: [
     SidebarComponent,
     HeaderComponent,
-    HeaderAuthComponent,
     SectionComponent,
     CategoryComponent,
     FooterComponent,

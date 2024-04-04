@@ -1,9 +1,9 @@
 <div class="wrapper">
 	<app-sidebar></app-sidebar>
 	<div class="page">
-		<app-header-auth>
+		<app-header>
 			<app-search-bar [currentSearchTerm]="searchTerm" class="search-bar"></app-search-bar>
-		</app-header-auth>
+		</app-header>
 		<ng-container *ngIf="(vm$ | async) as vm; else loader">
 			<main class="main">
 				<ng-container [ngSwitch]="vm.search ? 'search' : 'categories'">

@@ -10,8 +10,8 @@
 	<div class="card__details">
 		<a [routerLink]="['/album', mediaItem.id]" class="card__title">{{mediaItem.name}}</a>
 		<div class="card__artists">
-			<time *ngIf="isAlbumDate" [attr.datetime]="mediaItem.release_date | date:'y'">{{mediaItem.release_date |
-				date:'y'}} •
+			<time class="card__date" *ngIf="isAlbumDate" [attr.datetime]="mediaItem.release_date | date:'y'">
+				{{mediaItem.release_date | date:'y'}}
 			</time>
 			<ng-container *ngFor="let artist of mediaItem.artists | slice:0:3; let last = last">
 				<a [routerLink]="['/artist', artist.id]">{{ artist.name }}</a>

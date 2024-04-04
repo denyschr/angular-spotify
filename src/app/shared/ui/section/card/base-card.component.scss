@@ -84,6 +84,13 @@
 			}
 		}
 	}
+	// .card__date
+	&__date {
+		margin-right: toRem(4);
+		&::after {
+			content: "•";
+		}
+	}
 	// .card__type
 	&__subtitle {
 		@extend %ellipsis;

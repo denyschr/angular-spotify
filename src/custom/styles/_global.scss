@@ -1,7 +1,7 @@
 .wrapper {
 	display: grid;
 	height: 100%;
-	grid-template-columns: toRem(420) 1fr;
+	grid-template-columns: toRem(280) 1fr;
 	gap: toRem(8);
 	overflow: clip;
 	padding: toRem(8);
@@ -39,4 +39,11 @@ app-search-bar {
 
 app-footer {
 	margin-top: auto;
+}
+
+.title {
+	font-weight: 600;
+	&--section {
+		font-size: toRem(24);
+	}
 }

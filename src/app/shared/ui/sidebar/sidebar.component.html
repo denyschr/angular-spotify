@@ -1,40 +1,33 @@
 <aside class="sidebar">
-	<div class="sidebar__top">
-		<a [routerLink]="['']" class="sidebar__logo">
-			<img src="./assets/icons/logo.svg" alt="Spotify logo">
-		</a>
-		<nav class="sidebar__nav nav-sidebar" [title]="navTitle">
-			<ul class="nav-sidebar__list">
-				<li class="nav-sidebar__item" *ngFor="let menuItem of menuItems">
-					<a class="nav-sidebar__link {{menuItem.icon}}" [routerLink]="[menuItem.path]" routerLinkActive="is-active"
-						[routerLinkActiveOptions]="{exact: true}">
-						{{menuItem.name}}
-					</a>
-				</li>
-			</ul>
-		</nav>
-	</div>
-	<div class="sidebar__body">
-		<div class="sidebar__playlists playlists-sidebar">
-			<h2 class="playlists-sidebar__title">My playlists</h2>
-			<ul class="playlists-sidebar__list">
-				<li class="playlists-sidebar__item">
-					<a href="#" class="playlists-sidebar__link">Gym Hype</a>
-				</li>
-				<li class="playlists-sidebar__item">
-					<a href="#" class="playlists-sidebar__link">Meditation</a>
-				</li>
-				<li class="playlists-sidebar__item">
-					<a href="#" class="playlists-sidebar__link">Motivation Songs</a>
-				</li>
-				<li class="playlists-sidebar__item">
-					<a href="#" class="playlists-sidebar__link">Design practice</a>
-				</li>
-			</ul>
-			<button type="button" class="playlists-sidebar__add" aria-label="Create new playlist">
-				<span class="playlists-sidebar__icon"></span>
-				<span class="playlists-sidebar__text">Create new playlist</span>
-			</button>
-		</div>
+	<div class="sidebar__user">Profile</div>
+	<nav class="sidebar__nav" [title]="navTitle">
+		<ul class="sidebar__list">
+			<li class="sidebar__item" *ngFor="let menuItem of menuItems">
+				<a class="sidebar__link {{menuItem.icon}}" [routerLink]="[menuItem.path]" routerLinkActive="is-active"
+					[routerLinkActiveOptions]="{exact: true}">
+					{{menuItem.name}}
+				</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="sidebar__group">
+		<h2 class="sidebar__title">My playlists</h2>
+		<ul class="sidebar__list">
+			<li class="sidebar__item">
+				<a href="#" class="sidebar__link">Mixes and Radio</a>
+			</li>
+			<li class="sidebar__item">
+				<a href="#" class="sidebar__link">September</a>
+			</li>
+			<li class="sidebar__item">
+				<a href="#" class="sidebar__link">Clubbing</a>
+			</li>
+			<li class="sidebar__item">
+				<a href="#" class="sidebar__link">Chil story2</a>
+			</li>
+			<li class="sidebar__item">
+				<a href="#" class="sidebar__link">Playlist 342</a>
+			</li>
+		</ul>
 	</div>
 </aside>

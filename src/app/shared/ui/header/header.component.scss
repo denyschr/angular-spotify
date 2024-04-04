@@ -2,19 +2,10 @@
 
 .header {
 	// .header__inner
-	&__inner {
+	&__container {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		gap: toRem(10);
 		min-height: toRem(80);
-		padding: toRem(5) toRem(15);
-	}
-	// .header__user
-	&__user {
-		display: flex;
-		align-items: center;
-		gap: toRem(30);
 	}
 }
 
@@ -22,19 +13,25 @@
 	display: flex;
 	align-items: center;
 	flex-grow: 1;
-	gap: toRem(16);
+	// .nav-header__btns
+	&__btns {
+		display: flex;
+		align-items: center;
+		gap: toRem(8);
+		margin-right: toRem(16);
+	}
 	// .nav-header__button
 	&__button {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		flex: 0 0 toRem(32);
-		width: toRem(32);
-		height: toRem(32);
+		flex: 0 0 toRem(40);
+		width: toRem(40);
+		height: toRem(40);
 		border-radius: 50%;
-		border: toRem(1) solid var(--charade);
+		border: toRem(1) solid var(--abbey);
 		background-color: var(--smoke);
-		font-size: toRem(14);
+		font-size: var(--text-size-smaller-2);
 		transition: background 0.3s ease-in-out;
 		&::before {
 			transition: color 0.3s ease-in-out;
@@ -45,7 +42,7 @@
 		}
 		@media (any-hover: hover) {
 			&:hover {
-				background-color: var(--charade);
+				background-color: var(--abbey);
 				&::before {
 					color: var(--primary);
 				}

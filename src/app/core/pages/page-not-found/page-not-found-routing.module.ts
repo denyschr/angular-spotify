@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PageNotFoundComponent } from './page-not-found.component';
+import { PageNotFound } from './page-not-found.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PageNotFoundComponent
+    component: PageNotFound
   }
 ];
 

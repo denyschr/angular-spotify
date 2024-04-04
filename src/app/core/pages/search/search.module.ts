@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../../../shared/shared.module';
-import { SearchComponent } from './search.component';
+import { SearchPage } from './search.page';
 import { CategoriesComponent } from './categories/categories.component';
 import { SearchRoutingModule } from './search-routing.module';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,7 @@ import { TopResultComponent } from './top-result/top-result.component';
 import { SongsComponent } from './songs/songs.component';
 
 @NgModule({
-  declarations: [SearchComponent, CategoriesComponent, SearchBarComponent, TopResultComponent, SongsComponent],
+  declarations: [SearchPage, CategoriesComponent, SearchBarComponent, TopResultComponent, SongsComponent],
   imports: [CommonModule, SearchRoutingModule, SharedModule, ReactiveFormsModule]
 })
 export class SearchModule {}

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ArtistComponent } from './artist.component';
+import { ArtistPage } from './artist.page';
 import { artistResolver } from '../../services';
 
 const routes: Routes = [
   {
     path: '',
-    component: ArtistComponent,
+    component: ArtistPage,
     resolve: { data: artistResolver }
   }
 ];

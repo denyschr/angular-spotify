@@ -4,11 +4,11 @@ import { forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: './home.page.html',
+  styleUrl: './home.page.scss',
   providers: [NewReleasesService]
 })
-export class HomeComponent {
+export class HomePage {
   private readonly newReleases$ = inject(NewReleasesService)
     .getNewReleases()
     .pipe(map((data) => data.albums.items));

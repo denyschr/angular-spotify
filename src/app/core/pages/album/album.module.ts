@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../../../shared/shared.module';
-import { AlbumComponent } from './album.component';
+import { AlbumPage } from './album.page';
 import { AlbumRoutingModule } from './album-routing.module';
 import { CommonModule } from '@angular/common';
 import { AlbumService } from '../../services';
 
 @NgModule({
-  declarations: [AlbumComponent],
+  declarations: [AlbumPage],
   imports: [CommonModule, AlbumRoutingModule, SharedModule],
   providers: [AlbumService]
 })

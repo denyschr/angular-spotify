@@ -19,15 +19,13 @@
 </div>
 
 <ng-template #categorySection let-categories>
-	<ng-container *ngIf="categories">
-		<app-categories [categories]="categories"></app-categories>
-	</ng-container>
+	<app-categories *ngIf="categories" [categories]="categories"></app-categories>
 </ng-template>
 
 <ng-template #searchSection let-search>
 	<ng-container *ngIf="search.searchResults; else noResults">
-		<app-top-result [search]="search"></app-top-result>
-		<app-songs [search]="search"></app-songs>
+		<app-top-result *ngIf="search.tracks.items.length" [search]="search"></app-top-result>
+		<app-songs *ngIf="search.tracks.items.length" [search]="search"></app-songs>
 		<app-section *ngIf="search.artists.items.length" [sectionTitle]="'Artists'" [isShowMore]="false"
 			[mediaContent]="{items: search.artists.items}">
 		</app-section>

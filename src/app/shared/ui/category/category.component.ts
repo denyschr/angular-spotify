@@ -7,5 +7,5 @@ import { Category } from '../../../core/models';
   styleUrl: './category.component.scss'
 })
 export class CategoryComponent {
-  @Input() data!: Category;
+  @Input() category!: Category;
 }

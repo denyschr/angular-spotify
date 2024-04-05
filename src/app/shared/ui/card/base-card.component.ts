@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Album, Artist, Playlist, Track } from '../../../../core/models';
+import { Album, Artist, Playlist, Track } from '../../../core/models';
 
 @Component({
   template: '',

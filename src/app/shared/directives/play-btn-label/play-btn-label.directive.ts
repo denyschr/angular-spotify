@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
-import { Album, Artist, AlbumArtist, Playlist, Track } from '../../core/models';
+import { Album, Artist, AlbumArtist, Playlist, Track } from '../../../core/models';
 
 @Directive({
   selector: '[playBtnLabel]'

@@ -1,5 +1,5 @@
 import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { INITIAL_ITEM_LENGTH, ITEM_LIMIT } from '../../core/constants/app.constants';
+import { INITIAL_ITEM_LENGTH, ITEM_LIMIT } from '../../../core/constants/app.constants';
 
 @Directive({
   selector: '[showMore]'

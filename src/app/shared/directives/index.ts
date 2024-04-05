@@ -1,3 +1,3 @@
-export { ExtractColorDirective } from './extract-color.directive';
-export { ShowMoreDirective } from './show-more.directive';
-export { PlayBtnLabelDirective } from './play-btn-label.directive';
+export { ExtractColorModule } from './extract-color/extract-color.module';
+export { ShowMoreModule } from './show-more/show-more.module';
+export { PlayBtnLabelModule } from './play-btn-label/play-btn-label.module';

@@ -1,5 +1,9 @@
 @import "mixins";
 
+:host {
+	flex-basis: toRem(340);
+}
+
 .search-header {
 	position: relative;
 	// .search-header__input

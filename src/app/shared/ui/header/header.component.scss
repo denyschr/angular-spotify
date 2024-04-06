@@ -1,5 +1,13 @@
 @import "mixins";
 
+:host {
+	position: sticky;
+	z-index: 50;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+
 .header {
 	// .header__inner
 	&__container {

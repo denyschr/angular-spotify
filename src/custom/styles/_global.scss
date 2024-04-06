@@ -16,27 +16,10 @@
 	overflow: auto;
 }
 
-app-header-auth,
-app-header {
-	position: sticky;
-	z-index: 50;
-	left: 0;
-	top: 0;
-	width: 100%;
-}
-
-app-search-bar {
-	flex-basis: toRem(340);
-}
-
 .main {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
 	gap: toRem(34);
 	margin-top: toRem(36);
-}
-
-app-footer {
-	margin-top: auto;
 }

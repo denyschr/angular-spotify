@@ -17,9 +17,36 @@
 }
 
 .main {
-	display: flex;
-	flex-direction: column;
 	flex-grow: 1;
-	gap: toRem(34);
 	margin-top: toRem(36);
+	&__container {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: toRem(32) toRem(12);
+		height: 100%;
+	}
+}
+
+.text-size-smaller-4 {
+	font-size: var(--text-size-smaller-4);
+}
+
+.text-size-smaller-3 {
+	font-size: var(--text-size-smaller-3);
+}
+
+.text-size-smaller-2 {
+	font-size: var(--text-size-smaller-2);
+}
+
+.text-size-smaller {
+	font-size: var(--text-size-smaller);
+}
+
+.text-size-larger {
+	font-size: var(--text-size-larger);
+}
+
+.text-size-larger-2 {
+	font-size: var(--text-size-larger-2);
 }

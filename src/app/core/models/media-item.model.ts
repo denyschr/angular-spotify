@@ -1,4 +1,4 @@
-import { ExternalUrls, Image } from '../models';
+import { ExternalUrls, Image } from '.';
 
 export interface MediaItem {
   external_urls: ExternalUrls;

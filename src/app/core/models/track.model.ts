@@ -1,4 +1,4 @@
-import { Album, Artist, MediaBodyResponse, MediaItem } from '../models';
+import { Album, Artist, MediaBodyResponse, MediaItem } from '.';
 
 export interface Track extends Omit<MediaItem, 'images'>, Pick<Album, 'available_markets' | 'restrictions'> {
   album: Album;

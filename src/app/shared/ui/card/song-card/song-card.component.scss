@@ -1,40 +1,50 @@
 @import "mixins";
 @import "vars";
 
-.song {
+.card {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: minmax(toRem(120), 4fr) minmax(toRem(120), 1fr);
+	gap: toRem(16);
 	align-items: center;
-	padding: toRem(10);
-	border-radius: toRem(4);
-	transition: background-color 0.3s ease-in-out;
+	padding: toRem(8) toRem(10);
+	border-radius: var(--corner-radius-larger);
 	@media (any-hover: hover) {
 		&:hover {
 			background-color: var(--tuna);
-			.song__button {
+			.card__button {
 				opacity: 1;
 				visibility: visible;
 			}
 		}
 	}
-	// .song__about
+	// .card__column
+	&__column {
+		&--last {
+			justify-self: flex-end;
+		}
+	}
+	// .card__content
+	&__content {
+		max-width: 100%;
+	}
+	// .card__extra
+	&__extra {
+		flex-wrap: nowrap;
+	}
+	// .card__about
 	&__about {
 		display: flex;
 		align-items: center;
 		gap: toRem(12);
 	}
-	// .song__img
+	// .card__img
 	&__img {
 		position: relative;
 		max-width: toRem(40);
 		aspect-ratio: 40 / 40;
-		overflow: hidden;
-		border-radius: toRem(4);
-		img {
-			width: 100%;
-		}
+		flex: 0 0 auto;
 	}
-	// .song__button
+	// .card__button
 	&__button {
 		position: absolute;
 		left: 0;
@@ -43,64 +53,33 @@
 		height: 100%;
 		opacity: 0;
 		visibility: hidden;
-		border-radius: toRem(4);
+		border-radius: var(--corner-radius-smaller-2);
 		background: rgba(0, 0, 0, 0.5);
 		color: var(--cyan);
 		transition:
 			opacity 0.3s ease-in-out,
 			visibility 0.3s ease-in-out;
 	}
-	// .song__title
+	// .card__title
 	&__title {
-		margin-bottom: toRem(4);
-		color: var(--primary);
+		margin-bottom: 0;
+		&::before {
+			content: "";
+			display: none;
+		}
 		@media (any-hover: hover) {
 			&:hover {
 				text-decoration: underline;
 			}
 		}
 	}
-	// .song__extra
-	&__extra {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: toRem(6);
-	}
-	// .song__explicit
-	&__explicit {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: toRem(16);
-		height: toRem(16);
-		flex-basis: toRem(16);
-		border-radius: toRem(2);
-		background-color: hsla(0, 0%, 100%, 0.6);
-		font-size: toRem(9);
-		font-weight: 500;
-		color: var(--shark);
-	}
-	// .song__artists
+	// .card__artists
 	&__artists {
-		position: relative;
-		z-index: 2;
-		font-size: toRem(14);
-		font-weight: 500;
-		a {
-			display: inline;
-			line-height: 1.4;
-			@media (any-hover: hover) {
-				&:hover {
-					text-decoration: underline;
-				}
-			}
-		}
+		-webkit-line-clamp: 1;
 	}
-	// .song__length
+	// .card__length
 	&__length {
-		font-size: toRem(14);
 		line-height: 1.2;
-		text-align: right;
+		color: var(--secondary);
 	}
 }

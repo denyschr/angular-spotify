@@ -1,4 +1,4 @@
-import { MediaBodyResponse, MediaItem, Restrictions } from '../models';
+import { MediaBodyResponse, MediaItem, Restrictions } from '.';
 
 export interface Album extends MediaItem {
   album_type: AlbumType;

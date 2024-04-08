@@ -16,11 +16,13 @@ $fontSize: toRem(16);
 	--tuna: #28282c;
 	--abbey: #4c4e54;
 
-	--text-size-smaller-3: 0.75rem;
-	--text-size-smaller-2: 0.875rem;
+	--text-size-smaller-4: 0.75rem;
+	--text-size-smaller-3: 0.875rem;
+	--text-size-smaller-2: 1rem;
 	--text-size-smaller: 1.125rem;
 	--text-size-larger: 1.5rem;
 	--text-size-larger-2: 2rem;
+
 	--corner-radius-smaller-2: 0.25rem;
 	--corner-radius-smaller: 0.125rem;
 	--corner-radius-larger: 0.375rem;
@@ -33,7 +35,7 @@ $fontSize: toRem(16);
 $minWidth: 320;
 $maxWidth: 1920;
 $maxWidthContainer: 1995;
-$containerOffset: 25;
+$containerOffset: 18;
 $containerWidth: calc($maxWidthContainer + ($containerOffset * 2));
 
 // Breakpoints
@@ -43,22 +45,10 @@ $mobile: em(767.98);
 $mobileSmall: em(479.98);
 $mobileExtraSmall: em(389.98);
 
-%ellipsis {
+%vertical-ellipsis {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
-
-%wrap-play {
-	position: absolute;
-	z-index: 3;
-	opacity: 0;
-	visibility: hidden;
-	transform: translateY(toRem(10));
-	transition:
-		opacity 0.3s ease-in-out,
-		visibility 0.3s ease-in-out,
-		transform 0.3s ease-in-out;
 }

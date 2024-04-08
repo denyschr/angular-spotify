@@ -1,13 +1,15 @@
-<article class="top-result" *ngIf="mediaItem.type === 'track'">
-	<div class="top-result__img">
+<article class="card" *ngIf="mediaItem.type === 'track'">
+	<div class="card__img">
 		<img [lazyLoad]="mediaItem.album.images| notFoundImage" alt>
 	</div>
-	<div class="top-result__details">
-		<a [routerLink]="['/track', mediaItem.id]" class="top-result__title">{{ mediaItem.name }}</a>
-		<div class="top-result__extra">
-			<span class="top-result__explicit" *ngIf="mediaItem.explicit" title="Explicit">E</span>
-			<span class="top-result__type">{{ mediaItem.type === 'track' ? 'Song' : '' }}</span>
-			<div class="top-result__artists">
+	<div class="card__details">
+		<a [routerLink]="['/track', mediaItem.id]" class="card__title text-size-larger-2">
+			{{ mediaItem.name }}
+		</a>
+		<div class="card__extra">
+			<span class="card__explicit" *ngIf="mediaItem.explicit" title="Explicit">E</span>
+			<span class="card__type text-size-smaller-3">{{ mediaItem.type === 'track' ? 'Song' : '' }}</span>
+			<div class="card__artists text-size-smaller-3">
 				<ng-container *ngFor="let artist of mediaItem.artists; let last = last">
 					<a [routerLink]="['/artist', artist.id]">{{ artist.name }}</a>
 					<ng-container>{{ !last ? ', ' : '' }}</ng-container>
@@ -15,7 +17,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="top-result__wrap-play">
+	<div class="card__wrap-play">
 		<button type="button" class="button button--play _icon-player" aria-label="Play"></button>
 	</div>
 </article>

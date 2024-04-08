@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { HomePage } from './home.page';
 import { HomeRoutingModule } from './home-routing.module';
 import { CommonModule } from '@angular/common';
-import { HeaderModule } from '../../../shared/ui/header/header.module';
-import { SidebarModule } from '../../../shared/ui/sidebar/sidebar.module';
-import { FooterModule } from '../../../shared/ui/footer/footer.module';
-import { SectionModule } from '../../../shared/ui/section/section.module';
-import { SectionSkeletonModule } from '../../../shared/ui/section-skeleton/section-skeleton.module';
+import {
+  HeaderModule,
+  SidebarModule,
+  FooterModule,
+  BaseSectionModule,
+  SectionSkeletonModule
+} from '../../../shared/ui';
 
 @NgModule({
   declarations: [HomePage],
@@ -16,7 +18,7 @@ import { SectionSkeletonModule } from '../../../shared/ui/section-skeleton/secti
     HeaderModule,
     SidebarModule,
     FooterModule,
-    SectionModule,
+    BaseSectionModule,
     SectionSkeletonModule
   ]
 })

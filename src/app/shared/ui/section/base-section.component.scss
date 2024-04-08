@@ -1,19 +1,21 @@
 @import "mixins";
 
+:host {
+	grid-column: 1/-1;
+}
+
 .section {
+	display: flex;
+	flex-direction: column;
+	gap: toRem(20);
 	// .section__top
 	&__top {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: toRem(16);
 	}
 	// .section__title
 	&__title {
-		font-size: toRem(28);
-		color: var(--primary);
-		&--offset {
-			margin-bottom: toRem(16);
-		}
+		align-self: flex-start;
 	}
 	// .section__show-more
 	&__show-more {
@@ -25,6 +27,7 @@
 		background-color: var(--smoke);
 		font-size: toRem(12);
 		font-weight: 400;
+		color: var(--secondary);
 		transition:
 			background 0.3s ease-in-out,
 			color 0.3s ease-in-out;
@@ -35,8 +38,7 @@
 			}
 		}
 	}
-	// .section__cards
-	&__cards {
+	&--base .section__cards {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(toRem(200), 1fr));
 		gap: toRem(16);

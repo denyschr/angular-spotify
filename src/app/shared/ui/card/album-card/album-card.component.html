@@ -1,4 +1,4 @@
-<article class="card" *ngIf="mediaItem.type === 'album'">
+<article class="card card--base" *ngIf="mediaItem.type === 'album'">
 	<div class="card__top">
 		<div class="card__img" #cardImg>
 			<img [lazyLoad]="mediaItem.images | notFoundImage" [extractColor]="cardImg" crossorigin alt>
@@ -9,7 +9,7 @@
 	</div>
 	<div class="card__details">
 		<a [routerLink]="['/album', mediaItem.id]" class="card__title">{{mediaItem.name}}</a>
-		<div class="card__artists">
+		<div class="card__artists text-size-smaller-3">
 			<time class="card__date" *ngIf="isAlbumDate" [attr.datetime]="mediaItem.release_date | date:'y'">
 				{{mediaItem.release_date | date:'y'}}
 			</time>

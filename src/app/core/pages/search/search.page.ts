@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-search',
   templateUrl: './search.page.html',
-  styleUrls: ['./search.page.scss'],
+  styleUrl: './search.page.scss',
   providers: [CategoriesService, SearchService]
 })
 export class SearchPage {

@@ -1,4 +1,4 @@
-import { Followers, MediaBodyResponse, MediaItem } from '../models';
+import { Followers, MediaBodyResponse, MediaItem } from '.';
 
 export interface Artist extends MediaItem {
   followers: Followers;

@@ -1,0 +1,7 @@
+<section class="main__section section">
+	<h2 class="section__title text-size-larger" *ngIf="sectionTitle">{{ sectionTitle }}</h2>
+	<div class="section__cards">
+		<app-song-card *ngFor="let mediaItem of mediaContent.items| slice:0:4" [mediaItem]="mediaItem">
+		</app-song-card>
+	</div>
+</section>

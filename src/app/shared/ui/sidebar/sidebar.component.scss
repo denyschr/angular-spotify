@@ -20,6 +20,7 @@
 		margin-bottom: toRem(12);
 		font-size: var(--text-size-smaller);
 		font-weight: 500;
+		color: var(--secondary);
 	}
 	// .sidebar__link
 	&__link {
@@ -28,10 +29,8 @@
 		gap: toRem(10);
 		width: 100%;
 		padding: toRem(12);
-		font-size: var(--text-size-smaller-2);
 		font-weight: 500;
 		border-radius: var(--corner-radius-larger-2);
-		color: var(--primary);
 		transition: background 0.3s ease-in-out;
 		&.is-active {
 			background-color: var(--abbey);

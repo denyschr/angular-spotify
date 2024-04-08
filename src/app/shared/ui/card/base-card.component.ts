@@ -2,8 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Album, Artist, Playlist, Track } from '../../../core/models';
 
 @Component({
-  template: '',
-  styleUrl: './base-card.component.scss'
+  template: ''
 })
 export class BaseCardComponent {
   @Input() mediaItem!: Album | Artist | Playlist | Track;

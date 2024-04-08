@@ -6,12 +6,14 @@
 		</app-header>
 		<ng-container *ngIf="(vm$ | async) as vm; else loader">
 			<main class="main">
-				<ng-container [ngSwitch]="vm.search ? 'search' : 'categories'">
-					<ng-container *ngSwitchCase="'categories'" [ngTemplateOutlet]="categorySection"
-						[ngTemplateOutletContext]="{$implicit: vm.categories}"></ng-container>
-					<ng-container *ngSwitchCase="'search'" [ngTemplateOutlet]="searchSection"
-						[ngTemplateOutletContext]="{$implicit: vm.search}"></ng-container>
-				</ng-container>
+				<div class="main__container">
+					<ng-container [ngSwitch]="vm.search ? 'search' : 'categories'">
+						<ng-container *ngSwitchCase="'categories'" [ngTemplateOutlet]="categorySection"
+							[ngTemplateOutletContext]="{$implicit: vm.categories}"></ng-container>
+						<ng-container *ngSwitchCase="'search'" [ngTemplateOutlet]="searchSection"
+							[ngTemplateOutletContext]="{$implicit: vm.search}"></ng-container>
+					</ng-container>
+				</div>
 			</main>
 			<app-footer></app-footer>
 		</ng-container>
@@ -19,29 +21,34 @@
 </div>
 
 <ng-template #categorySection let-categories>
-	<app-categories *ngIf="categories" [categories]="categories"></app-categories>
+	<app-category-section *ngIf="categories.length" [sectionTitle]="'Browse All'" [categories]="categories"
+		[mediaContent]="categories"></app-category-section>
 </ng-template>
 
 <ng-template #searchSection let-search>
 	<ng-container *ngIf="search.searchResults; else noResults">
-		<app-top-result *ngIf="search.tracks.items.length" [search]="search"></app-top-result>
-		<app-songs *ngIf="search.tracks.items.length" [search]="search"></app-songs>
-		<app-section *ngIf="search.artists.items.length" [sectionTitle]="'Artists'" [isShowMore]="false"
+		<app-top-result-section *ngIf="search.tracks.items.length" [sectionTitle]="'Top result'"
+			[mediaContent]="{items: search.tracks.items}">
+		</app-top-result-section>
+		<app-song-section *ngIf="search.tracks.items.length" [sectionTitle]="'Songs'"
+			[mediaContent]="{items: search.tracks.items}">
+		</app-song-section>
+		<app-base-section *ngIf="search.artists.items.length" [sectionTitle]="'Artists'" [isShowMore]="false"
 			[mediaContent]="{items: search.artists.items}">
-		</app-section>
-		<app-section *ngIf="search.albums.items.length" [sectionTitle]="'Albums'" [isShowMore]="false"
+		</app-base-section>
+		<app-base-section *ngIf="search.albums.items.length" [sectionTitle]="'Albums'" [isShowMore]="false"
 			[mediaContent]="{items: search.albums.items, isAlbumDate: true}">
-		</app-section>
-		<app-section *ngIf="search.playlists.items.length" [sectionTitle]="'Playlists'" [isShowMore]="false"
+		</app-base-section>
+		<app-base-section *ngIf="search.playlists.items.length" [sectionTitle]="'Playlists'" [isShowMore]="false"
 			[mediaContent]="{items: search.playlists.items}">
-		</app-section>
+		</app-base-section>
 	</ng-container>
 </ng-template>
 
 <ng-template #noResults>
 	<div class="no-results">
 		<div class="no-results__container">
-			<h1 class="no-results__title">No results found for "{{searchTerm}}"</h1>
+			<h1 class="no-results__title text-size-larger">No results found for "{{searchTerm}}"</h1>
 			<p class="no-results__text">
 				Please make sure your words are spelled correctly, or use fewer or different keywords.
 			</p>

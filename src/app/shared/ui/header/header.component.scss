@@ -39,7 +39,6 @@
 		border-radius: 50%;
 		border: toRem(1) solid var(--abbey);
 		background-color: var(--smoke);
-		font-size: var(--text-size-smaller-2);
 		transition: background 0.3s ease-in-out;
 		&::before {
 			transition: color 0.3s ease-in-out;

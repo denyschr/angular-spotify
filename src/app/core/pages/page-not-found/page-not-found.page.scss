@@ -27,18 +27,15 @@
 	// .not-found__title
 	&__title {
 		font-size: toRem(46);
-		color: var(--primary);
 	}
 	// .not-found__subtitle
 	&__subtitle {
 		font-weight: 400;
-		font-size: toRem(16);
 	}
 	// .not-found__button
 	&__button {
 		// .not-found__button--help
 		&--help {
-			color: var(--primary);
 			@media (any-hover: hover) {
 				&:hover {
 					text-decoration: underline;

@@ -3,9 +3,7 @@ import { AlbumPage } from './album.page';
 import { AlbumRoutingModule } from './album-routing.module';
 import { CommonModule } from '@angular/common';
 import { AlbumService } from '../../services';
-import { FooterModule } from '../../../shared/ui/footer/footer.module';
-import { HeaderModule } from '../../../shared/ui/header/header.module';
-import { SidebarModule } from '../../../shared/ui/sidebar/sidebar.module';
+import { HeaderModule, SidebarModule, FooterModule } from '../../../shared/ui';
 
 @NgModule({
   declarations: [AlbumPage],

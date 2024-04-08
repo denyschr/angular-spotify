@@ -1,4 +1,4 @@
-import { Image, MediaBodyResponse, MediaItem } from '../models';
+import { Image, MediaBodyResponse, MediaItem } from '.';
 
 export interface Category extends Pick<MediaItem, 'href' | 'id' | 'name'> {
   icons: Image[];

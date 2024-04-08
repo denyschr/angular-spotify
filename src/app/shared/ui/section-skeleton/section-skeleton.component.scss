@@ -1,10 +1,14 @@
 @import "mixins";
 
+:host {
+	grid-column: 1/-1;
+}
+
 .skeleton {
 	// .skeleton__title
 	&__title {
 		width: 20%;
-		margin-bottom: toRem(16);
+		margin-bottom: toRem(20);
 	}
 	// .skeleton__cards
 	&__cards {

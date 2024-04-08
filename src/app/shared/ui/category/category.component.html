@@ -1,6 +1,6 @@
 <a class="category" [routerLink]="['']" #categoryItem>
 	<article class="category__article">
-		<h3 class="category__title">{{ category.name }}</h3>
+		<h3 class="category__title text-size-larger">{{ category.name }}</h3>
 		<div class="category__img" *ngIf="category.icons[0].url">
 			<img [lazyLoad]="category.icons[0].url" [extractColor]="categoryItem" crossorigin [alt]="category.name">
 		</div>

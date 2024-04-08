@@ -1,4 +1,4 @@
-<article class="card" *ngIf="mediaItem.type === 'playlist'">
+<article class="card card--base" *ngIf="mediaItem.type === 'playlist'">
 	<div class="card__top">
 		<div class="card__img" #cardImg>
 			<img [lazyLoad]="mediaItem.images | notFoundImage" [extractColor]="cardImg" crossorigin alt>
@@ -8,8 +8,8 @@
 		</div>
 	</div>
 	<div class="card__details">
-		<a [routerLink]="['/artist', mediaItem.id]" class="card__title">{{mediaItem.name}}</a>
-		<div class="card__subtitle">
+		<a [routerLink]="['/playlist', mediaItem.id]" class="card__title">{{mediaItem.name}}</a>
+		<div class="card__subtitle text-size-smaller-3">
 			<span>By {{ mediaItem.owner.display_name }}</span>
 		</div>
 	</div>

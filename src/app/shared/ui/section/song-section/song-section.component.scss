@@ -1,0 +1,12 @@
+@import "mixins";
+
+:host {
+	grid-column: 6/-1;
+}
+
+.section {
+	// .section__cards
+	&__cards {
+		margin: toRem(-8) 0 0;
+	}
+}

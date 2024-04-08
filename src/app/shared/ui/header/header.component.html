@@ -3,10 +3,12 @@
 		<div class="header__nav nav-header">
 			<div class="nav-header__btns">
 				<a [routerLink]="['']" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}"
-					class="nav-header__button nav-header__button--prev _icon-arrow" title="Go back" aria-label="Go back">
+					class="nav-header__button nav-header__button--prev text-size-smaller-2 _icon-arrow" title="Go back"
+					aria-label="Go back">
 				</a>
 				<a [routerLink]="['/search']" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}"
-					class="nav-header__button nav-header__button--next _icon-arrow" title="Go forward" aria-label="Go forward">
+					class="nav-header__button nav-header__button--next text-size-smaller-2 _icon-arrow" title="Go forward"
+					aria-label="Go forward">
 				</a>
 			</div>
 			<ng-content select=".search-bar"></ng-content>

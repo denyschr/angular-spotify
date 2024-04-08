@@ -2,21 +2,23 @@
 @import "vars";
 
 .card {
-	position: relative;
-	display: flex;
-	flex-direction: column;
 	height: 100%;
-	padding: toRem(12);
-	border-radius: toRem(12);
-	overflow: hidden;
 	transition: background-color 0.3s ease-in-out;
-	@media (any-hover: hover) {
-		&:hover {
-			background-color: var(--charade);
-			.card__wrap-play {
-				opacity: 1;
-				visibility: visible;
-				transform: translateY(0);
+	&--base {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		padding: toRem(12);
+		border-radius: toRem(12);
+		overflow: hidden;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--charade);
+				.card__wrap-play {
+					opacity: 1;
+					visibility: visible;
+					transform: translateY(0);
+				}
 			}
 		}
 	}
@@ -29,7 +31,7 @@
 	&__img {
 		aspect-ratio: 200 / 200;
 		overflow: hidden;
-		border-radius: toRem(4);
+		border-radius: var(--corner-radius-smaller-2);
 		img {
 			width: 100%;
 		}
@@ -39,9 +41,17 @@
 	}
 	// .card__wrap-play
 	&__wrap-play {
-		@extend %wrap-play;
+		position: absolute;
+		z-index: 3;
 		right: toRem(8);
 		bottom: toRem(10);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(toRem(10));
+		transition:
+			opacity 0.3s ease-in-out,
+			visibility 0.3s ease-in-out,
+			transform 0.3s ease-in-out;
 	}
 	// .card__details
 	&__details {
@@ -53,13 +63,12 @@
 	&__title {
 		max-width: 100%;
 		margin-bottom: toRem(6);
-		font-weight: 700;
-		font-size: toRem(16);
+		font-weight: 500;
 		line-height: 1.2;
-		color: var(--primary);
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		word-break: break-all;
 		&::before {
 			content: "";
 			position: absolute;
@@ -69,11 +78,12 @@
 	}
 	// .card__artist
 	&__artists {
-		@extend %ellipsis;
+		@extend %vertical-ellipsis;
 		position: relative;
 		z-index: 2;
-		font-size: toRem(14);
 		font-weight: 500;
+		color: var(--secondary);
+		word-break: break-all;
 		a {
 			display: inline;
 			line-height: 1.4;
@@ -84,6 +94,27 @@
 			}
 		}
 	}
+	// .card__extra
+	&__extra {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: toRem(6);
+	}
+	// .card__explicit
+	&__explicit {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 0 0 toRem(16);
+		width: toRem(16);
+		height: toRem(16);
+		border-radius: toRem(2);
+		background-color: hsla(0, 0%, 100%, 0.6);
+		font-size: toRem(9);
+		font-weight: 500;
+		color: var(--shark);
+	}
 	// .card__date
 	&__date {
 		margin-right: toRem(4);
@@ -91,12 +122,17 @@
 			content: "•";
 		}
 	}
-	// .card__type
+	// .card__subtitle
 	&__subtitle {
-		@extend %ellipsis;
-		font-size: toRem(14);
+		@extend %vertical-ellipsis;
+		word-break: break-all;
+	}
+	// .card__type
+	&__subtitle,
+	&__type {
 		font-weight: 500;
 		line-height: 1.2;
 		text-transform: capitalize;
+		color: var(--secondary);
 	}
 }

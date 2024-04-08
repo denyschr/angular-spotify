@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SearchPage {
   private readonly categories$ = inject(CategoriesService)
     .getCategories()
-    .pipe(map((data) => data.categories.items));
+    .pipe(map((categories) => categories.categories.items));
   private readonly search$: Observable<SearchResponse | null>;
 
   public obsList: (Observable<Category[]> | Observable<SearchResponse | null>)[] = [];
@@ -28,7 +28,7 @@ export class SearchPage {
     const searchService = inject(SearchService);
 
     this.search$ = this._route.queryParamMap.pipe(
-      map((m) => m.get('q') ?? ''),
+      map((paramMap) => paramMap.get('q') ?? ''),
       tap((query) => {
         this.searchTerm = query;
         this._cdr.detectChanges();

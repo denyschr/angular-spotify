@@ -11,7 +11,7 @@ import { forkJoin, map } from 'rxjs';
 export class HomePage {
   private readonly newReleases$ = inject(NewReleasesService)
     .getNewReleases()
-    .pipe(map((data) => data.albums.items));
+    .pipe(map((newReleases) => newReleases.albums.items));
 
   public obsList = [this.newReleases$];
 

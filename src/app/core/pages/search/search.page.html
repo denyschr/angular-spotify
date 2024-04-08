@@ -28,19 +28,18 @@
 <ng-template #searchSection let-search>
 	<ng-container *ngIf="search.searchResults; else noResults">
 		<app-top-result-section *ngIf="search.tracks.items.length" [sectionTitle]="'Top result'"
-			[mediaContent]="{items: search.tracks.items}">
+			[mediaContent]="search.tracks.items">
 		</app-top-result-section>
-		<app-song-section *ngIf="search.tracks.items.length" [sectionTitle]="'Songs'"
-			[mediaContent]="{items: search.tracks.items}">
+		<app-song-section *ngIf="search.tracks.items.length" [sectionTitle]="'Songs'" [mediaContent]="search.tracks.items">
 		</app-song-section>
-		<app-base-section *ngIf="search.artists.items.length" [sectionTitle]="'Artists'" [isShowMore]="false"
-			[mediaContent]="{items: search.artists.items}">
+		<app-base-section *ngIf="search.artists.items.length" [sectionTitle]="'Artists'"
+			[mediaContent]="search.artists.items">
 		</app-base-section>
-		<app-base-section *ngIf="search.albums.items.length" [sectionTitle]="'Albums'" [isShowMore]="false"
-			[mediaContent]="{items: search.albums.items, isAlbumDate: true}">
+		<app-base-section *ngIf="search.albums.items.length" [sectionTitle]="'Albums'" [mediaContent]="search.albums.items"
+			[isAlbumDate]="true">
 		</app-base-section>
-		<app-base-section *ngIf="search.playlists.items.length" [sectionTitle]="'Playlists'" [isShowMore]="false"
-			[mediaContent]="{items: search.playlists.items}">
+		<app-base-section *ngIf="search.playlists.items.length" [sectionTitle]="'Playlists'"
+			[mediaContent]="search.playlists.items">
 		</app-base-section>
 	</ng-container>
 </ng-template>

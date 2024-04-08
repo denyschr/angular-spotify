@@ -14,4 +14,3 @@ export { SocialItem } from './social-item.model';
 export { Image } from './image.model';
 export { MediaBodyResponse } from './media-body-response.model';
 export { MediaItem } from './media-item.model';
-export { MediaContent } from './media-content.model';

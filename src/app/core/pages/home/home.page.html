@@ -6,7 +6,7 @@
 			<main class="main">
 				<div class="main__container">
 					<app-base-section *ngIf="vm.newReleases.length" [sectionTitle]="'New Releases'"
-						[mediaContent]="{items:vm.newReleases}">
+						[mediaContent]="vm.newReleases">
 					</app-base-section>
 				</div>
 			</main>

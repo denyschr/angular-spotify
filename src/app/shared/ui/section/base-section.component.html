@@ -1,17 +1,12 @@
-<section class="main__section section section--base">
-	<div class="section__top">
-		<h2 class="section__title text-size-larger" *ngIf="sectionTitle">{{ sectionTitle }}</h2>
-		<button class="section__show-more button" *ngIf="currentLengthOfItems < totalItems && isShowMore" showMore
-			[currentLength]="currentLengthOfItems" (newItemLength)="newItemLength($event)">Show
-			more</button>
-	</div>
-	<div class="section__cards">
-		<ng-container *ngFor="let mediaItem of mediaContent.items | slice:0:currentLengthOfItems"
-			[ngSwitch]="mediaItem.type">
-			<app-album-card *ngSwitchCase="'album'" [mediaItem]="mediaItem"
-				[isAlbumDate]="mediaContent.isAlbumDate"></app-album-card>
-			<app-artist-card *ngSwitchCase="'artist'" [mediaItem]="mediaItem"></app-artist-card>
-			<app-playlist-card *ngSwitchCase="'playlist'" [mediaItem]="mediaItem"></app-playlist-card>
+<section class="main__section section">
+	<h2 class="section__title text-size-larger" *ngIf="sectionTitle">{{ sectionTitle }}</h2>
+	<swiper-container slides-per-view="6" space-between="16" free-mode="true">
+		<ng-container *ngFor="let mediaItem of mediaContent" [ngSwitch]="mediaItem.type">
+			<swiper-slide>
+				<app-album-card *ngSwitchCase="'album'" [mediaItem]="mediaItem" [isAlbumDate]="isAlbumDate"></app-album-card>
+				<app-artist-card *ngSwitchCase="'artist'" [mediaItem]="mediaItem"></app-artist-card>
+				<app-playlist-card *ngSwitchCase="'playlist'" [mediaItem]="mediaItem"></app-playlist-card>
+			</swiper-slide>
 		</ng-container>
-	</div>
+	</swiper-container>
 </section>

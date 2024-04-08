@@ -5,43 +5,17 @@
 }
 
 .section {
-	display: flex;
-	flex-direction: column;
-	gap: toRem(20);
-	// .section__top
-	&__top {
-		display: flex;
-		justify-content: space-between;
-	}
 	// .section__title
 	&__title {
-		align-self: flex-start;
+		margin-bottom: toRem(20);
 	}
-	// .section__show-more
-	&__show-more {
-		align-self: flex-end;
-		margin-left: auto;
-		padding: toRem(6) toRem(8);
-		border-radius: toRem(16);
-		border: toRem(1) solid var(--charade);
-		background-color: var(--smoke);
-		font-size: toRem(12);
-		font-weight: 400;
-		color: var(--secondary);
-		transition:
-			background 0.3s ease-in-out,
-			color 0.3s ease-in-out;
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: var(--charade);
-				color: var(--primary);
-			}
-		}
-	}
-	&--base .section__cards {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(toRem(200), 1fr));
-		gap: toRem(16);
-		margin: 0 toRem(-12);
-	}
+}
+
+swiper-container {
+	margin: 0 toRem(-12);
+}
+
+swiper-slide {
+	height: unset;
+	min-height: 100%;
 }

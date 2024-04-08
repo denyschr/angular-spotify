@@ -62,7 +62,7 @@
 	}
 	// .card__title
 	&__title {
-		margin-bottom: 0;
+		margin-bottom: toRem(1);
 		&::before {
 			content: "";
 			display: none;

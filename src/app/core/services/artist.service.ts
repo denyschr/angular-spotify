@@ -8,6 +8,6 @@ export class ArtistService {
   constructor(private _apiService: ApiService) {}
 
   public getArtist(id: string) {
-    return this._apiService.getRequest<ArtistsResponse>(`${environment.baseUrl}/artists/${id}`);
+    return this._apiService.getRequest<ArtistsResponse>(`${environment.apiUrl}/artists/${id}`);
   }
 }

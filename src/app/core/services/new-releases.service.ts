@@ -9,6 +9,6 @@ export class NewReleasesService {
   constructor(private _apiService: ApiService) {}
 
   public getNewReleases() {
-    return this._apiService.getRequest<AlbumsResponse>(`${environment.baseUrl}/browse/new-releases`, ITEM_LIMIT);
+    return this._apiService.getRequest<AlbumsResponse>(`${environment.apiUrl}/browse/new-releases`, ITEM_LIMIT);
   }
 }

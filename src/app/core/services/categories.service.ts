@@ -9,9 +9,6 @@ export class CategoriesService {
   constructor(private _apiService: ApiService) {}
 
   public getCategories() {
-    return this._apiService.getRequest<CategoriesResponse>(
-      `${environment.baseUrl}/browse/categories`,
-      CATEGORIES_LIMIT
-    );
+    return this._apiService.getRequest<CategoriesResponse>(`${environment.apiUrl}/browse/categories`, CATEGORIES_LIMIT);
   }
 }

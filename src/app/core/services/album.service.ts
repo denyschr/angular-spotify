@@ -8,6 +8,6 @@ export class AlbumService {
   constructor(private _apiService: ApiService) {}
 
   public getAlbum(id: string) {
-    return this._apiService.getRequest<AlbumsResponse>(`${environment.baseUrl}/albums/${id}`);
+    return this._apiService.getRequest<AlbumsResponse>(`${environment.apiUrl}/albums/${id}`);
   }
 }

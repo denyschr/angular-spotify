@@ -1,4 +1,4 @@
-export { Token } from './token.model';
+export { ApiToken } from './api-token.model';
 export * from './album.model';
 export * from './artist.model';
 export * from './category.model';

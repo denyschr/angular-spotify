@@ -2,11 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../shared/services';
 import { HttpClientModule } from '@angular/common/http';
-import { AlbumModule, ArtistModule, HomeModule, PageNotFoundModule, SearchModule } from './pages';
-
+import { AlbumModule, ArtistModule, HomeModule, NotFoundPageModule, SearchModule } from './pages';
+import { CoreComponent } from './core.component';
+import { HeaderModule, SidebarModule, FooterModule, SearchBarModule } from '../shared/components';
+import { AppRoutingModule } from '../app-routing.module';
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, HttpClientModule, HomeModule, SearchModule, PageNotFoundModule, AlbumModule, ArtistModule],
+  declarations: [CoreComponent],
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HeaderModule,
+    SidebarModule,
+    FooterModule,
+    SearchBarModule,
+    HomeModule,
+    SearchModule,
+    NotFoundPageModule,
+    AlbumModule,
+    ArtistModule
+  ],
   providers: [ApiService]
 })
 export class CoreModule {}

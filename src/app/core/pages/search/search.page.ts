@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { CategoriesService, SearchService } from '../../services';
-import { Observable, combineLatest, distinctUntilChanged, map, of, switchMap, tap } from 'rxjs';
+import { Observable, combineLatest, map, of, switchMap, tap } from 'rxjs';
 import { SearchResponse, Category } from '../../models';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -14,29 +14,31 @@ export class SearchPage {
   private readonly categories$ = inject(CategoriesService)
     .getCategories()
     .pipe(map((categories) => categories.categories.items));
+
   private readonly search$: Observable<SearchResponse | null>;
 
   public obsList: (Observable<Category[]> | Observable<SearchResponse | null>)[] = [];
   public readonly vm$?: Observable<{ categories: Category[]; search: SearchResponse | null }>;
 
-  public searchTerm = '';
+  public currentSearchTerm = '';
+  public currentMediaType = 'all';
 
   constructor(
+    private _router: Router,
     private _route: ActivatedRoute,
     private _cdr: ChangeDetectorRef
   ) {
     const searchService = inject(SearchService);
 
-    this.search$ = this._route.queryParamMap.pipe(
-      map((paramMap) => paramMap.get('q') ?? ''),
-      tap((query) => {
-        this.searchTerm = query;
+    this.search$ = this._route.paramMap.pipe(
+      map((paramMap) => paramMap.get('term') ?? ''),
+      tap((term) => {
+        this.currentSearchTerm = term;
         this._cdr.detectChanges();
       }),
-      distinctUntilChanged(),
-      switchMap((query) => {
-        if (query) {
-          return searchService.search(query);
+      switchMap((term) => {
+        if (term) {
+          return searchService.search(term);
         } else {
           return of(null);
         }
@@ -53,5 +55,17 @@ export class SearchPage {
         };
       })
     );
+  }
+
+  private syncQueryParams(term: string): void {
+    if (term) {
+      this._router.navigate(['search', term]);
+    } else {
+      this._router.navigate(['search']);
+    }
+  }
+
+  public updateMediaType(selectedMediaType: string): void {
+    this.currentMediaType = selectedMediaType;
   }
 }

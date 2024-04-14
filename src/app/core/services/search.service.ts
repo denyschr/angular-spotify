@@ -4,21 +4,34 @@ import { SearchResponse } from '../models';
 import { ITEM_LIMIT } from '../constants/app.constants';
 import { environment } from '../../../environments/environment';
 import { Observable, map } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class SearchService {
   constructor(private _apiService: ApiService) {}
 
   public search(term: string): Observable<SearchResponse | null> {
+    const params = new HttpParams().set('q', term).set('type', 'album,artist,playlist,track').set('limit', ITEM_LIMIT);
+
     return this._apiService
-      .getRequest<SearchResponse>(
-        `${environment.apiUrl}/search?q=${term}&type=album%2Cartist%2Cplaylist%2Ctrack&limit=${ITEM_LIMIT}`
-      )
+      .sendRequest<Omit<SearchResponse, 'searchResults' | 'mediaTypes'>>(`${environment.apiUrl}/search`, params)
       .pipe(
         map((res) => {
-          const totalResults = res.albums.total + res.artists.total;
+          const mediaTypes = ['all'];
+          const totalResults =
+            (res.albums?.total ?? 0) +
+            (res.artists?.total ?? 0) +
+            (res.playlists?.total ?? 0) +
+            (res.tracks?.total ?? 0);
 
-          return { ...res, searchResults: totalResults };
+          Object.values(res).forEach((searchResponseItem) => {
+            if (searchResponseItem.total) {
+              const mediaType = `${searchResponseItem.items[0]?.type}s`;
+              mediaTypes.push(mediaType);
+            }
+          });
+
+          return { ...res, searchResults: totalResults, mediaTypes };
         })
       );
   }

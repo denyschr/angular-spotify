@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Token } from '../../core/models';
+import { ApiToken } from '../../core/models';
 
 @Injectable()
 export class ApiService {
@@ -19,19 +19,19 @@ export class ApiService {
 
     const body = new URLSearchParams({ grant_type: 'client_credentials' });
 
-    return this._http.post<Token>(environment.tokenUrl, body, { headers });
+    return this._http.post<ApiToken>(environment.tokenUrl, body, { headers });
   }
 
-  public getRequest<T>(url: string, limit?: number) {
+  public sendRequest<TObservable>(url: string, params?: HttpParams) {
     return this.getToken().pipe(
-      switchMap((data: Token) => {
-        const token = data.access_token;
+      switchMap((res: ApiToken) => {
+        const token = res.access_token;
 
         const headers = new HttpHeaders({
           Authorization: 'Bearer ' + token
         });
 
-        return this._http.get<T>(limit ? url + `?limit=${limit}` : url, { headers });
+        return this._http.get<TObservable>(url, { headers, params });
       })
     );
   }

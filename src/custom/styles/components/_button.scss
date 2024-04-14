@@ -6,26 +6,10 @@
 	font-weight: 700;
 	padding: 0;
 	border: none;
-	&--transp {
-		color: var(--silver);
-		transition: color 0.3s ease-in-out;
-		@media (any-hover: hover) {
-			&:hover {
-				color: var(--primary);
-			}
-		}
-	}
 	&--fill {
-		padding: toRem(15) toRem(32);
-		transform: scale(1.01);
 		border-radius: toRem(24);
 		background-color: var(--primary);
 		color: var(--black);
-		@media (any-hover: hover) {
-			&:hover {
-				transform: scale(1.05);
-			}
-		}
 	}
 	&--play {
 		width: toRem(48);

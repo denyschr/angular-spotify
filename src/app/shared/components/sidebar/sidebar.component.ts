@@ -11,7 +11,7 @@ export class SidebarComponent {
   public menuItems: MenuItem[] = [
     {
       name: 'Home',
-      path: '',
+      path: '/home',
       icon: '_icon-home'
     },
     {

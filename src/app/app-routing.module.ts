@@ -1,30 +1,51 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CoreComponent } from './core/core.component';
+import { NotFoundPage } from './core/pages/not-found/not-found.page';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./core/pages/home/home.module').then((m) => m.HomeModule)
+    redirectTo: '/home',
+    pathMatch: 'full'
   },
   {
-    path: 'search',
-    loadChildren: () => import('./core/pages/search/search.module').then((m) => m.SearchModule)
-  },
-  {
-    path: 'artist/:id',
-    loadChildren: () => import('./core/pages/artist/artist.module').then((m) => m.ArtistModule)
-  },
-  {
-    path: 'album/:id',
-    loadChildren: () => import('./core/pages/album/album.module').then((m) => m.AlbumModule)
-  },
-  {
-    path: 'pageNotFound',
-    loadChildren: () => import('./core/pages/page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule)
+    path: '',
+    component: CoreComponent,
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./core/pages/home/home.module').then((m) => m.HomeModule)
+      },
+      {
+        path: 'search',
+        loadChildren: () => import('./core/pages/search/search.module').then((m) => m.SearchModule)
+      },
+      {
+        path: 'search/:term',
+        loadChildren: () => import('./core/pages/search/search.module').then((m) => m.SearchModule)
+      },
+      {
+        path: 'search/:term/:type',
+        loadChildren: () => import('./core/pages/search/search.module').then((m) => m.SearchModule)
+      },
+      {
+        path: 'artist/:id',
+        loadChildren: () => import('./core/pages/artist/artist.module').then((m) => m.ArtistModule)
+      },
+      {
+        path: 'album/:id',
+        loadChildren: () => import('./core/pages/album/album.module').then((m) => m.AlbumModule)
+      }
+    ]
   },
   {
     path: '**',
-    redirectTo: 'pageNotFound'
+    redirectTo: 'not-found'
+  },
+  {
+    path: 'not-found',
+    component: NotFoundPage
   }
 ];
 

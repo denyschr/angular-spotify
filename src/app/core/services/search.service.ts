@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../../shared/services';
+import { ApiService } from '.';
 import { SearchResponse } from '../models';
 import { ITEM_LIMIT } from '../constants/app.constants';
 import { environment } from '../../../environments/environment';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class SearchService {
+  private _searchTermSubject = new BehaviorSubject<string>('');
+  private _searchTypeSubject = new BehaviorSubject<string>('all');
+
   constructor(private _apiService: ApiService) {}
 
   public search(term: string): Observable<SearchResponse | null> {
@@ -16,23 +19,42 @@ export class SearchService {
     return this._apiService
       .sendRequest<Omit<SearchResponse, 'searchResults' | 'mediaTypes'>>(`${environment.apiUrl}/search`, params)
       .pipe(
-        map((res) => {
-          const mediaTypes = ['all'];
+        map((response) => {
           const totalResults =
-            (res.albums?.total ?? 0) +
-            (res.artists?.total ?? 0) +
-            (res.playlists?.total ?? 0) +
-            (res.tracks?.total ?? 0);
+            (response.albums?.total ?? 0) +
+            (response.artists?.total ?? 0) +
+            (response.playlists?.total ?? 0) +
+            (response.tracks?.total ?? 0);
 
-          Object.values(res).forEach((searchResponseItem) => {
-            if (searchResponseItem.total) {
-              const mediaType = `${searchResponseItem.items[0]?.type}s`;
-              mediaTypes.push(mediaType);
-            }
-          });
+          const mediaTypes = Object.values(response).reduce(
+            (arr, responseItem) => {
+              if (responseItem.total) {
+                const mediaType = `${responseItem.items[0]?.type}s`;
+                arr.push(mediaType);
+              }
+              return arr;
+            },
+            ['all']
+          );
 
-          return { ...res, searchResults: totalResults, mediaTypes };
+          return { ...response, searchResults: totalResults, mediaTypes };
         })
       );
+  }
+
+  public setSearchTerm(term: string): void {
+    this._searchTermSubject.next(term);
+  }
+
+  public getSearchTerm(): Observable<string> {
+    return this._searchTermSubject.asObservable();
+  }
+
+  public setSearchType(type: string): void {
+    this._searchTypeSubject.next(type);
+  }
+
+  public getSearchType(): Observable<string> {
+    return this._searchTypeSubject.asObservable();
   }
 }

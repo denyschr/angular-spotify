@@ -7,4 +7,4 @@ import { RouterModule } from '@angular/router';
   declarations: [NotFoundPage],
   imports: [CommonModule, RouterModule]
 })
-export class NotFoundPageModule {}
+export class NotFoundModule {}

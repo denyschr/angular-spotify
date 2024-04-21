@@ -11,7 +11,7 @@
 		width: 100%;
 		padding: toRem(12) toRem(50) toRem(12) toRem(40);
 		border-radius: var(--corner-radius-larger-4);
-		background-image: url("../../../../assets/icons/search.svg");
+		background-image: url("../../../../../assets/icons/search.svg");
 		background-repeat: no-repeat;
 		background-position: toRem(12);
 		background-color: var(--smoke);
@@ -43,7 +43,7 @@
 		transition: color 0.3s ease-in-out;
 		@media (any-hover: hover) {
 			&:hover {
-				color: var(--cyan);
+				color: var(--secondary);
 			}
 		}
 	}

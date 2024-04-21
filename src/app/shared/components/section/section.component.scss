@@ -4,13 +4,6 @@
 	grid-column: 1/-1;
 }
 
-.section {
-	// .section__title
-	&__title {
-		margin-bottom: toRem(20);
-	}
-}
-
 swiper-container {
 	margin: 0 toRem(-12);
 }

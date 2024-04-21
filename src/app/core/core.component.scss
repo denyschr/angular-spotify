@@ -1,0 +1,15 @@
+@import "mixins";
+
+:host ::ng-deep router-outlet {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+:host ::ng-deep router-outlet + * {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	grid-column: 1/-1;
+	gap: toRem(32) toRem(12);
+	height: 100%;
+}

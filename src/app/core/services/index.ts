@@ -1,3 +1,5 @@
+export { ApiService } from './api.service';
+export { apiResolver } from './api.resolver';
 export { NewReleasesService } from './new-releases.service';
 export { CategoriesService } from './categories.service';
 export { SearchService } from './search.service';

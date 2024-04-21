@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
 import { CoreComponent } from './core/core.component';
 import { NotFoundPage } from './core/pages/not-found/not-found.page';
+import { CustomRouteReuseStrategy } from './core/services/custom-route-reuse-strategy.service';
 
 const routes: Routes = [
   {
@@ -19,14 +20,6 @@ const routes: Routes = [
       },
       {
         path: 'search',
-        loadChildren: () => import('./core/pages/search/search.module').then((m) => m.SearchModule)
-      },
-      {
-        path: 'search/:term',
-        loadChildren: () => import('./core/pages/search/search.module').then((m) => m.SearchModule)
-      },
-      {
-        path: 'search/:term/:type',
         loadChildren: () => import('./core/pages/search/search.module').then((m) => m.SearchModule)
       },
       {
@@ -51,6 +44,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    {
+      provide: RouteReuseStrategy,
+      useClass: CustomRouteReuseStrategy
+    }
+  ]
 })
 export class AppRoutingModule {}

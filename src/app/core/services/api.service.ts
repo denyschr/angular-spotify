@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { ApiToken } from '../../core/models';
+import { ApiToken } from '../models';
 
 @Injectable()
 export class ApiService {
@@ -11,7 +11,7 @@ export class ApiService {
 
   constructor(private _http: HttpClient) {}
 
-  private getToken() {
+  private _getToken(): Observable<ApiToken> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: 'Basic ' + btoa(`${this._clientId}:${this._clientSecret}`)
@@ -22,10 +22,10 @@ export class ApiService {
     return this._http.post<ApiToken>(environment.tokenUrl, body, { headers });
   }
 
-  public sendRequest<TObservable>(url: string, params?: HttpParams) {
-    return this.getToken().pipe(
-      switchMap((res: ApiToken) => {
-        const token = res.access_token;
+  public sendRequest<TObservable>(url: string, params?: HttpParams): Observable<TObservable> {
+    return this._getToken().pipe(
+      switchMap((response: ApiToken) => {
+        const token = response.access_token;
 
         const headers = new HttpHeaders({
           Authorization: 'Bearer ' + token

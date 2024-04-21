@@ -20,12 +20,7 @@
 	flex-grow: 1;
 	margin-top: toRem(8);
 	&__container {
-		display: grid;
-		grid-template-columns: repeat(12, minmax(0, 1fr));
-		gap: toRem(32) toRem(12);
-		& > * {
-			grid-column: 1/-1;
-		}
+		height: 100%;
 	}
 }
 

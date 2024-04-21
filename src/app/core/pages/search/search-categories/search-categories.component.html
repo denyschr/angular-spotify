@@ -1,0 +1,6 @@
+<section class="section" *ngIf="(categories$ | async) as categories">
+	<h2 class="section__title text-size-larger">Browse All</h2>
+	<div class="section__categories">
+		<app-category *ngFor="let category of categories" [category]="category"></app-category>
+	</div>
+</section>

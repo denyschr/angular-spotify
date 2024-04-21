@@ -1,10 +1,10 @@
-export { ApiToken } from './api-token.model';
 export * from './album.model';
 export * from './artist.model';
 export * from './category.model';
 export * from './playlist.model';
 export * from './track.model';
 export * from './search.model';
+export { ApiToken } from './api-token.model';
 export { Copyright } from './copyright.model';
 export { ExternalUrls } from './external-urls.model';
 export { Restrictions } from './restrictions.model';

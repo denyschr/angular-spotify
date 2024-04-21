@@ -1,4 +1,4 @@
-<section class="main__section section">
+<section class="section">
 	<h2 class="section__title text-size-larger" *ngIf="sectionTitle">{{ sectionTitle }}</h2>
 	<swiper-container slides-per-view="6" space-between="16" free-mode="true">
 		<ng-container *ngFor="let mediaItem of mediaContent" [ngSwitch]="mediaItem.type">

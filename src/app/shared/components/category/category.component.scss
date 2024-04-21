@@ -10,12 +10,6 @@
 	border-radius: toRem(8);
 	background-color: var(--charade);
 	box-shadow: 0 0 toRem(2) var(--charade);
-	transition: box-shadow 0.3s ease-in-out;
-	@media (any-hover: hover) {
-		&:hover {
-			box-shadow: 0 0 toRem(2) var(--primary);
-		}
-	}
 	// .category__title
 	&__title {
 		position: relative;

@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { ApiToken } from '../models';
+import { ApiToken } from '@models';
+import { environment } from '@environment';
 
 @Injectable()
 export class ApiService {

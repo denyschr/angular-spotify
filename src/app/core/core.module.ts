@@ -1,25 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { AlbumModule, ArtistModule, HomeModule, NotFoundModule, SearchModule } from './pages';
-import { CoreComponent } from './core.component';
-import { HeaderModule, SidebarModule, FooterModule } from '../shared/components';
 import { AppRoutingModule } from '../app-routing.module';
-import { ApiService, SearchService } from './services';
+import { DefaultLayoutComponent, FooterComponent, HeaderComponent, SidebarComponent } from './components';
+import { ApiService } from '@services';
+import { AlbumModule, ArtistModule, HomeModule, NotFoundModule, SearchModule } from '@modules';
+import { SearchService } from '@modules/search/services/search.service';
+
 @NgModule({
-  declarations: [CoreComponent],
+  declarations: [DefaultLayoutComponent, HeaderComponent, SidebarComponent, FooterComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
-    HeaderModule,
-    SidebarModule,
-    FooterModule,
-    HomeModule,
-    SearchModule,
-    NotFoundModule,
     AlbumModule,
-    ArtistModule
+    ArtistModule,
+    HomeModule,
+    NotFoundModule,
+    SearchModule
   ],
   providers: [ApiService, SearchService]
 })

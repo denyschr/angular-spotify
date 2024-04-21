@@ -1,0 +1,12 @@
+@import "mixins";
+
+:host {
+	grid-column: 6/-1;
+}
+
+.section {
+	// .section__tracks
+	&__tracks {
+		margin: toRem(-8) 0 0;
+	}
+}

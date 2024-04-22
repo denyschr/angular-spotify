@@ -1,4 +1,4 @@
-<article class="media-item" *ngIf="mediaItem.type === 'track'">
+<article class="media-item" *ngIf="mediaItem.type === mediaItemTypes.Track">
 	<div class="media-item__img">
 		<img [lazyLoad]="mediaItem.album.images| notFoundImage" alt>
 	</div>

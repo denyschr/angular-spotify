@@ -1,4 +1,4 @@
-<article class="media-item media-item--base" *ngIf="mediaItem.type === 'playlist'">
+<article class="media-item media-item--base" *ngIf="mediaItem.type === mediaItemTypes.Playlist">
 	<div class="media-item__top">
 		<div class="media-item__img" #mediaItemImg>
 			<img [lazyLoad]="mediaItem.images | notFoundImage" [extractColor]="mediaItemImg" crossorigin alt>

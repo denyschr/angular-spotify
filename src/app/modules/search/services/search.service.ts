@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '@services';
-import { SearchResponse } from '@models';
+import { MediaItemType, MediaType, SearchResponse } from '@models';
 import { MEDIA_ITEM_LIMIT } from '@constants';
 import { environment } from '@environment';
 import { BehaviorSubject, Observable, map } from 'rxjs';
@@ -16,7 +16,7 @@ export class SearchService {
   public search(term: string): Observable<SearchResponse | null> {
     const params = new HttpParams()
       .set('q', term)
-      .set('type', 'album,artist,playlist,track')
+      .set('type', `${MediaItemType.Album},${MediaItemType.Artist},${MediaItemType.Playlist},${MediaItemType.Track}`)
       .set('limit', MEDIA_ITEM_LIMIT);
 
     return this._apiService
@@ -30,19 +30,32 @@ export class SearchService {
             (response.tracks?.total ?? 0);
 
           const mediaTypes = Object.values(response).reduce(
-            (arr, responseItem) => {
-              if (responseItem.total) {
-                const mediaType = `${responseItem.items[0]?.type}s`;
-                arr.push(mediaType);
+            (types, mediaItem) => {
+              const type = mediaItem.items[0]?.type;
+              if (mediaItem.total && type) {
+                types.push(this.generateMediaType(type));
               }
-              return arr;
+              return types;
             },
-            ['all']
+            [MediaType.All]
           );
 
           return { ...response, searchResults: totalResults, mediaTypes };
         })
       );
+  }
+
+  public generateMediaType(mediaItemType: MediaItemType): MediaType {
+    switch (mediaItemType) {
+      case MediaItemType.Album:
+        return MediaType.Albums;
+      case MediaItemType.Artist:
+        return MediaType.Artists;
+      case MediaItemType.Playlist:
+        return MediaType.Playlists;
+      case MediaItemType.Track:
+        return MediaType.Tracks;
+    }
   }
 
   public setSearchTerm(term: string): void {

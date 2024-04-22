@@ -1,4 +1,4 @@
-<article class="media-item" *ngIf="mediaItem.type === 'track'">
+<article class="media-item" *ngIf="mediaItem.type === mediaItemTypes.Track">
 	<div class="media-item__column">
 		<div class="media-item__about">
 			<div class="media-item__img">
@@ -6,7 +6,9 @@
 				<button type="button" class="media-item__button button _icon-player" [playBtnLabel]="mediaItem"></button>
 			</div>
 			<div class="media-item__content">
-				<a [routerLink]="['/track', mediaItem.id]" class="media-item__title">{{ mediaItem.name }}</a>
+				<a [routerLink]="['/track', mediaItem.id]" class="media-item__title">
+					{{ mediaItem.name }}
+				</a>
 				<div class="media-item__extra">
 					<span class="media-item__explicit" *ngIf="mediaItem.explicit" title="Explicit">E</span>
 					<div class="media-item__artists text-size-smaller-3">

@@ -9,13 +9,13 @@
 			[tracks]="search.response?.tracks!.items | slice:0:4">
 		</app-search-tracks>
 		<app-section *ngIf="search.response?.artists!.items.length" [sectionTitle]="'Artists'"
-			[mediaContent]="search.response?.artists!.items">
+			[mediaItems]="search.response?.artists!.items">
 		</app-section>
 		<app-section *ngIf="search.response?.albums!.items.length" [sectionTitle]="'Albums'"
-			[mediaContent]="search.response?.albums!.items" [isAlbumDate]="true">
+			[mediaItems]="search.response?.albums!.items" [isAlbumDate]="true">
 		</app-section>
 		<app-section *ngIf="search.response?.playlists!.items.length" [sectionTitle]="'Playlists'"
-			[mediaContent]="search.response?.playlists!.items">
+			[mediaItems]="search.response?.playlists!.items">
 		</app-section>
 	</ng-container>
 	<ng-template #noResults>

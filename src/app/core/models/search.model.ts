@@ -1,8 +1,8 @@
-import { Albums, Artists, Playlists, Tracks } from '.';
+import { Albums, Artists, MediaType, Playlists, Tracks } from '.';
 
 export interface SearchResponse {
   searchResults: number;
-  mediaTypes: string[];
+  mediaTypes: MediaType[];
   albums: Albums;
   artists: Artists;
   playlists: Playlists;

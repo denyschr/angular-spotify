@@ -1,4 +1,4 @@
-export interface MediaBodyResponse<TItem> {
+export interface MediaResponseBody<TItem> {
   href: string;
   items: TItem[];
   limit: number;

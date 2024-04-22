@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Album, Artist, Playlist } from '@models';
+import { MediaItem, MediaItemType } from '@models';
 
 @Component({
   selector: 'app-section',
@@ -8,6 +8,7 @@ import { Album, Artist, Playlist } from '@models';
 })
 export class SectionComponent {
   @Input() sectionTitle?: string;
-  @Input() mediaContent!: (Album | Artist | Playlist)[];
+  @Input() mediaItems!: MediaItem[];
   @Input() isAlbumDate?: boolean;
+  public mediaItemTypes = MediaItemType;
 }

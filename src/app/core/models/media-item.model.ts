@@ -1,10 +1,3 @@
-import { ExternalUrls, Image } from '.';
+import { Album, Artist, Playlist, Track } from '.';
 
-export interface MediaItem {
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  images: Image[];
-  name: string;
-  uri: string;
-}
+export type MediaItem = Album | Artist | Playlist | Track;

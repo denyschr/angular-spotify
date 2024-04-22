@@ -1,6 +1,6 @@
 <ng-container *ngIf="vm$ | async as vm; else skeletonLoader">
 	<app-section *ngIf="vm.newReleases.length" [sectionTitle]="'New Releases'"
-		[mediaContent]="vm.newReleases"></app-section>
+		[mediaItems]="vm.newReleases"></app-section>
 </ng-container>
 
 <ng-template #skeletonLoader>

@@ -1,4 +1,4 @@
-<article class="media-item media-item--base" *ngIf="mediaItem.type === 'artist'">
+<article class="media-item media-item--base" *ngIf="mediaItem.type === mediaItemTypes.Artist">
 	<div class="media-item__top">
 		<div class="media-item__img _rounded" #mediaItemImg>
 			<img [lazyLoad]="mediaItem.images | notFoundImage" [extractColor]="mediaItemImg" crossorigin alt>

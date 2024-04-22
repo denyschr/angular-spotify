@@ -1,10 +1,10 @@
-import { Image, MediaBodyResponse, MediaItem } from '.';
+import { Image, MediaResponseBody, MediaItemBody } from '.';
 
-export interface Category extends Pick<MediaItem, 'href' | 'id' | 'name'> {
+export interface Category extends Pick<MediaItemBody, 'href' | 'id' | 'name'> {
   icons: Image[];
 }
 
-export interface Categories extends MediaBodyResponse<Category> {
+export interface Categories extends MediaResponseBody<Category> {
   items: Category[];
 }
 

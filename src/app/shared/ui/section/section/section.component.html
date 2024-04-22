@@ -1,12 +1,13 @@
 <section class="section">
 	<h2 class="section__title text-size-larger" *ngIf="sectionTitle">{{ sectionTitle }}</h2>
-	<swiper-container slides-per-view="6" space-between="16" free-mode="true">
-		<ng-container *ngFor="let mediaItem of mediaContent" [ngSwitch]="mediaItem.type">
+	<swiper-container slides-per-view="6" space-between="16">
+		<ng-container *ngFor="let mediaItem of mediaItems" [ngSwitch]="mediaItem.type">
 			<swiper-slide>
-				<app-album-item *ngSwitchCase="'album'" [mediaItem]="mediaItem" [isAlbumDate]="isAlbumDate">
+				<app-album-item *ngSwitchCase="mediaItemTypes.Album" [mediaItem]="mediaItem" [isAlbumDate]="isAlbumDate">
 				</app-album-item>
-				<app-artist-item *ngSwitchCase="'artist'" [mediaItem]="mediaItem"></app-artist-item>
-				<app-playlist-item *ngSwitchCase="'playlist'" [mediaItem]="mediaItem"></app-playlist-item>
+				<app-artist-item *ngSwitchCase="mediaItemTypes.Artist" [mediaItem]="mediaItem">
+				</app-artist-item>
+				<app-playlist-item *ngSwitchCase="mediaItemTypes.Playlist" [mediaItem]="mediaItem"></app-playlist-item>
 			</swiper-slide>
 		</ng-container>
 	</swiper-container>

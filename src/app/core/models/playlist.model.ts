@@ -1,16 +1,16 @@
-import { Followers, MediaBodyResponse, MediaItem } from '.';
+import { Followers, MediaResponseBody, MediaItemBody, MediaItemType } from '.';
 
-export interface Playlist extends MediaItem {
+export interface Playlist extends MediaItemBody {
   collaborative: boolean;
   description: string;
   owner: Owner;
   public: boolean;
   snapshot_id: string;
   tracks: Tracks;
-  type: 'playlist';
+  type: MediaItemType.Playlist;
 }
 
-export interface Owner extends Omit<MediaItem, 'images' | 'name'> {
+export interface Owner extends Omit<MediaItemBody, 'images' | 'name'> {
   followers: Followers;
   type: 'user';
   display_name: string;
@@ -21,6 +21,6 @@ interface Tracks {
   total: number;
 }
 
-export interface Playlists extends MediaBodyResponse<Playlist> {
+export interface Playlists extends MediaResponseBody<Playlist> {
   items: Playlist[];
 }

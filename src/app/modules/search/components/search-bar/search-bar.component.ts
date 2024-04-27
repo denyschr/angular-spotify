@@ -2,8 +2,8 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnI
 import { FormBuilder } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
-import { Router } from '@angular/router';
 import { SearchService } from '@modules/search/services/search.service';
+import { MediaType } from '@models';
 
 @Component({
   selector: 'app-search-bar',
@@ -21,14 +21,14 @@ export class SearchBarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private _fb: FormBuilder,
-    private _router: Router,
     private _searchService: SearchService,
     private _cdr: ChangeDetectorRef
   ) {
     this.searchControl.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged(), takeUntilDestroyed())
       .subscribe((term) => {
-        this._syncQueryParams(term.searchTerm ?? '');
+        this._searchService.setSearchTerm(term.searchTerm ?? '');
+        this._searchService.syncRouteParams();
       });
   }
 
@@ -47,22 +47,16 @@ export class SearchBarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.searchInput?.nativeElement.focus();
   }
 
-  ngOnDestroy(): void {
-    if (this.searchSubscription) {
-      this.searchSubscription.unsubscribe();
-    }
-  }
-
   public clearSearchField(): void {
+    this._searchService.setSearchTerm('');
+    this._searchService.setSearchType(MediaType.All);
     this.searchControl.get('searchTerm')?.setValue('');
     this.searchInput?.nativeElement.focus();
   }
 
-  private _syncQueryParams(term: string): void {
-    if (term) {
-      this._router.navigate(['search', term]);
-    } else {
-      this._router.navigate(['search']);
+  ngOnDestroy(): void {
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
     }
   }
 }

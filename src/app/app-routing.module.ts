@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPage } from './modules/not-found/pages/not-found.page';
-import { CustomRouteReuseStrategy } from './core/services';
-import { DefaultLayoutComponent } from './core/components/default-layout/default-layout.component';
+import { StandardPageLayoutComponent } from './core/components/standard-page-layout/standard-page-layout.component';
 
 const routes: Routes = [
   {
@@ -12,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: StandardPageLayoutComponent,
     children: [
       {
         path: 'home',
@@ -44,12 +43,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: [
-    {
-      provide: RouteReuseStrategy,
-      useClass: CustomRouteReuseStrategy
-    }
-  ]
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

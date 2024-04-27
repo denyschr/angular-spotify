@@ -5,13 +5,17 @@ import { MEDIA_ITEM_LIMIT } from '@constants';
 import { environment } from '@environment';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class SearchService {
-  public _searchTermSubject = new BehaviorSubject<string>('');
-  private _searchTypeSubject = new BehaviorSubject<string>('all');
+  private _searchTermSubject = new BehaviorSubject<string>('');
+  private _searchTypeSubject = new BehaviorSubject<MediaType>(MediaType.All);
 
-  constructor(private _apiService: ApiService) {}
+  constructor(
+    private _apiService: ApiService,
+    private _router: Router
+  ) {}
 
   public search(term: string): Observable<SearchResponse | null> {
     const params = new HttpParams()
@@ -33,7 +37,7 @@ export class SearchService {
             (types, mediaItem) => {
               const type = mediaItem.items[0]?.type;
               if (mediaItem.total && type) {
-                types.push(this.generateMediaType(type));
+                types.push(this._generateMediaType(type));
               }
               return types;
             },
@@ -45,7 +49,7 @@ export class SearchService {
       );
   }
 
-  public generateMediaType(mediaItemType: MediaItemType): MediaType {
+  private _generateMediaType(mediaItemType: MediaItemType): MediaType {
     switch (mediaItemType) {
       case MediaItemType.Album:
         return MediaType.Albums;
@@ -66,11 +70,21 @@ export class SearchService {
     return this._searchTermSubject.asObservable();
   }
 
-  public setSearchType(type: string): void {
+  public setSearchType(type: MediaType): void {
     this._searchTypeSubject.next(type);
   }
 
-  public getSearchType(): Observable<string> {
+  public getSearchType(): Observable<MediaType> {
     return this._searchTypeSubject.asObservable();
+  }
+
+  public syncRouteParams(): void {
+    const term = this._searchTermSubject.value;
+    const type = this._searchTypeSubject.value;
+    if (term) {
+      this._router.navigate(['/search', term, type]);
+    } else {
+      this._router.navigate(['/search']);
+    }
   }
 }

@@ -7,7 +7,7 @@
 	padding: 0;
 	border: none;
 	&--fill {
-		border-radius: toRem(24);
+		border-radius: var(--corner-radius-larger-2);
 		background-color: var(--primary);
 		color: var(--black);
 	}

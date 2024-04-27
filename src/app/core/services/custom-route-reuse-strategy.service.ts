@@ -1,29 +1,51 @@
 import { ActivatedRouteSnapshot, DetachedRouteHandle, Route, RouteReuseStrategy } from '@angular/router';
 
 export class CustomRouteReuseStrategy implements RouteReuseStrategy {
-  private _routeStore = new Map<Route, DetachedRouteHandle>();
+  private handlers: Map<Route, DetachedRouteHandle> = new Map();
+  public ignoredRoutes = ['search/'];
 
-  private _calcPath(route: ActivatedRouteSnapshot): Route | null {
-    return route.routeConfig;
-  }
+  constructor() {}
 
-  shouldDetach(route: ActivatedRouteSnapshot): boolean {
+  public shouldDetach(route: ActivatedRouteSnapshot): boolean {
+    const path = this._getPath(route);
+    for (const ignoredRoute of this.ignoredRoutes) {
+      if (path.startsWith(ignoredRoute)) return false;
+    }
     return true;
   }
 
-  store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
-    this._routeStore.set(this._calcPath(route)!, handle);
+  public store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
+    if (!route.routeConfig) return;
+    this.handlers.set(route.routeConfig, handle);
   }
 
-  shouldAttach(route: ActivatedRouteSnapshot): boolean {
-    return !!this._routeStore.get(this._calcPath(route)!);
+  public shouldAttach(route: ActivatedRouteSnapshot): boolean {
+    return !!route.routeConfig && !!this.handlers.get(route.routeConfig);
   }
 
-  retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
-    return this._routeStore.get(this._calcPath(route)!) as DetachedRouteHandle;
+  public retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle | null {
+    if (!route.routeConfig || !this.handlers.has(route.routeConfig)) return null;
+    return this.handlers.get(route.routeConfig)!;
   }
 
-  shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
-    return future.routeConfig === curr.routeConfig;
+  public shouldReuseRoute(current: ActivatedRouteSnapshot, future: ActivatedRouteSnapshot): boolean {
+    return future.routeConfig === current.routeConfig;
+  }
+
+  private _getPath(route: ActivatedRouteSnapshot): string {
+    const segments: string[] = [];
+    let next: ActivatedRouteSnapshot | null = route;
+
+    while (next.firstChild) {
+      next = next.firstChild;
+    }
+
+    while (next) {
+      if (next.url.length) {
+        segments.unshift(next.url.join('/'));
+      }
+      next = next?.parent;
+    }
+    return segments.join('/');
   }
 }

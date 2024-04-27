@@ -1,27 +1,40 @@
 <ng-container *ngIf="(search$ | async) as search">
 	<ng-container *ngIf="search.response?.searchResults; else noResults">
-		<app-search-nav [mediaTypes]="search.response!.mediaTypes" (selectedMediaType)="updateMediaType($event)">
+		<app-search-nav [mediaTypes]="search.response!.mediaTypes">
 		</app-search-nav>
-		<app-search-top-result *ngIf="search.response?.tracks!.items.length"
-			[topResult]="search.response?.tracks!.items[0]">
-		</app-search-top-result>
-		<app-search-tracks *ngIf="search.response?.tracks!.items.length"
-			[tracks]="search.response?.tracks!.items | slice:0:4">
-		</app-search-tracks>
-		<app-section *ngIf="search.response?.artists!.items.length" [sectionTitle]="'Artists'"
-			[mediaItems]="search.response?.artists!.items">
-		</app-section>
-		<app-section *ngIf="search.response?.albums!.items.length" [sectionTitle]="'Albums'"
+		<ng-container *ngIf="search.mediaType === mediaTypes.All; else specificType">
+			<app-search-top-result *ngIf="search?.response?.tracks?.items?.length"
+				[topResult]="search?.response?.tracks!.items[0]">
+			</app-search-top-result>
+			<app-search-tracks *ngIf="search.response?.tracks!.items.length"
+				[tracks]="search.response?.tracks!.items | slice:0:4">
+			</app-search-tracks>
+			<app-section *ngIf="search.response?.artists!.items.length" [sectionTitle]="'Artists'"
+				[mediaItems]="search.response?.artists!.items">
+			</app-section>
+			<app-section *ngIf="search.response?.albums?.items?.length" [sectionTitle]="'Albums'"
+				[mediaItems]="search.response?.albums!.items" [isAlbumDate]="true">
+			</app-section>
+			<app-section *ngIf="search.response?.playlists?.items?.length" [sectionTitle]="'Playlists'"
+				[mediaItems]="search.response?.playlists!.items">
+			</app-section>
+		</ng-container>
+	</ng-container>
+	<ng-template #specificType>
+		<app-section *ngIf="search.response?.albums!.items.length && search.mediaType === mediaTypes.Albums"
 			[mediaItems]="search.response?.albums!.items" [isAlbumDate]="true">
 		</app-section>
-		<app-section *ngIf="search.response?.playlists!.items.length" [sectionTitle]="'Playlists'"
+		<app-section *ngIf="search.response?.artists!.items.length && search.mediaType === mediaTypes.Artists"
+			[mediaItems]="search.response?.artists!.items">
+		</app-section>
+		<app-section *ngIf="search.response?.playlists!.items.length && search.mediaType === mediaTypes.Playlists"
 			[mediaItems]="search.response?.playlists!.items">
 		</app-section>
-	</ng-container>
+	</ng-template>
 	<ng-template #noResults>
 		<div class="no-results">
 			<div class="no-results__container">
-				<h1 class="no-results__title text-size-larger">No results found for "{{ search.term }}"</h1>
+				<h1 class="no-results__title text-size-larger">No results found for "{{ search.searchTerm }}"</h1>
 				<p class="no-results__text">
 					Please make sure your words are spelled correctly, or use fewer or different keywords.
 				</p>
@@ -29,12 +42,3 @@
 		</div>
 	</ng-template>
 </ng-container>
-
-<!-- <ng-template #specificType>
-	<ng-container *ngIf="">
-		<div>if albums</div>`
-		<div>if artist</div>
-		<div>if songs</div>
-		<div>if playlists</div>
-	</ng-container>
-</ng-template> -->

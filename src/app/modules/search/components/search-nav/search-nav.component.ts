@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { MediaType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 import { Subscription } from 'rxjs';
 
@@ -8,32 +8,31 @@ import { Subscription } from 'rxjs';
   templateUrl: './search-nav.component.html',
   styleUrl: './search-nav.component.scss'
 })
-export class SearchNavComponent {
-  @Input() mediaTypes!: string[];
-  @Output() selectedMediaType = new EventEmitter<string>();
+export class SearchNavComponent implements OnInit, OnDestroy {
+  @Input() mediaTypes!: MediaType[];
 
-  public currentMediaType = 'all';
-  public searchSubscription?: Subscription;
+  public currentMediaType = MediaType.All;
+  public searchTypeSubscription?: Subscription;
 
-  constructor(
-    private _router: Router,
-    private _searchService: SearchService
-  ) {}
+  constructor(private _searchService: SearchService) {}
 
-  public onSearchFilter(mediaType: string): void {
-    this.currentMediaType = mediaType;
-    this.selectedMediaType.emit(mediaType);
-    this._searchService.setSearchType(mediaType);
-    this._syncQueryParams(mediaType);
+  ngOnInit(): void {
+    this.searchTypeSubscription = this._searchService.getSearchType().subscribe((mediaType) => {
+      this.onSearchFilter(mediaType);
+    });
   }
 
-  private _syncQueryParams(type: string): void {
-    this.searchSubscription = this._searchService.getSearchTerm().subscribe((term) => {
-      if (type !== 'all') {
-        this._router.navigate(['search', term, type]);
-      } else {
-        this._router.navigate(['search', term]);
-      }
-    });
+  public onSearchFilter(mediaType: MediaType): void {
+    if (mediaType !== this.currentMediaType) {
+      this.currentMediaType = mediaType;
+      this._searchService.setSearchType(mediaType);
+      this._searchService.syncRouteParams();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.searchTypeSubscription) {
+      this.searchTypeSubscription.unsubscribe();
+    }
   }
 }

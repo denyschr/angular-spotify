@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Observable, map, of, switchMap, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { SearchResponse } from '@models';
+import { MediaType, SearchResponse } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 
 @Component({
@@ -10,28 +10,24 @@ import { SearchService } from '@modules/search/services/search.service';
   styleUrl: './search-results.component.scss'
 })
 export class SearchResultsComponent {
-  public readonly search$?: Observable<{ response: SearchResponse | null; term: string }>;
-
-  public currentMediaType = 'all';
+  public readonly search$?: Observable<{ response: SearchResponse | null; searchTerm: string; mediaType: MediaType }>;
+  public mediaTypes = MediaType;
 
   constructor(private _route: ActivatedRoute) {
     const searchService = inject(SearchService);
 
     this.search$ = this._route.paramMap.pipe(
       map((paramMap) => {
-        return { term: paramMap.get('term') ?? '', type: paramMap.get('type') };
+        return { term: paramMap.get('term') ?? '', type: paramMap.get('type') ?? MediaType.All };
       }),
       tap(({ term, type }) => {
         searchService.setSearchTerm(term);
+        searchService.setSearchType(type as MediaType);
       }),
       switchMap(({ term, type }) => {
         const response$: Observable<SearchResponse | null> = term ? searchService.search(term) : of(null);
-        return response$.pipe(map((response) => ({ response, term })));
+        return response$.pipe(map((response) => ({ response, searchTerm: term, mediaType: type as MediaType })));
       })
     );
-  }
-
-  public updateMediaType(selectedMediaType: string): void {
-    this.currentMediaType = selectedMediaType;
   }
 }

@@ -2,18 +2,15 @@
 	display: grid;
 	height: 100%;
 	grid-template-columns: toRem(280) 1fr;
-	gap: toRem(8);
 	overflow: clip;
-	padding: toRem(8);
 }
 
 .page {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	border-radius: toRem(8);
 	background-color: var(--shark);
-	overflow: auto;
+	overflow-y: auto;
 }
 
 .main {

@@ -1,7 +1,7 @@
-<form [formGroup]="searchControl" action="#" method="GET" class="header__form search-header">
+<form action="#" method="GET" class="header__form search-header">
 	<input type="text" autocomplete="on" class="search-header__input" placeholder="What do you want to listen to?"
-		maxlength="800" formControlName="searchTerm" #searchInput>
+		maxlength="800" [formControl]="searchControl" #input>
 	<button type="button" class="search-header__button text-size-larger _icon-cross" aria-label="Clear search field"
-		*ngIf="searchInput.value" (click)="clearSearchField()">
+		*ngIf="input.value" (click)="clear()">
 	</button>
 </form>

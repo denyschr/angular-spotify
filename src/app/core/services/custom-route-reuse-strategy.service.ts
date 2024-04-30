@@ -2,13 +2,14 @@ import { ActivatedRouteSnapshot, DetachedRouteHandle, Route, RouteReuseStrategy 
 
 export class CustomRouteReuseStrategy implements RouteReuseStrategy {
   private handlers: Map<Route, DetachedRouteHandle> = new Map();
-  public ignoredRoutes = ['search/'];
+  public ignoredRoutes: { [path: string]: string } = { search: 'search/' };
+  public searchRegex = /search\/.+/;
 
   constructor() {}
 
   public shouldDetach(route: ActivatedRouteSnapshot): boolean {
     const path = this._getPath(route);
-    for (const ignoredRoute of this.ignoredRoutes) {
+    for (const ignoredRoute of Object.values(this.ignoredRoutes)) {
       if (path.startsWith(ignoredRoute)) return false;
     }
     return true;
@@ -29,7 +30,15 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
   }
 
   public shouldReuseRoute(current: ActivatedRouteSnapshot, future: ActivatedRouteSnapshot): boolean {
-    return future.routeConfig === current.routeConfig;
+    if (
+      this.searchRegex.test(this._getPath(future)) &&
+      this._getPath(current).startsWith(this.ignoredRoutes['search'])
+    ) {
+      return true;
+    } else if (current.routeConfig !== future.routeConfig) {
+      return false;
+    }
+    return true;
   }
 
   private _getPath(route: ActivatedRouteSnapshot): string {

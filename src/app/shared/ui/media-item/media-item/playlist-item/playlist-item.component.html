@@ -10,7 +10,7 @@
 	<div class="media-item__details">
 		<a [routerLink]="['/playlist', mediaItem.id]" class="media-item__title">{{mediaItem.name}}</a>
 		<div class="media-item__subtitle text-size-smaller-3">
-			<span>By {{ mediaItem.owner.display_name }}</span>
+			<span>By {{ mediaItem.owner ? mediaItem.owner.display_name : 'unknown' }}</span>
 		</div>
 	</div>
 </article>

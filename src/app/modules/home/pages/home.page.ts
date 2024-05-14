@@ -8,9 +8,7 @@ import { NewReleasesService } from '../services/new-releases.service';
   styleUrl: './home.page.scss'
 })
 export class HomePage {
-  private readonly newReleases$ = inject(NewReleasesService)
-    .getNewReleases()
-    .pipe(map((newReleases) => newReleases.albums.items));
+  private readonly newReleases$ = inject(NewReleasesService).getNewReleases();
 
   public obsList = [this.newReleases$];
 

@@ -22,6 +22,18 @@ const routes: Routes = [
         loadChildren: () => import('./modules/search/search').then((m) => m.SearchModule)
       },
       {
+        path: 'search/:term',
+        loadChildren: () => import('./modules/search/search').then((m) => m.SearchModule)
+      },
+      {
+        path: 'search/:term/all',
+        redirectTo: 'search/:term'
+      },
+      {
+        path: 'search/:term/:type',
+        loadChildren: () => import('./modules/search/search').then((m) => m.SearchModule)
+      },
+      {
         path: 'artist/:id',
         loadChildren: () => import('./modules/artist/artist').then((m) => m.ArtistModule)
       },

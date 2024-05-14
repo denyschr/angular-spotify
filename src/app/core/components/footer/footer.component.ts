@@ -12,72 +12,72 @@ export class FooterComponent {
   public companyMenuItems: MenuItem[] = [
     {
       name: 'About',
-      path: ''
+      path: '/home'
     },
     {
       name: 'Jobs',
-      path: ''
+      path: '/home'
     },
     {
       name: 'For the Record',
-      path: ''
+      path: '/home'
     }
   ];
 
   public communitiesMenuItems: MenuItem[] = [
     {
       name: 'For Artists',
-      path: ''
+      path: '/home'
     },
     {
       name: 'Developers',
-      path: ''
+      path: '/home'
     },
     {
       name: 'Advertising',
-      path: ''
+      path: '/home'
     },
     {
       name: 'Investors',
-      path: ''
+      path: '/home'
     },
     {
       name: 'Vendors',
-      path: ''
+      path: '/home'
     }
   ];
 
   public usefulLinksMenuItems: MenuItem[] = [
     {
       name: 'Support',
-      path: ''
+      path: '/home'
     },
     {
       name: 'Free Mobile App',
-      path: ''
+      path: '/home'
     }
   ];
 
   public extraMenuItems: MenuItem[] = [
-    { name: 'Legal', path: '' },
-    { name: 'Safety & Privacy Center', path: '' },
-    { name: 'Privacy Policy', path: '' },
-    { name: 'Cookies', path: '' },
-    { name: 'About Ads', path: '' },
-    { name: 'Accessibility', path: '' }
+    { name: 'Legal', path: '/home' },
+    { name: 'Safety & Privacy Center', path: '/home' },
+    { name: 'Privacy Policy', path: '/home' },
+    { name: 'Cookies', path: '/home' },
+    { name: 'About Ads', path: '/home' },
+    { name: 'Accessibility', path: '/home' }
   ];
 
   public socialItems: SocialItem[] = [
     {
-      path: '',
+      path: '/home',
       icon: '_icon-instagram'
     },
     {
-      path: '',
+      path: '/home',
       icon: '_icon-twitter'
     },
     {
-      path: '',
+      path: '/home',
       icon: '_icon-facebook'
     }
   ];

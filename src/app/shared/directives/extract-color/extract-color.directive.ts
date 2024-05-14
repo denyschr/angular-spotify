@@ -1,14 +1,12 @@
-import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, inject } from '@angular/core';
 
 @Directive({
   selector: '[extractColor]'
 })
 export class ExtractColorDirective implements AfterViewInit {
   public readonly RATIO = 4;
-
+  private readonly _categoryImgEl = inject(ElementRef<HTMLImageElement>);
   @Input('extractColor') categoryItemEl?: HTMLElement;
-
-  constructor(private _categoryImgEl: ElementRef<HTMLImageElement>) {}
 
   ngAfterViewInit(): void {
     if (this.categoryItemEl && this._categoryImgEl) {

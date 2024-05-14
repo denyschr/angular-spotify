@@ -8,22 +8,22 @@ import { MediaType } from '@models';
 const routes: Routes = [
   {
     path: '',
-    component: SearchPage,
-    children: [
-      { path: '', component: SearchCategoriesComponent, pathMatch: 'full' },
-      {
-        path: `:term/${MediaType.All}`,
-        redirectTo: ':term'
-      },
-      {
-        path: ':term',
-        component: SearchResultsComponent
-      },
-      {
-        path: ':term/:type',
-        component: SearchResultsComponent
-      }
-    ]
+    component: SearchPage
+    // children: [
+    //   { path: '', component: SearchCategoriesComponent, pathMatch: 'full' },
+    //   {
+    //     path: `:term/${MediaType.All}`,
+    //     redirectTo: ':term'
+    //   },
+    //   {
+    //     path: ':term',
+    //     component: SearchResultsComponent
+    //   },
+    //   {
+    //     path: ':term/:type',
+    //     component: SearchResultsComponent
+    //   }
+    // ]
   }
 ];
 

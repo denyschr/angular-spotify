@@ -12,7 +12,8 @@ import {
   SearchTopResultComponent
 } from './components';
 import { CategoriesService } from './services/categories.service';
-import { CategoryModule, SectionModule, MediaItemModule } from '@ui';
+import { CategoryModule, SectionModule, MediaItemModule, NoResultsModule } from '@ui';
+import { IntersectionListenerModule } from '@directives';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,16 @@ import { CategoryModule, SectionModule, MediaItemModule } from '@ui';
     SearchTopResultComponent,
     SearchTracksComponent
   ],
-  imports: [CommonModule, SearchRoutingModule, ReactiveFormsModule, CategoryModule, SectionModule, MediaItemModule],
+  imports: [
+    CommonModule,
+    SearchRoutingModule,
+    ReactiveFormsModule,
+    CategoryModule,
+    SectionModule,
+    MediaItemModule,
+    IntersectionListenerModule,
+    NoResultsModule
+  ],
   exports: [SearchBarComponent],
   providers: [CategoriesService]
 })

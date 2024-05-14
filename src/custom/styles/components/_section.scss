@@ -1,6 +1,13 @@
 .section {
+	grid-column: 1/-1;
 	// .section__title
 	&__title {
 		margin-bottom: toRem(20);
+	}
+	// .section__items
+	&__items {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(toRem(200), 1fr));
+		margin: 0 toRem(-12);
 	}
 }

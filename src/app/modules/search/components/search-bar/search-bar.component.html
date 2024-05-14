@@ -1,6 +1,6 @@
 <form action="#" method="GET" class="header__form search-header">
 	<input type="text" autocomplete="on" class="search-header__input" placeholder="What do you want to listen to?"
-		maxlength="800" [formControl]="searchControl" #input>
+		maxlength="800" [formControl]="searchFormControl" #input>
 	<button type="button" class="search-header__button text-size-larger _icon-cross" aria-label="Clear search field"
 		*ngIf="input.value" (click)="clear()">
 	</button>

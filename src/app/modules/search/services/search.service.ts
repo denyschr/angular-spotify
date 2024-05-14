@@ -1,81 +1,86 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ApiService } from '@services';
-import { MediaItemType, MediaType, SearchResponse } from '@models';
+import { Albums, Artists, MediaType, Playlists, SearchResponse, Tracks } from '@models';
 import { MEDIA_ITEM_LIMIT } from '@constants';
 import { environment } from '@environment';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SearchService {
-  private _searchTermSubject = new BehaviorSubject<string>('');
-  private _searchTypeSubject = new BehaviorSubject<MediaType>(MediaType.All);
+  private readonly _apiService = inject(ApiService);
+  private readonly _router = inject(Router);
+  private readonly _searchTermSubject = new BehaviorSubject<string>('');
+  private readonly _searchTypeSubject = new BehaviorSubject<MediaType>(MediaType.All);
+  private readonly _paginationSubject = new BehaviorSubject<{ page: number; hasMore: boolean }>({
+    page: 0,
+    hasMore: true
+  });
+  public readonly searchTerm$ = this._searchTermSubject.asObservable();
+  public readonly searchType$ = this._searchTypeSubject.asObservable();
+  public readonly pagination$ = this._paginationSubject.asObservable();
 
-  constructor(
-    private _apiService: ApiService,
-    private _router: Router
-  ) {}
+  public searchFormControl = new FormControl<string | null>('');
 
-  public search(term: string): Observable<SearchResponse | null> {
+  public search(term: string, offset = 0): Observable<SearchResponse> {
     const params = new HttpParams()
       .set('q', term)
-      .set('type', `${MediaItemType.Album},${MediaItemType.Artist},${MediaItemType.Playlist},${MediaItemType.Track}`)
-      .set('limit', MEDIA_ITEM_LIMIT);
+      .set('type', 'album,artist,playlist,track')
+      .set('limit', MEDIA_ITEM_LIMIT)
+      .set('offset', offset);
 
     return this._apiService
-      .sendRequest<Omit<SearchResponse, 'searchResults' | 'mediaTypes'>>(`${environment.apiUrl}/search`, params)
+      .sendRequest<{
+        albums: Albums;
+        artists: Artists;
+        tracks: Tracks;
+        playlists: Playlists;
+      }>(`${environment.apiUrl}/search`, params)
       .pipe(
-        map((response) => {
-          const totalResults =
-            (response.albums?.total ?? 0) +
-            (response.artists?.total ?? 0) +
-            (response.playlists?.total ?? 0) +
-            (response.tracks?.total ?? 0);
+        map((res) => {
+          const results = {
+            albums: res.albums.items,
+            artists: res.artists.items,
+            tracks: res.tracks.items,
+            playlists: res.playlists.items
+          };
 
-          const mediaTypes = Object.values(response).reduce(
-            (types, mediaItem) => {
-              const type = mediaItem.items[0]?.type;
-              if (mediaItem.total && type) {
-                types.push(this._generateMediaType(type));
+          const totalResults = Object.values(res).reduce((total, searchResult) => {
+            total += searchResult.total;
+            return total;
+          }, 0);
+
+          const mediaTypes = Object.values(res).reduce(
+            (types, searchResult) => {
+              const mediaType = searchResult.items[0]?.type;
+              if (searchResult.total && mediaType) {
+                types.push(`${mediaType}s` as MediaType);
               }
               return types;
             },
             [MediaType.All]
           );
 
-          return { ...response, searchResults: totalResults, mediaTypes };
+          return { results, totalResults, mediaTypes };
         })
       );
-  }
-
-  private _generateMediaType(mediaItemType: MediaItemType): MediaType {
-    switch (mediaItemType) {
-      case MediaItemType.Album:
-        return MediaType.Albums;
-      case MediaItemType.Artist:
-        return MediaType.Artists;
-      case MediaItemType.Playlist:
-        return MediaType.Playlists;
-      case MediaItemType.Track:
-        return MediaType.Tracks;
-    }
   }
 
   public setSearchTerm(term: string): void {
     this._searchTermSubject.next(term);
   }
 
-  public getSearchTerm(): Observable<string> {
-    return this._searchTermSubject.asObservable();
-  }
-
   public setSearchType(type: MediaType): void {
     this._searchTypeSubject.next(type);
   }
 
-  public getSearchType(): Observable<MediaType> {
-    return this._searchTypeSubject.asObservable();
+  public incrementPageNumber(reset = false): void {
+    this._paginationSubject.next({
+      page: reset ? (this._paginationSubject.value.page = 0) : this._paginationSubject.value.page + 29,
+      hasMore: true
+    });
   }
 
   public syncRouteParams(): void {

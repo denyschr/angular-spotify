@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { Category } from '@models';
 import { CategoriesService } from '@modules/search/services/categories.service';
 import { map } from 'rxjs';
 
@@ -8,7 +9,5 @@ import { map } from 'rxjs';
   styleUrl: './search-categories.component.scss'
 })
 export class SearchCategoriesComponent {
-  public readonly categories$ = inject(CategoriesService)
-    .getCategories()
-    .pipe(map((categoriesResponse) => categoriesResponse.categories.items));
+  @Input({ required: true }) categories!: Category[];
 }

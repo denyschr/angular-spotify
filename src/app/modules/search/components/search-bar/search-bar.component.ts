@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Subscription, debounceTime, distinctUntilChanged, map, tap } from 'rxjs';
+import { Subscription, debounceTime, distinctUntilChanged, tap } from 'rxjs';
 import { SearchService } from '@modules/search/services/search.service';
 import { MediaType } from '@models';
 
@@ -24,7 +24,6 @@ export class SearchBarComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly _cdr = inject(ChangeDetectorRef);
   public searchFormControl = new FormControl<string | null>('');
   public searchTermSubscription?: Subscription;
-  public initialPageLoading = true;
 
   @ViewChild('input') inputRef?: ElementRef<HTMLInputElement>;
 
@@ -44,11 +43,8 @@ export class SearchBarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.searchTermSubscription = this._searchService.searchTerm$.subscribe((term) => {
-      if (!this.initialPageLoading) {
-        this.searchFormControl.patchValue(term);
-        this._cdr.detectChanges();
-      }
-      this.initialPageLoading = false;
+      this.searchFormControl.patchValue(term);
+      this._cdr.detectChanges();
     });
   }
 

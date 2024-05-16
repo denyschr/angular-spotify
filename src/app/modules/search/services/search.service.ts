@@ -6,7 +6,6 @@ import { environment } from '@environment';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class SearchService {
@@ -21,8 +20,6 @@ export class SearchService {
   public readonly searchTerm$ = this._searchTermSubject.asObservable();
   public readonly searchType$ = this._searchTypeSubject.asObservable();
   public readonly pagination$ = this._paginationSubject.asObservable();
-
-  public searchFormControl = new FormControl<string | null>('');
 
   public search(term: string, offset = 0): Observable<SearchResponse> {
     const params = new HttpParams()
@@ -76,20 +73,29 @@ export class SearchService {
     this._searchTypeSubject.next(type);
   }
 
-  public incrementPageNumber(reset = false): void {
+  public nextPage(reset = false, hasMore = true): void {
     this._paginationSubject.next({
       page: reset ? (this._paginationSubject.value.page = 0) : this._paginationSubject.value.page + 29,
-      hasMore: true
+      hasMore
     });
   }
 
-  public syncRouteParams(): void {
+  public updateQueryParams(): void {
+    const params = new Map<string, string | MediaType>();
     const term = this._searchTermSubject.value;
     const type = this._searchTypeSubject.value;
+
     if (term) {
-      this._router.navigate(['/search', term, type]);
-    } else {
-      this._router.navigate(['/search']);
+      params.set('term', term);
     }
+    if (type !== MediaType.All) {
+      params.set('type', type);
+    }
+
+    this._router.navigate([], {
+      queryParams: { term: params.get('term'), type: params.get('type') },
+      replaceUrl: true,
+      queryParamsHandling: 'merge'
+    });
   }
 }

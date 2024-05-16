@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MediaType, SearchResults } from '@models';
 import { map, tap, switchMap, combineLatest, of, concatMap, scan } from 'rxjs';
@@ -8,7 +8,8 @@ import { CategoriesService } from '../services/categories.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.page.html',
-  styleUrl: './search.page.scss'
+  styleUrl: './search.page.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchPage {
   private readonly _activatedRoute = inject(ActivatedRoute);
@@ -18,13 +19,13 @@ export class SearchPage {
   public mediaTypes = MediaType;
   public searchNavItems: MediaType[] = [];
 
-  private readonly _routeParams$ = this._activatedRoute.paramMap.pipe(
-    map((paramMap) => ({
-      term: paramMap.get('term') ?? '',
-      type: (paramMap.get('type') as MediaType) ?? MediaType.All
+  private readonly _routeParams$ = this._activatedRoute.queryParamMap.pipe(
+    map((queryParamMap) => ({
+      term: queryParamMap.get('term') ?? '',
+      type: (queryParamMap.get('type') as MediaType) ?? MediaType.All
     })),
     tap(({ term, type }) => {
-      this._searchService.incrementPageNumber(true);
+      this._searchService.nextPage(true);
       this._searchService.setSearchTerm(term);
       this._searchService.setSearchType(type);
     })

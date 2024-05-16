@@ -1,29 +1,31 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  OnDestroy,
   OnInit,
   ViewChild,
   inject
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Subscription, debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil, tap } from 'rxjs';
 import { SearchService } from '@modules/search/services/search.service';
 import { MediaType } from '@models';
+import { onDestroy } from '@utils';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.scss'
+  styleUrl: './search-bar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchBarComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SearchBarComponent implements OnInit, AfterViewInit {
   private readonly _searchService = inject(SearchService);
   private readonly _cdr = inject(ChangeDetectorRef);
+  private readonly _destroy$ = onDestroy();
   public searchFormControl = new FormControl<string | null>('');
-  public searchTermSubscription?: Subscription;
 
   @ViewChild('input') inputRef?: ElementRef<HTMLInputElement>;
 
@@ -34,15 +36,16 @@ export class SearchBarComponent implements OnInit, AfterViewInit, OnDestroy {
         debounceTime(300),
         distinctUntilChanged(),
         tap((term) => {
+          if (!term) this._searchService.setSearchType(MediaType.All);
           this._searchService.setSearchTerm(term ?? '');
-          this._searchService.syncRouteParams();
+          this._searchService.updateQueryParams();
         })
       )
       .subscribe();
   }
 
   ngOnInit(): void {
-    this.searchTermSubscription = this._searchService.searchTerm$.subscribe((term) => {
+    this._searchService.searchTerm$.pipe(takeUntil(this._destroy$)).subscribe((term) => {
       this.searchFormControl.patchValue(term);
       this._cdr.detectChanges();
     });
@@ -50,10 +53,6 @@ export class SearchBarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.inputRef?.nativeElement.focus();
-  }
-
-  ngOnDestroy(): void {
-    if (this.searchTermSubscription) this.searchTermSubscription.unsubscribe();
   }
 
   public clear(): void {

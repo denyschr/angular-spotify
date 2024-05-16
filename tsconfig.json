@@ -31,7 +31,8 @@
       "@directives": ["src/app/shared/directives"],
       "@pipes": ["src/app/shared/pipes"],
       "@ui": ["src/app/shared/ui"],
-      "@ui/*": ["src/app/shared/ui/*"]
+      "@ui/*": ["src/app/shared/ui/*"],
+      "@utils": ["src/app/shared/utils"]
     }
   },
   "angularCompilerOptions": {

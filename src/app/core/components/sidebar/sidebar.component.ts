@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MenuItem } from '@models';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+  styleUrl: './sidebar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent {
   public navTitle = 'Main navigation';

@@ -37,7 +37,7 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
         distinctUntilChanged(),
         tap((term) => {
           if (!term) this._searchService.setSearchType(MediaType.All);
-          this._searchService.setSearchTerm(term ?? '');
+          this._searchService.setSearchTerm(term || '');
           this._searchService.updateQueryParams();
         })
       )

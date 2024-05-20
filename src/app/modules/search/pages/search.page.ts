@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MediaType, SearchResults } from '@models';
+import { MediaType, SearchResultsArray } from '@models';
 import { map, tap, switchMap, combineLatest, of, concatMap, scan } from 'rxjs';
 import { SearchService } from '../services/search.service';
 import { CategoriesService } from '../services/categories.service';
@@ -25,7 +25,6 @@ export class SearchPage {
       type: (queryParamMap.get('type') as MediaType) ?? MediaType.All
     })),
     tap(({ term, type }) => {
-      this._searchService.nextPage(true);
       this._searchService.setSearchTerm(term);
       this._searchService.setSearchType(type);
     })
@@ -36,15 +35,20 @@ export class SearchPage {
   private readonly _searchResults$ = this._routeParams$.pipe(
     switchMap(({ term, type }) => {
       if (term) {
+        this._searchService.resetPage();
+
         return this._searchService.pagination$.pipe(
-          map((pagination) => ({ term, type, pagination })),
-          concatMap(({ term, pagination }) => this._searchService.search(term, pagination.page)),
+          map((page) => ({ term, type, page })),
+          concatMap(({ term, page }) => this._searchService.search(term, page)),
           tap(({ totalResults, mediaTypes }) => {
             this.totalResults = totalResults;
             this.searchNavItems = mediaTypes;
           }),
           map(({ results }) => [results]),
-          scan((prevResults: SearchResults[], currResults: SearchResults[]) => [...prevResults, ...currResults], [])
+          scan(
+            (prevResults: SearchResultsArray[], currResults: SearchResultsArray[]) => [...prevResults, ...currResults],
+            []
+          )
         );
       } else {
         return of(null);

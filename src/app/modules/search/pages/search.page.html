@@ -1,7 +1,8 @@
 <ng-container *ngIf="(vm$ | async) as vm">
 	<ng-container *ngIf="vm.searchResults; else categories">
 		<ng-container *ngIf="totalResults; else noResults">
-			<app-search-nav [mediaTypes]="searchNavItems" [currMediaType]="vm.type"></app-search-nav>
+			<app-search-nav [mediaTypes]="searchNavItems" [currMediaType]="vm.type">
+			</app-search-nav>
 			<app-search-results [searchResults]="vm.searchResults" [currMediaType]="vm.type">
 			</app-search-results>
 		</ng-container>

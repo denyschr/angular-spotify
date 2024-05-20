@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
-import { MediaType, SearchResults } from '@models';
+import { MediaType, SearchResultsArray } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 
 @Component({
@@ -12,11 +12,11 @@ export class SearchResultsComponent {
   private readonly _searchService = inject(SearchService);
   public mediaTypes = MediaType;
   public isLoading = false;
-  @Input({ required: true }) searchResults!: SearchResults[];
+  @Input({ required: true }) searchResults!: SearchResultsArray[];
   @Input({ required: true }) currMediaType!: MediaType;
 
   public loadMore(): void {
     // this.isLoading = true;
-    this._searchService.nextPage();
+    this._searchService.nextPage(29);
   }
 }

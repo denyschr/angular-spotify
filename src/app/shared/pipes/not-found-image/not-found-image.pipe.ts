@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Image } from '../../../core/models';
+import { Image } from '@models';
 
 @Pipe({
   name: 'notFoundImage'

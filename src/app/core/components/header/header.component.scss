@@ -1,0 +1,71 @@
+@import "mixins";
+
+:host {
+	position: sticky;
+	z-index: 50;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+
+.header {
+	// .header__inner
+	&__container {
+		display: flex;
+		align-items: center;
+		min-height: var(--header-height);
+	}
+}
+
+.nav-header {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+	// .nav-header__btns
+	&__btns {
+		display: flex;
+		align-items: center;
+		gap: toRem(8);
+		margin-right: toRem(16);
+	}
+	// .nav-header__button
+	&__button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 toRem(40);
+		width: toRem(40);
+		height: toRem(40);
+		border-radius: 50%;
+		border: toRem(1) solid var(--abbey);
+		background-color: var(--smoke);
+		transition: background 0.3s ease-in-out;
+		&::before {
+			transition: color 0.3s ease-in-out;
+		}
+		&.is-active {
+			pointer-events: none;
+			opacity: 0.6;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--abbey);
+				&::before {
+					color: var(--primary);
+				}
+			}
+		}
+	}
+	// .nav-header__button--prev
+	&__button--prev {
+		&::before {
+			transform: translateX(toRem(-1)) rotate(180deg);
+		}
+	}
+	// .nav-header__button--next
+	&__button--next {
+		&::before {
+			transform: translateX(toRem(1));
+		}
+	}
+}

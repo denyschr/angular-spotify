@@ -1,0 +1,14 @@
+@import "mixins";
+
+:host {
+	grid-column: 1/-1;
+}
+
+swiper-container {
+	margin: 0 toRem(-12);
+}
+
+swiper-slide {
+	height: unset;
+	min-height: 100%;
+}

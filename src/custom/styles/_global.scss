@@ -2,27 +2,21 @@
 	display: grid;
 	height: 100%;
 	grid-template-columns: toRem(280) 1fr;
-	gap: toRem(8);
 	overflow: clip;
-	padding: toRem(8);
 }
 
 .page {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	border-radius: toRem(8);
 	background-color: var(--shark);
-	overflow: auto;
+	overflow-y: auto;
 }
 
 .main {
 	flex-grow: 1;
-	margin-top: toRem(36);
+	margin-top: toRem(8);
 	&__container {
-		display: grid;
-		grid-template-columns: repeat(12, minmax(0, 1fr));
-		gap: toRem(32) toRem(12);
 		height: 100%;
 	}
 }

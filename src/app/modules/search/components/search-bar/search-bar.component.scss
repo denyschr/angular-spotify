@@ -1,0 +1,50 @@
+@import "mixins";
+
+:host {
+	flex-basis: toRem(400);
+}
+
+.search-header {
+	position: relative;
+	// .search-header__input
+	&__input {
+		width: 100%;
+		padding: toRem(12) toRem(50) toRem(12) toRem(40);
+		border-radius: var(--corner-radius-larger-4);
+		background-image: url("../../../../../assets/icons/search.svg");
+		background-repeat: no-repeat;
+		background-position: toRem(12);
+		background-color: var(--smoke);
+		border: toRem(1) solid var(--charade);
+		font-size: var(--text-size-smaller-2);
+		color: var(--primary);
+		transition: background 0.3s ease-in-out;
+		&::placeholder {
+			color: var(--silver);
+		}
+		&:focus-visible {
+			outline: toRem(1) solid var(--primary);
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--charade);
+			}
+		}
+	}
+	// .search-header__button
+	&__button {
+		position: absolute;
+		right: toRem(20);
+		top: 52%;
+		transform: translateY(-50%);
+		display: flex;
+		align-items: center;
+		border: none;
+		transition: color 0.3s ease-in-out;
+		@media (any-hover: hover) {
+			&:hover {
+				color: var(--secondary);
+			}
+		}
+	}
+}

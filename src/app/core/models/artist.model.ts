@@ -1,13 +1,13 @@
-import { Followers, MediaBodyResponse, MediaItem } from '.';
+import { Followers, MediaResponseBody, MediaItemBody, MediaItemType } from '.';
 
-export interface Artist extends MediaItem {
+export interface Artist extends MediaItemBody {
   followers: Followers;
   genres: string[];
   popularity: number;
-  type: 'artist';
+  type: MediaItemType.Artist;
 }
 
-export interface Artists extends MediaBodyResponse<Artist> {
+export interface Artists extends MediaResponseBody<Artist> {
   items: Artist[];
 }
 

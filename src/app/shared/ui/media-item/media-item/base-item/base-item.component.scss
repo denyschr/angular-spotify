@@ -1,0 +1,138 @@
+@import "mixins";
+@import "vars";
+
+.media-item {
+	height: 100%;
+	transition: background-color 0.3s ease-in-out;
+	&--base {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		padding: toRem(12);
+		border-radius: toRem(12);
+		overflow: hidden;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--charade);
+				.media-item__wrap-play {
+					opacity: 1;
+					visibility: visible;
+					transform: translateY(0);
+				}
+			}
+		}
+	}
+	// .media-item__top
+	&__top {
+		position: relative;
+		margin-bottom: toRem(16);
+	}
+	// .media-item__img
+	&__img {
+		aspect-ratio: 200 / 200;
+		overflow: hidden;
+		border-radius: var(--corner-radius-smaller-2);
+		img {
+			width: 100%;
+		}
+		&._rounded {
+			border-radius: 50%;
+		}
+	}
+	// .media-item__wrap-play
+	&__wrap-play {
+		position: absolute;
+		z-index: 3;
+		right: toRem(8);
+		bottom: toRem(10);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(toRem(10));
+		transition:
+			opacity 0.3s ease-in-out,
+			visibility 0.3s ease-in-out,
+			transform 0.3s ease-in-out;
+	}
+	// .media-item__details
+	&__details {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	// .media-item__title
+	&__title {
+		max-width: 100%;
+		margin-bottom: toRem(6);
+		font-weight: 500;
+		line-height: 1.2;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		word-break: break-all;
+		&::before {
+			content: "";
+			position: absolute;
+			z-index: 1;
+			inset: 0;
+		}
+	}
+	// .media-item__artist
+	&__artists {
+		@extend %vertical-ellipsis;
+		position: relative;
+		z-index: 2;
+		font-weight: 500;
+		color: var(--secondary);
+		word-break: break-all;
+		a {
+			display: inline;
+			line-height: 1.4;
+			@media (any-hover: hover) {
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	// .media-item__extra
+	&__extra {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: toRem(6);
+	}
+	// .media-item__explicit
+	&__explicit {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 0 0 toRem(16);
+		width: toRem(16);
+		height: toRem(16);
+		border-radius: toRem(2);
+		background-color: hsla(0, 0%, 100%, 0.6);
+		font-size: toRem(9);
+		font-weight: 500;
+		color: var(--shark);
+	}
+	// .media-item__date
+	&__date {
+		margin-right: toRem(4);
+		&::after {
+			content: "•";
+		}
+	}
+	// .media-item__subtitle
+	&__subtitle {
+		@extend %vertical-ellipsis;
+		word-break: break-all;
+	}
+	// .media-item__type
+	&__subtitle,
+	&__type {
+		font-weight: 500;
+		line-height: 1.2;
+		text-transform: capitalize;
+		color: var(--secondary);
+	}
+}

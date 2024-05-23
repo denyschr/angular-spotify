@@ -1,0 +1,16 @@
+<article class="media-item media-item--base" *ngIf="mediaItem.type === mediaItemTypes.Artist">
+	<div class="media-item__top">
+		<div class="media-item__img _rounded" #mediaItemImg>
+			<img [lazyLoad]="mediaItem.images | notFoundImage" [extractColor]="mediaItemImg" crossorigin alt>
+		</div>
+		<div class="media-item__wrap-play">
+			<button type="button" class="button button--play _icon-player" [playBtnLabel]="mediaItem"></button>
+		</div>
+	</div>
+	<div class="media-item__details">
+		<a [routerLink]="['/artist', mediaItem.id]" class="media-item__title">{{mediaItem.name}}</a>
+		<div class="media-item__subtitle text-size-smaller-3">
+			<span>{{ mediaItem.type }}</span>
+		</div>
+	</div>
+</article>

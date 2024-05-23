@@ -1,30 +1,43 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundPage } from './modules/not-found/pages/not-found.page';
+import { StandardPageLayoutComponent } from './core/components/standard-page-layout/standard-page-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./core/pages/home/home.module').then((m) => m.HomeModule)
+    redirectTo: '/home',
+    pathMatch: 'full'
   },
   {
-    path: 'search',
-    loadChildren: () => import('./core/pages/search/search.module').then((m) => m.SearchModule)
-  },
-  {
-    path: 'artist/:id',
-    loadChildren: () => import('./core/pages/artist/artist.module').then((m) => m.ArtistModule)
-  },
-  {
-    path: 'album/:id',
-    loadChildren: () => import('./core/pages/album/album.module').then((m) => m.AlbumModule)
-  },
-  {
-    path: 'pageNotFound',
-    loadChildren: () => import('./core/pages/page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule)
+    path: '',
+    component: StandardPageLayoutComponent,
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./modules/home/home').then((m) => m.HomeModule)
+      },
+      {
+        path: 'search',
+        loadChildren: () => import('./modules/search/search').then((m) => m.SearchModule)
+      },
+      {
+        path: 'artist/:id',
+        loadChildren: () => import('./modules/artist/artist').then((m) => m.ArtistModule)
+      },
+      {
+        path: 'album/:id',
+        loadChildren: () => import('./modules/album/album').then((m) => m.AlbumModule)
+      }
+    ]
   },
   {
     path: '**',
-    redirectTo: 'pageNotFound'
+    redirectTo: 'not-found'
+  },
+  {
+    path: 'not-found',
+    component: NotFoundPage
   }
 ];
 

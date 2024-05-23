@@ -1,0 +1,46 @@
+@import "mixins";
+
+:host {
+	grid-column: 1/-1;
+}
+
+.skeleton {
+	// .skeleton__title
+	&__title {
+		width: 20%;
+		margin-bottom: toRem(20);
+	}
+	// .skeleton__cards
+	&__cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(toRem(192), 1fr));
+		gap: toRem(16);
+	}
+}
+
+.card-skeleton {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: toRem(12);
+	background-color: var(--charade);
+	border-radius: toRem(12);
+	// .card-skeleton__img
+	&__img {
+		height: toRem(200);
+		margin-bottom: toRem(16);
+		border-radius: toRem(4);
+	}
+	// .card-skeleton__title
+	&__title {
+		margin-bottom: toRem(8);
+	}
+	&__img,
+	&__title {
+		width: 100%;
+	}
+	// .card-skeleton__subtitle
+	&__subtitle {
+		width: 70%;
+	}
+}

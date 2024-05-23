@@ -1,0 +1,23 @@
+<article class="media-item media-item--base" *ngIf="mediaItem.type === mediaItemTypes.Album">
+	<div class="media-item__top">
+		<div class="media-item__img" #mediaItemImg>
+			<img [lazyLoad]="mediaItem.images | notFoundImage" [extractColor]="mediaItemImg" crossorigin alt>
+		</div>
+		<div class="media-item__wrap-play">
+			<button type="button" class="button button--play _icon-player" [playBtnLabel]="mediaItem"></button>
+		</div>
+	</div>
+	<div class="media-item__details">
+		<a [routerLink]="['/album', mediaItem.id]" class="media-item__title">{{mediaItem.name}}</a>
+		<div class="media-item__artists text-size-smaller-3">
+			<time class="media-item__date" *ngIf="isAlbumDate" [attr.datetime]="mediaItem.release_date | date:'y'">
+				{{mediaItem.release_date | date:'y'}}
+			</time>
+			<ng-container *ngFor="let artist of mediaItem.artists | slice:0:3; let last = last">
+				<a [routerLink]="['/artist', artist.id]">{{ artist.name }}</a>
+				<ng-container>{{ !last ? ', ' : (mediaItem.artists.length > 3 ? ' and more' : '') }}
+				</ng-container>
+			</ng-container>
+		</div>
+	</div>
+</article>

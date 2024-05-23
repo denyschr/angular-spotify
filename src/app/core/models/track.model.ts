@@ -25,3 +25,7 @@ export interface ExternalIds {
 export interface Tracks extends MediaResponseBody<Track> {
   items: Track[];
 }
+
+export interface TracksResponse {
+  tracks: Tracks;
+}

@@ -9,9 +9,7 @@ import { NewReleasesService } from '../services/new-releases.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePage {
-  private readonly newReleases$ = inject(NewReleasesService).getNewReleases();
-
-  public obsList = [this.newReleases$];
-
+  private readonly _newReleases$ = inject(NewReleasesService).getNewReleases();
+  public obsList = [this._newReleases$];
   public readonly vm$ = forkJoin(this.obsList).pipe(map(([newReleases]) => ({ newReleases })));
 }

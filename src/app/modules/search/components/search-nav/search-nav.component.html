@@ -1,8 +1,10 @@
-<ul class="search-nav">
-	<li class="search-nav__item" *ngFor="let mediaType of mediaTypes">
-		<button [ngClass]="{'is-active': currMediaType === mediaType}"
-			class="search-nav__button text-size-smaller-3 button button--fill" (click)="onSearchFilter(mediaType)">
-			{{ mediaType | titlecase }}
-		</button>
-	</li>
-</ul>
+<ng-container *ngIf="(mediaTypes$ | async) as mediaTypes">
+	<ul class="search-nav">
+		<li class="search-nav__item" *ngFor="let mediaType of mediaTypes">
+			<button [ngClass]="{'is-active': (currMediaType$ | async) === mediaType}"
+				class="search-nav__button text-size-smaller-3 button button--fill" (click)="onSearchFilter(mediaType)">
+				{{ mediaType | titlecase }}
+			</button>
+		</li>
+	</ul>
+</ng-container>

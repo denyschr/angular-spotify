@@ -24,3 +24,7 @@ interface Tracks {
 export interface Playlists extends MediaResponseBody<Playlist> {
   items: Playlist[];
 }
+
+export interface PlaylistsResponse {
+  playlists: Playlists;
+}

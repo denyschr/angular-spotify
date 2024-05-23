@@ -1,12 +1,23 @@
 import { Injectable, inject } from '@angular/core';
 import { ApiService } from '@services';
-import { MediaType, SearchResponse, SearchResults, SearchResultsArray } from '@models';
+import {
+  AlbumsResponse,
+  ArtistsResponse,
+  MediaType,
+  PlaylistsResponse,
+  SearchResponse,
+  SearchResults,
+  SearchResultsArray,
+  TracksResponse
+} from '@models';
 import { MAX_FETCH_CONTENT } from '@constants';
 import { environment } from '@environment';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { objectToValues } from '@utils';
+
+export type MediaResponse = AlbumsResponse | ArtistsResponse | TracksResponse | PlaylistsResponse;
 
 @Injectable({ providedIn: 'root' })
 export class SearchService {
@@ -15,20 +26,19 @@ export class SearchService {
 
   private readonly _searchTermSubject = new BehaviorSubject<string>('');
   private readonly _searchTypeSubject = new BehaviorSubject<MediaType>(MediaType.All);
-  private readonly _searchMediaTypesSubject = new BehaviorSubject<MediaType[]>([]);
+  private readonly _searchTypesSubject = new BehaviorSubject<MediaType[]>([]);
   private readonly _paginationSubject = new BehaviorSubject<number>(0);
 
   public readonly searchTerm$ = this._searchTermSubject.asObservable();
   public readonly searchType$ = this._searchTypeSubject.asObservable();
-  public readonly mediaTypes$ = this._searchMediaTypesSubject.asObservable();
+  public readonly searchTypes$ = this._searchTypesSubject.asObservable();
   public readonly pagination$ = this._paginationSubject.asObservable();
 
-  public search(term: string, offset: number): Observable<SearchResponse> {
+  public getAllResults(term: string): Observable<SearchResponse> {
     const params = new HttpParams()
       .set('q', term)
       .set('type', 'album,artist,playlist,track')
-      .set('limit', MAX_FETCH_CONTENT)
-      .set('offset', offset);
+      .set('limit', MAX_FETCH_CONTENT);
 
     return this._apiService.sendRequest<SearchResults>(`${environment.apiUrl}/search`, params).pipe(
       map((res) => ({
@@ -85,21 +95,12 @@ export class SearchService {
   }
 
   public updateQueryParams(): void {
-    const params = new Map<string, string | MediaType>();
     const term = this._searchTermSubject.value;
     const type = this._searchTypeSubject.value;
-
     if (term) {
-      params.set('term', term);
+      this._router.navigate(['/search', term, type]);
+    } else {
+      this._router.navigate(['/search']);
     }
-    if (type !== MediaType.All) {
-      params.set('type', type);
-    }
-
-    this._router.navigate([], {
-      queryParams: { term: params.get('term'), type: params.get('type') },
-      replaceUrl: true,
-      queryParamsHandling: 'merge'
-    });
   }
 }

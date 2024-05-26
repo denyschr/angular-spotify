@@ -12,5 +12,5 @@ export interface Artists extends MediaResponseBody<Artist> {
 }
 
 export interface ArtistsResponse {
-  artists: Artist[];
+  artists: Artists;
 }

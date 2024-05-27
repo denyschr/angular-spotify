@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SpotifyConfig } from '@environment';
 import { JwtService } from './jwt.service';
 import { ApiToken } from '@core/models';
+import { generateRandomString } from '@utils';
 import shajs from 'sha.js';
 import { Observable } from 'rxjs';
 
@@ -16,14 +17,8 @@ export class AuthService {
   private readonly _http = inject(HttpClient);
   private readonly _jwtService = inject(JwtService);
 
-  private generateRandomString(length: number): string {
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const values = crypto.getRandomValues(new Uint8Array(length));
-    return values.reduce((acc, x) => acc + possible[x % possible.length], '');
-  }
-
   public getAuthUrl(): string {
-    const codeVerifier = this.generateRandomString(64);
+    const codeVerifier = generateRandomString(64);
     const hashed = shajs('sha256').update(codeVerifier).digest().toString('base64');
     const codeChallenge = hashed.replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
 
@@ -39,8 +34,7 @@ export class AuthService {
     };
 
     const paramString = new HttpParams({ fromObject: params }).toString();
-    const authUrl = `${SpotifyConfig.authEndPoint}?` + paramString;
-    return authUrl;
+    return `${SpotifyConfig.authEndPoint}?` + paramString;
   }
 
   public generateToken(code: string): Observable<ApiToken> {

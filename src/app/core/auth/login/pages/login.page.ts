@@ -17,7 +17,6 @@ export class LoginPage implements OnInit {
   constructor() {
     this._activatedRoute.queryParams.pipe(takeUntilDestroyed()).subscribe((params) => {
       const code: string | undefined = params['code'];
-
       if (code) {
         this._authService.generateToken(code).subscribe((res) => {
           const token = res['access_token'];

@@ -16,6 +16,9 @@ export class AuthService {
   private readonly _router = inject(Router);
   private readonly _http = inject(HttpClient);
   private readonly _jwtService = inject(JwtService);
+  private readonly _headers = new HttpHeaders({
+    'Content-Type': 'application/x-www-form-urlencoded'
+  });
 
   public getAuthUrl(): string {
     const codeVerifier = generateRandomString(64);
@@ -32,18 +35,12 @@ export class AuthService {
       code_challenge: codeChallenge,
       redirect_uri: SpotifyConfig.redirectUri
     };
-
     const paramString = new HttpParams({ fromObject: params }).toString();
     return `${SpotifyConfig.authEndPoint}?` + paramString;
   }
 
   public generateToken(code: string): Observable<ApiToken> {
-    const codeVerifier = localStorage.getItem('code_verifier') as string;
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
-
+    const codeVerifier = localStorage.getItem('code_verifier')!;
     const body = new URLSearchParams({
       client_id: this._clientId,
       grant_type: 'authorization_code',
@@ -51,12 +48,22 @@ export class AuthService {
       redirect_uri: SpotifyConfig.redirectUri,
       code_verifier: codeVerifier
     });
+    return this._http.post<ApiToken>(SpotifyConfig.tokenUrl, body, { headers: this._headers });
+  }
 
-    return this._http.post<ApiToken>(SpotifyConfig.tokenUrl, body, { headers });
+  public generateNewToken(): Observable<ApiToken> {
+    const refreshToken = this._jwtService.getRefreshToken();
+    const body = new URLSearchParams({
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,
+      client_id: this._clientId
+    });
+    return this._http.post<ApiToken>(SpotifyConfig.tokenUrl, body, { headers: this._headers });
   }
 
   public logout(): void {
-    this._jwtService.destroyToken();
+    this._jwtService.destroyAccessToken();
+    this._jwtService.destroyRefreshToken();
     this._router.navigate(['/login']);
   }
 }

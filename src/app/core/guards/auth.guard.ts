@@ -4,8 +4,9 @@ import { JwtService } from '../services/jwt.service';
 
 export const authGuard: CanMatchFn = () => {
   const router = inject(Router);
-  const token = inject(JwtService).getToken();
-  if (!token) {
+  const accessToken = inject(JwtService).getAccessToken();
+  const refreshToken = inject(JwtService).getRefreshToken();
+  if (!accessToken && !refreshToken) {
     router.navigate(['/login']);
     return false;
   }

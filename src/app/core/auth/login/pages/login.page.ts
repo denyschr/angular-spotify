@@ -19,8 +19,10 @@ export class LoginPage implements OnInit {
       const code: string | undefined = params['code'];
       if (code) {
         this._authService.generateToken(code).subscribe((res) => {
-          const token = res['access_token'];
-          this._jwtService.saveToken(token);
+          const accessToken = res.access_token;
+          const refreshToken = res.refresh_token;
+          this._jwtService.saveAccessToken(accessToken);
+          this._jwtService.saveRefreshToken(refreshToken);
           this.verify();
         });
       }
@@ -32,8 +34,8 @@ export class LoginPage implements OnInit {
   }
 
   private verify(): void {
-    const token = this._jwtService.getToken();
-    if (token) {
+    const accessToken = this._jwtService.getAccessToken();
+    if (accessToken) {
       this._router.navigate(['.']);
     }
   }

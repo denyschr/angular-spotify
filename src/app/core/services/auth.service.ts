@@ -62,8 +62,7 @@ export class AuthService {
   }
 
   public logout(): void {
-    this._jwtService.destroyAccessToken();
-    this._jwtService.destroyRefreshToken();
+    window.localStorage.clear();
     this._router.navigate(['/login']);
   }
 }

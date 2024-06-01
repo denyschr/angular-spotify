@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundPage } from './modules/not-found/pages/not-found.page';
-import { StandardPageLayoutComponent } from './core/components/standard-page-layout/standard-page-layout.component';
+import { StandardPageLayoutComponent } from '@components';
+import { authGuard } from '@guards';
 
 const routes: Routes = [
   {
@@ -10,8 +10,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    loadChildren: () => import('./core/auth').then((m) => m.LoginModule)
+  },
+  {
     path: '',
     component: StandardPageLayoutComponent,
+    canMatch: [authGuard],
     children: [
       {
         path: 'home',
@@ -37,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'not-found',
-    component: NotFoundPage
+    loadChildren: () => import('./modules/not-found/not-found').then((m) => m.NotFoundModule)
   }
 ];
 

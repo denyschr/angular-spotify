@@ -1,14 +1,14 @@
 import { Injectable, inject } from '@angular/core';
-import { ApiService } from '@services';
 import { ArtistsResponse } from '@models';
-import { environment } from '@environment';
+import { SpotifyConfig } from '@environment';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ArtistService {
-  private readonly _apiService = inject(ApiService);
+  private readonly _http = inject(HttpClient);
 
   public getArtist(id: string): Observable<ArtistsResponse> {
-    return this._apiService.sendRequest<ArtistsResponse>(`${environment.apiUrl}/artists/${id}`);
+    return this._http.get<ArtistsResponse>(`${SpotifyConfig.apiUrl}/artists/${id}`);
   }
 }

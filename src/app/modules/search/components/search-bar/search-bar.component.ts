@@ -13,7 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime, distinctUntilChanged, takeUntil, tap } from 'rxjs';
 import { SearchService } from '@modules/search/services/search.service';
 import { MediaType } from '@models';
-import { onDestroy } from '@utils';
+import { onDestroy } from 'src/app/core/utils';
 
 @Component({
   selector: 'app-search-bar',

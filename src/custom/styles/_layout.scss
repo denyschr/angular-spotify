@@ -1,0 +1,30 @@
+.wrapper {
+	display: grid;
+	grid-template-areas: "left-sidebar main-view";
+	height: 100%;
+	grid-template-columns: auto 1fr;
+	gap: var(--panel-gap);
+	overflow: clip;
+	padding: var(--panel-gap);
+}
+
+.main-view {
+	grid-area: main-view;
+	min-height: 0;
+	border-radius: var(--corner-radius-larger-2);
+	background-color: var(--background-ultramarine);
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		overflow-y: auto;
+	}
+}
+
+.page {
+	flex-grow: 1;
+	margin-top: toRem(8);
+	&__container {
+		height: 100%;
+	}
+}

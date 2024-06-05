@@ -1,0 +1,22 @@
+<nav class="left-sidebar flex-col" aria-label="Main navigation">
+	<div class="left-sidebar__header">
+		<a [routerLink]="['/home']" class="left-sidebar__logo">
+			<img src="/assets/icons/spotify-logo.svg" width="100" height="30" alt="Logo">
+		</a>
+	</div>
+	<div class="left-sidebar__body">
+		<ul class="left-sidebar__list">
+			<li class="left-sidebar__item" *ngFor="let menuItem of menuItems">
+				<a [className]="'left-sidebar__link flex-row-center text-body-medium ' + menuItem.icon"
+					[routerLink]="[menuItem.path]" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+					{{menuItem.name}}
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="left-sidebar__footer">
+		<button class="left-sidebar__logout flex-row-center _icon-logout" (click)="onLogout()">
+			Logout
+		</button>
+	</div>
+</nav>

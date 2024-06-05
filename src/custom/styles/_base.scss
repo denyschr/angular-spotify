@@ -11,10 +11,11 @@ html {
 
 body {
 	min-width: toRem($minWidth);
-	color: var(--primary);
-	background-color: var(--black);
-	font-family: $fontMain, sans-serif;
-	font-size: $fontSize;
+	background-color: var(--background-space-black);
+	color: var(--text-base);
+	font-family: var(--font-family-base), sans-serif;
+	font-size: var(--text-size-base);
+	font-weight: var(--font-weight-base);
 }
 
 img {
@@ -63,6 +64,7 @@ input,
 textarea {
 	font-size: inherit;
 	line-height: inherit;
+	border: none;
 }
 
 [class*="_container"] {

@@ -1,34 +1,32 @@
 @import "mixins";
 
 :host {
-	flex-basis: toRem(400);
+	flex: 0 1 toRem(364);
 }
 
 .search-header {
 	position: relative;
+	&::before {
+		position: absolute;
+		top: 50%;
+		left: toRem(12);
+		transform: translateY(-50%);
+	}
 	// .search-header__input
 	&__input {
 		width: 100%;
 		padding: toRem(12) toRem(50) toRem(12) toRem(40);
-		border-radius: var(--corner-radius-larger-4);
-		background-image: url("../../../../../assets/icons/search.svg");
-		background-repeat: no-repeat;
-		background-position: toRem(12);
-		background-color: var(--smoke);
-		border: toRem(1) solid var(--charade);
-		font-size: var(--text-size-smaller-2);
-		color: var(--primary);
-		transition: background 0.3s ease-in-out;
+		border-radius: var(--corner-radius-base);
+		background-color: var(--background-indigo-dark);
+		color: var(--text-base);
+		transition: background 0.2s linear;
 		&::placeholder {
-			color: var(--silver);
+			color: inherit;
 		}
 		&:focus-visible {
-			outline: toRem(1) solid var(--primary);
+			outline: toRem(1) solid #fff;
 		}
 		@media (any-hover: hover) {
-			&:hover {
-				background-color: var(--charade);
-			}
 		}
 	}
 	// .search-header__button

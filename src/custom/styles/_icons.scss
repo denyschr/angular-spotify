@@ -1,36 +1,52 @@
 [class*="_icon-"]::before {
-  display: inline-block;
+  display: block;
   font-family: "icons";
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
+  text-transform: none;
   line-height: 1;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+._icon-instagram:before {
+  content: "\e90a";
+}
 ._icon-facebook:before {
-  content: "\e905";
+  content: "\e90b";
 }
 ._icon-twitter:before {
-  content: "\e906";
+  content: "\e90c";
 }
-._icon-instagram:before {
-  content: "\e907";
-}
-._icon-cross:before {
+._icon-library:before {
   content: "\e900";
 }
-._icon-search:before {
+._icon-duration:before {
   content: "\e901";
 }
-._icon-player:before {
+._icon-skip-button:before {
   content: "\e902";
 }
-._icon-arrow:before {
+._icon-chevron:before {
   content: "\e903";
 }
-._icon-home:before {
+._icon-logout:before {
   content: "\e904";
+}
+._icon-close:before {
+  content: "\e905";
+}
+._icon-home:before {
+  content: "\e906";
+}
+._icon-pause:before {
+  content: "\e907";
+}
+._icon-play:before {
+  content: "\e908";
+}
+._icon-magnifier:before {
+  content: "\e909";
 }

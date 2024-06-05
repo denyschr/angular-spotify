@@ -1,8 +1,7 @@
-.social {
+.social-links {
 	display: flex;
-	align-items: center;
 	gap: toRem(16);
-	// .social__item
+	// .social-links__item
 	&__item {
 		display: flex;
 		align-items: center;
@@ -11,11 +10,14 @@
 		width: toRem(40);
 		height: toRem(40);
 		border-radius: 50%;
-		background-color: var(--smoke);
-		transition: background 0.3s ease-in-out;
+		background-color: var(--background-indigo-dark);
+		transition:
+			background 0.2s linear,
+			transform 0.2s linear;
 		@media (any-hover: hover) {
 			&:hover {
-				background-color: var(--mako);
+				transform: translateY(toRem(-5));
+				background-color: var(--background--indigo);
 			}
 		}
 	}

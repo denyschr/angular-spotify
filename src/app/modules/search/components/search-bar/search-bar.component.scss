@@ -11,38 +11,47 @@
 		top: 50%;
 		left: toRem(12);
 		transform: translateY(-50%);
+		color: var(--text-subdued);
+		transition: color 0.2s linear;
+	}
+	&:focus-within {
+		&::before {
+			color: var(--text-base);
+		}
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			&::before {
+				color: var(--text-base);
+			}
+		}
 	}
 	// .search-header__input
 	&__input {
 		width: 100%;
-		padding: toRem(12) toRem(50) toRem(12) toRem(40);
+		padding: toRem(12) toRem(40) toRem(12) toRem(40);
 		border-radius: var(--corner-radius-base);
 		background-color: var(--background-indigo-dark);
 		color: var(--text-base);
 		transition: background 0.2s linear;
-		&::placeholder {
-			color: inherit;
-		}
 		&:focus-visible {
-			outline: toRem(1) solid #fff;
+			outline: 1px solid #fff;
 		}
 		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--background--indigo);
+			}
 		}
 	}
 	// .search-header__button
 	&__button {
 		position: absolute;
-		right: toRem(20);
+		right: toRem(10);
 		top: 52%;
 		transform: translateY(-50%);
-		display: flex;
-		align-items: center;
-		border: none;
-		transition: color 0.3s ease-in-out;
-		@media (any-hover: hover) {
-			&:hover {
-				color: var(--secondary);
-			}
+		transition: color 0.2s linear;
+		&::before {
+			font-size: toRem(12);
 		}
 	}
 }

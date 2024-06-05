@@ -42,13 +42,14 @@
 	// .left-sidebar__logout
 	&__logout {
 		gap: toRem(16);
+		color: var(--text-subdued);
 		transition: color 0.2s linear;
 		&::before {
 			font-size: toRem(20);
 		}
 		@media (any-hover: hover) {
 			&:hover {
-				color: var(--background-warning);
+				color: var(--text-base);
 			}
 		}
 	}

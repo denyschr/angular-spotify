@@ -18,8 +18,12 @@
 	--background-midnight-blue: #090e50;
 	--background-ultramarine: #090b9c;
 	--background-royal-blue: #1222d3;
+	--background--indigo: #474ed2;
 	--background-indigo-dark: #2d35c292;
+	--background-subdued: #e1e1e1;
+
 	--text-base: #fff;
+	--text-subdued: #e1e1e1;
 
 	--panel-gap: 8px;
 	--left-sidebar-width: 241px;
@@ -28,8 +32,8 @@
 
 // Adaptive grid
 $minWidth: 320;
-$maxWidth: 1440;
-$maxWidthContainer: 1135;
+$maxWidth: 1920;
+$maxWidthContainer: 1955;
 $containerOffset: 16;
 $containerWidth: calc($maxWidthContainer + ($containerOffset * 2));
 

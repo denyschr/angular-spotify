@@ -6,10 +6,22 @@
 	</div>
 	<div class="left-sidebar__body">
 		<ul class="left-sidebar__list">
-			<li class="left-sidebar__item" *ngFor="let menuItem of menuItems">
-				<a [className]="'left-sidebar__link flex-row-center text-body-medium ' + menuItem.icon"
-					[routerLink]="[menuItem.path]" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
-					{{menuItem.name}}
+			<li class="left-sidebar__item">
+				<a class="left-sidebar__link flex-row-center text-body-medium _icon-home" [routerLink]="'/home'"
+					routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+					Home
+				</a>
+			</li>
+			<li class="left-sidebar__item">
+				<a class="left-sidebar__link flex-row-center text-body-medium _icon-magnifier" [routerLink]="'/search'"
+					routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+					Search
+				</a>
+			</li>
+			<li class="left-sidebar__item">
+				<a class="left-sidebar__link flex-row-center text-body-medium _icon-library"
+					[routerLink]="'/collection/playlists'" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+					Your library
 				</a>
 			</li>
 		</ul>

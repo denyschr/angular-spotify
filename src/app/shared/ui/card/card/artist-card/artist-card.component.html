@@ -8,12 +8,7 @@
       ></button>
     </div>
     <div class="card__img card__img-ibg _rounded" #mediaItemImg>
-      <img
-        [lazyLoad]="mediaItem.images | notFoundImage"
-        [extractColor]="mediaItemImg"
-        crossorigin
-        alt
-      />
+      <img [src]="mediaItem.images | notFoundImage" [extractColor]="mediaItemImg" crossorigin alt />
     </div>
   </div>
   <div class="card__interactive-area">

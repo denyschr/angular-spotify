@@ -3,10 +3,10 @@
     <img
       class="category__img"
       *ngIf="category.icons[0] && category.icons[0].url"
-      [lazyLoad]="category.icons[0].url"
+      [src]="category.icons[0].url"
       [extractColor]="categoryItem"
       crossorigin
-      [alt]="category.name"
+      alt
     />
     <span class="category__title text-center text-title-small" [title]="category.name">
       {{ category.name }}

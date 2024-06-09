@@ -1,7 +1,18 @@
 <form action="#" method="GET" class="search-header _icon-magnifier">
-	<input type="text" autocomplete="on" class="search-header__input text-body-small"
-		placeholder="What do you want to listen to?" maxlength="800" [formControl]="searchFormControl" #input>
-	<button type="button" class="search-header__button text-size-larger _icon-close" aria-label="Clear search field"
-		*ngIf="input.value" (click)="clear()">
-	</button>
+  <input
+    type="text"
+    autocomplete="on"
+    class="search-header__input text-body-small"
+    placeholder="What do you want to listen to?"
+    maxlength="800"
+    [formControl]="searchFormControl"
+    #input
+  />
+  <button
+    type="button"
+    class="search-header__button text-size-larger _icon-close"
+    aria-label="Clear search field"
+    *ngIf="input.value"
+    (click)="clear()"
+  ></button>
 </form>

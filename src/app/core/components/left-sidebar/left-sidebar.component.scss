@@ -9,8 +9,7 @@
 	width: var(--left-sidebar-width);
 	height: 100%;
 	padding: toRem(18);
-	border-radius: var(--corner-radius-larger-2);
-	background-color: var(--background-midnight-blue);
+	background-color: var(--background-black);
 	// .left-sidebar__body
 	&__body {
 		flex-grow: 1;
@@ -31,11 +30,12 @@
 			font-size: toRem(20);
 		}
 		&.is-active {
-			background-color: var(--background-indigo-dark);
+			color: var(--text-cyan);
+			background-color: var(--background-misty-white);
 		}
 		@media (any-hover: hover) {
 			&:hover {
-				background-color: var(--background-indigo-dark);
+				background-color: var(--background-misty-white);
 			}
 		}
 	}

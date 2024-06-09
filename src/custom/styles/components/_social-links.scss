@@ -10,14 +10,14 @@
 		width: toRem(40);
 		height: toRem(40);
 		border-radius: 50%;
-		background-color: var(--background-indigo-dark);
+		background-color: var(--background-ghost-white);
 		transition:
 			background 0.2s linear,
 			transform 0.2s linear;
 		@media (any-hover: hover) {
 			&:hover {
 				transform: translateY(toRem(-5));
-				background-color: var(--background--indigo);
+				background-color: var(--background-misty-white);
 			}
 		}
 	}

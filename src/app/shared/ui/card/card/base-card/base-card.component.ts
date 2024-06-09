@@ -4,7 +4,7 @@ import { MediaItem, MediaItemType } from '@models';
 @Component({
   template: ''
 })
-export class BaseItemComponent {
+export class BaseCardComponent {
   @Input() mediaItem!: MediaItem;
   public mediaItemTypes = MediaItemType;
 }

@@ -31,15 +31,15 @@
 		width: 100%;
 		padding: toRem(12) toRem(40) toRem(12) toRem(40);
 		border-radius: var(--corner-radius-base);
-		background-color: var(--background-indigo-dark);
+		background-color: var(--background-ghost-white);
 		color: var(--text-base);
-		transition: background 0.2s linear;
+		transition: background 0.1s linear;
 		&:focus-visible {
 			outline: 1px solid #fff;
 		}
 		@media (any-hover: hover) {
 			&:hover {
-				background-color: var(--background--indigo);
+				background-color: var(--background-misty-white);
 			}
 		}
 	}

@@ -1,29 +1,23 @@
 .button {
 	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	font-weight: 700;
 	padding: 0;
-	border: none;
-	&--fill {
-		border-radius: var(--corner-radius-larger-2);
-		background-color: var(--primary);
-		color: var(--black);
-	}
+	text-align: center;
 	&--play {
+		align-items: center;
+		justify-content: center;
 		width: toRem(48);
 		height: toRem(48);
 		transform: scale(1.01);
 		border-radius: 50%;
-		background: var(--cyan);
+		background-color: var(--background-cyan);
 		&::before {
-			color: var(--black);
-			transform: translate(toRem(1), toRem(1));
+			font-size: toRem(22);
+			color: var(--background-black);
 		}
 		@media (any-hover: hover) {
 			&:hover {
-				transform: scale(1.05);
+				background-color: var(--background-cyan-light);
+				transform: scale(1.1);
 			}
 		}
 	}

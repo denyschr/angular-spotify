@@ -1,7 +1,7 @@
 @import "mixins";
 
 .footer {
-	padding: toRem(70) 0;
+	padding: toRem(70) 0 toRem(30);
 	// .footer__top
 	&__top {
 		display: flex;
@@ -11,6 +11,7 @@
 	}
 	// .footer__divider
 	&__divider {
+		box-sizing: border-box;
 		margin-block-start: 0;
 		margin-block-end: toRem(24);
 		border: 0;

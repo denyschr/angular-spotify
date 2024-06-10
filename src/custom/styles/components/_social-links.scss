@@ -1,0 +1,24 @@
+.social-links {
+	display: flex;
+	gap: toRem(16);
+	// .social-links__item
+	&__item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 toRem(40);
+		width: toRem(40);
+		height: toRem(40);
+		border-radius: 50%;
+		background-color: var(--background-ghost-white);
+		transition:
+			background 0.2s linear,
+			transform 0.2s linear;
+		@media (any-hover: hover) {
+			&:hover {
+				transform: translateY(toRem(-5));
+				background-color: var(--background-misty-white);
+			}
+		}
+	}
+}

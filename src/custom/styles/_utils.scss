@@ -1,0 +1,129 @@
+//====================================================================================================
+// Flex styles
+//====================================================================================================
+.flex-row-center {
+	display: flex;
+	align-items: center;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-col-start {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.flex-all-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.flex-sb-center {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+//====================================================================================================
+// Text styles
+//====================================================================================================
+.text-body-medium,
+.text-body-medium-bold {
+	font-size: var(--text-size-base);
+}
+
+.text-body-small,
+.text-body-small-bold {
+	font-size: var(--text-size-smaller);
+}
+
+.text-body-marginal,
+.text-body-marginal-bold {
+	font-size: var(--text-size-smaller-2);
+}
+
+.text-body-medium-bold,
+.text-body-small-bold,
+.text-body-marginal-bold {
+	font-weight: var(--font-weight-bold);
+}
+
+.text-title-medium {
+	font-size: var(--text-size-larger-2);
+}
+
+.text-title-small {
+	font-size: var(--text-size-larger);
+}
+
+.text-title-medium,
+.text-title-small {
+	font-weight: var(--font-weight-bold);
+}
+
+.text-center {
+	text-align: center;
+}
+
+//====================================================================================================
+// Section styles
+//====================================================================================================
+.section {
+	grid-column: 1/-1;
+	// .section__top
+	&__top {
+		display: flex;
+		align-items: flex-end;
+		gap: toRem(10);
+		margin-bottom: var(--section-internal-gap);
+	}
+	// .section__title
+	&__title {
+		flex-grow: 1;
+	}
+	// .section__nav
+	&__nav {
+		margin-left: auto;
+	}
+	// .section__items
+	&__items {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(toRem(200), 1fr));
+		gap: toRem(14);
+	}
+}
+
+//====================================================================================================
+// Text truncation
+//====================================================================================================
+.truncate,
+.truncate-double {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.truncate {
+	-webkit-line-clamp: 1;
+}
+
+.truncate-double {
+	-webkit-line-clamp: 2;
+}
+
+//====================================================================================================
+// Other
+//====================================================================================================
+.link-cover {
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		inset: 0;
+	}
+}

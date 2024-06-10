@@ -12,6 +12,6 @@ export class CategoriesService {
     const params = { limit: 50 };
     return this._http
       .get<CategoriesResponse>(`${SpotifyConfig.apiUrl}/browse/categories`, { params })
-      .pipe(map((res) => res.categories.items));
+      .pipe(map(res => res.categories.items));
   }
 }

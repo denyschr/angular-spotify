@@ -1,50 +1,57 @@
 @import "mixins";
 
 :host {
-	flex-basis: toRem(400);
+	flex: 0 1 toRem(364);
 }
 
 .search-header {
 	position: relative;
+	&::before {
+		position: absolute;
+		top: 50%;
+		left: toRem(12);
+		transform: translateY(-50%);
+		color: var(--text-subdued);
+		transition: color 0.2s linear;
+	}
+	&:focus-within {
+		&::before {
+			color: var(--text-base);
+		}
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			&::before {
+				color: var(--text-base);
+			}
+		}
+	}
 	// .search-header__input
 	&__input {
 		width: 100%;
-		padding: toRem(12) toRem(50) toRem(12) toRem(40);
-		border-radius: var(--corner-radius-larger-4);
-		background-image: url("../../../../../assets/icons/search.svg");
-		background-repeat: no-repeat;
-		background-position: toRem(12);
-		background-color: var(--smoke);
-		border: toRem(1) solid var(--charade);
-		font-size: var(--text-size-smaller-2);
-		color: var(--primary);
-		transition: background 0.3s ease-in-out;
-		&::placeholder {
-			color: var(--silver);
-		}
+		padding: toRem(12) toRem(40) toRem(12) toRem(40);
+		border-radius: var(--corner-radius-base);
+		background-color: var(--background-ghost-white);
+		color: var(--text-base);
+		transition: background 0.1s linear;
 		&:focus-visible {
-			outline: toRem(1) solid var(--primary);
+			outline: 1px solid #fff;
 		}
 		@media (any-hover: hover) {
 			&:hover {
-				background-color: var(--charade);
+				background-color: var(--background-misty-white);
 			}
 		}
 	}
 	// .search-header__button
 	&__button {
 		position: absolute;
-		right: toRem(20);
+		right: toRem(10);
 		top: 52%;
 		transform: translateY(-50%);
-		display: flex;
-		align-items: center;
-		border: none;
-		transition: color 0.3s ease-in-out;
-		@media (any-hover: hover) {
-			&:hover {
-				color: var(--secondary);
-			}
+		transition: color 0.2s linear;
+		&::before {
+			font-size: toRem(12);
 		}
 	}
 }

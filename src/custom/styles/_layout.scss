@@ -9,7 +9,6 @@
 .main-view {
 	grid-area: main-view;
 	min-height: 0;
-	background: var(--background-midnight-blue);
 	&__content {
 		display: flex;
 		flex-direction: column;

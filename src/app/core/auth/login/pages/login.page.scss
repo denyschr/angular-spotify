@@ -1,0 +1,16 @@
+@import "mixins";
+
+.login {
+	position: relative;
+	height: 100%;
+	// .login__block
+	&__block {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		padding: toRem(32);
+		text-align: center;
+	}
+}

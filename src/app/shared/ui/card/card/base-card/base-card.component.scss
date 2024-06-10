@@ -48,9 +48,6 @@
 	}
 	// .card__interactive-area
 	&__interactive-area {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
 		gap: toRem(8);
 	}
 	// .card__details

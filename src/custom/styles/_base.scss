@@ -11,7 +11,7 @@ html {
 
 body {
 	min-width: toRem($minWidth);
-	background-color: var(--background-black);
+	background: var(--background-base);
 	color: var(--text-base);
 	font-family: var(--font-family-base), sans-serif;
 	font-size: var(--text-size-base);

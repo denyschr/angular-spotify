@@ -20,14 +20,15 @@
 	--corner-radius-larger-2: 0.5rem; // 8px
 
 	// Color scheme
-	--background-black: #191624;
-	--background-midnight-blue: linear-gradient(to bottom right, #191624, #121286);
+	--background-base: linear-gradient(to bottom right, #191624, #121286);
+	--background-press: #191624;
 	--background-ghost-white: rgba(255, 255, 255, 0.05);
 	--background-misty-white: rgba(255, 255, 255, 0.1);
 	--background-cyan: rgb(34 211 238);
 	--background-cyan-light: rgb(103 232 249);
 	--background-subdued: rgb(156 163 175);
 	--text-base: #fff;
+	--text-press: #191624;
 	--text-cyan: rgb(34 211 238);
 	--text-subdued: rgb(156 163 175);
 	--text-silver: rgb(209 213 219);

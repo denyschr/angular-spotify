@@ -11,7 +11,7 @@
       <img [src]="mediaItem.images | notFoundImage" [extractColor]="mediaItemImg" crossorigin alt />
     </div>
   </div>
-  <div class="card__interactive-area">
+  <div class="card__interactive-area flex-col-start">
     <a
       [routerLink]="['/artist', mediaItem.id]"
       class="card__title truncate link-cover text-body-medium"

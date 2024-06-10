@@ -2,6 +2,20 @@
 	display: inline-flex;
 	padding: 0;
 	text-align: center;
+	&--primary {
+		transform: scale(1.01);
+		padding: toRem(12) toRem(32);
+		border-radius: var(--corner-radius-larger);
+		background-color: var(--background-cyan);
+		color: var(--text-press);
+		font-weight: 700;
+		line-height: 1.4;
+		@media (any-hover: hover) {
+			&:hover {
+				transform: scale(1.1);
+			}
+		}
+	}
 	&--play {
 		align-items: center;
 		justify-content: center;
@@ -12,7 +26,7 @@
 		background-color: var(--background-cyan);
 		&::before {
 			font-size: toRem(22);
-			color: var(--background-black);
+			color: var(--background-press);
 		}
 		@media (any-hover: hover) {
 			&:hover {

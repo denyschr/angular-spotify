@@ -1,0 +1,34 @@
+<nav class="left-sidebar flex-col" aria-label="Main navigation">
+	<div class="left-sidebar__top">
+		<a [routerLink]="['/home']" class="left-sidebar__logo">
+			<img src="/assets/icons/spotify-logo.svg" width="100" height="30" alt="Logo">
+		</a>
+	</div>
+	<div class="left-sidebar__body">
+		<ul class="left-sidebar__list">
+			<li class="left-sidebar__item">
+				<a class="left-sidebar__link flex-row-center text-body-medium _icon-home" [routerLink]="'/home'"
+					routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+					Home
+				</a>
+			</li>
+			<li class="left-sidebar__item">
+				<a class="left-sidebar__link flex-row-center text-body-medium _icon-magnifier" [routerLink]="'/search'"
+					routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+					Search
+				</a>
+			</li>
+			<li class="left-sidebar__item">
+				<a class="left-sidebar__link flex-row-center text-body-medium _icon-library"
+					[routerLink]="'/collection/playlists'" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+					Your library
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="left-sidebar__bottom">
+		<button class="left-sidebar__logout flex-row-center _icon-logout" (click)="onLogout()">
+			Logout
+		</button>
+	</div>
+</nav>

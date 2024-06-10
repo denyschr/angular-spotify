@@ -1,16 +1,35 @@
 <section class="section">
-	<h2 class="section__title text-size-larger" *ngIf="sectionTitle">
-		{{ sectionTitle }}
-	</h2>
-	<swiper-container slides-per-view="6">
-		<ng-container *ngFor="let mediaItem of mediaItems" [ngSwitch]="mediaItem.type">
-			<swiper-slide>
-				<app-album-item *ngSwitchCase="mediaItemTypes.Album" [mediaItem]="mediaItem" [isAlbumDate]="isAlbumDate">
-				</app-album-item>
-				<app-artist-item *ngSwitchCase="mediaItemTypes.Artist" [mediaItem]="mediaItem">
-				</app-artist-item>
-				<app-playlist-item *ngSwitchCase="mediaItemTypes.Playlist" [mediaItem]="mediaItem"></app-playlist-item>
-			</swiper-slide>
-		</ng-container>
-	</swiper-container>
+  <div class="section__top">
+    <h2 class="section__title text-title-small" *ngIf="sectionTitle">
+      {{ sectionTitle }}
+    </h2>
+    <div class="section__nav nav-controls">
+      <button
+        class="nav-controls__button nav-controls__button--prev _icon-chevron"
+        type="button"
+      ></button>
+      <button
+        class="nav-controls__button nav-controls__button--next _icon-chevron"
+        type="button"
+      ></button>
+    </div>
+  </div>
+  <swiper-container slides-per-view="5" space-between="14px">
+    <ng-container *ngFor="let mediaItem of mediaItems" [ngSwitch]="mediaItem.type">
+      <swiper-slide>
+        <app-album-item
+          *ngSwitchCase="mediaItemTypes.Album"
+          [mediaItem]="mediaItem"
+          [isAlbumDate]="isAlbumDate"
+        >
+        </app-album-item>
+        <app-artist-item *ngSwitchCase="mediaItemTypes.Artist" [mediaItem]="mediaItem">
+        </app-artist-item>
+        <app-playlist-item
+          *ngSwitchCase="mediaItemTypes.Playlist"
+          [mediaItem]="mediaItem"
+        ></app-playlist-item>
+      </swiper-slide>
+    </ng-container>
+  </swiper-container>
 </section>

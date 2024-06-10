@@ -1,8 +1,8 @@
-<ng-container *ngIf="vm$ | async as vm; else skeletonLoader">
-	<app-section *ngIf="vm.newReleases.length" [sectionTitle]="'New Releases'" [mediaItems]="vm.newReleases">
-	</app-section>
+<ng-container *ngIf="vm$ | async as vm">
+  <app-section
+    *ngIf="vm.newReleases.length"
+    [sectionTitle]="'New Releases'"
+    [mediaItems]="vm.newReleases"
+  >
+  </app-section>
 </ng-container>
-
-<ng-template #skeletonLoader>
-	<app-skeleton-section *ngFor="let item of obsList"></app-skeleton-section>
-</ng-template>

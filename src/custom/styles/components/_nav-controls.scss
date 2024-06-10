@@ -1,0 +1,26 @@
+.nav-controls {
+	display: flex;
+	align-items: center;
+	gap: toRem(8);
+	&__button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 0 0 toRem(40);
+		width: toRem(40);
+		height: toRem(40);
+		border-radius: var(--corner-radius-base);
+		background-color: var(--background-ghost-white);
+		transition: background 0.2s linear;
+		&::before {
+			font-size: toRem(16);
+		}
+		&--prev {
+			transform: rotate(180deg);
+		}
+		&._active {
+			cursor: not-allowed;
+			opacity: 0.6;
+		}
+	}
+}

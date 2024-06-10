@@ -5,10 +5,8 @@
 }
 
 .section {
-	// .section__categories
-	&__categories {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(toRem(169), 1fr));
-		gap: toRem(24);
+	// .section__title
+	&__title {
+		margin-bottom: var(--section-internal-gap);
 	}
 }

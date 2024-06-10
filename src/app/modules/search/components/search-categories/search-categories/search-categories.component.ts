@@ -8,6 +8,5 @@ import { CategoriesService } from '@modules/search/services/categories.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchCategoriesComponent {
-  private readonly _categoriesService = inject(CategoriesService);
-  public readonly categories$ = this._categoriesService.getCategories();
+  public readonly categories$ = inject(CategoriesService).getCategories();
 }

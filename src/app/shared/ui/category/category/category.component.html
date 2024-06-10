@@ -1,8 +1,15 @@
-<a class="category" [routerLink]="['']" #categoryItem>
-	<article class="category__article">
-		<h3 class="category__title text-size-larger">{{ category.name }}</h3>
-		<div class="category__img" *ngIf="category.icons[0].url">
-			<img [lazyLoad]="category.icons[0].url" [extractColor]="categoryItem" crossorigin [alt]="category.name">
-		</div>
-	</article>
-</a>
+<article class="category">
+  <a class="category__content category__content-ibg" [routerLink]="['/home']" #categoryItem>
+    <img
+      class="category__img"
+      *ngIf="category.icons[0] && category.icons[0].url"
+      [src]="category.icons[0].url"
+      [extractColor]="categoryItem"
+      crossorigin
+      alt
+    />
+    <span class="category__title text-center text-title-small" [title]="category.name">
+      {{ category.name }}
+    </span>
+  </a>
+</article>

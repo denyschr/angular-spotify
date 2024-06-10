@@ -11,10 +11,11 @@ html {
 
 body {
 	min-width: toRem($minWidth);
-	color: var(--primary);
-	background-color: var(--black);
-	font-family: $fontMain, sans-serif;
-	font-size: $fontSize;
+	background: var(--background-base);
+	color: var(--text-base);
+	font-family: var(--font-family-base), sans-serif;
+	font-size: var(--text-size-base);
+	font-weight: var(--font-weight-base);
 }
 
 img {
@@ -63,9 +64,22 @@ input,
 textarea {
 	font-size: inherit;
 	line-height: inherit;
+	border: none;
 }
 
 [class*="_container"] {
 	padding: 0 toRem($containerOffset);
 	max-width: toRem($containerWidth);
+}
+
+[class*="-ibg"] {
+	position: relative;
+	overflow: hidden;
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
 }

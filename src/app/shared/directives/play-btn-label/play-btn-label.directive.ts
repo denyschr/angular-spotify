@@ -10,12 +10,17 @@ export class PlayBtnLabelDirective implements AfterViewInit {
   @Input('playBtnLabel') mediaItem!: MediaItem;
 
   ngAfterViewInit(): void {
-    if (this.mediaItem.type === MediaItemType.Album || this.mediaItem.type === MediaItemType.Track) {
+    if (
+      this.mediaItem.type === MediaItemType.Album ||
+      this.mediaItem.type === MediaItemType.Track
+    ) {
       const playBtnLabel = `Play ${this.mediaItem.name} by ${this.formatArtistsNames(this.mediaItem.artists)}`;
       this._renderer.setAttribute(this._playBtnEl.nativeElement, 'aria-label', playBtnLabel);
+      this._renderer.setAttribute(this._playBtnEl.nativeElement, 'title', playBtnLabel);
     } else {
       const playBtnLabel = `Play ${this.mediaItem.name}`;
       this._renderer.setAttribute(this._playBtnEl.nativeElement, 'aria-label', playBtnLabel);
+      this._renderer.setAttribute(this._playBtnEl.nativeElement, 'title', playBtnLabel);
     }
   }
 

@@ -13,7 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime, distinctUntilChanged, takeUntil, tap } from 'rxjs';
 import { SearchService } from '@modules/search/services/search.service';
 import { MediaType } from '@models';
-import { onDestroy } from '@utils';
+import { onDestroy } from 'src/app/core/utils';
 
 @Component({
   selector: 'app-search-bar',
@@ -35,7 +35,7 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
         takeUntilDestroyed(),
         debounceTime(300),
         distinctUntilChanged(),
-        tap((term) => {
+        tap(term => {
           if (!term) this._searchService.setSearchType(MediaType.All);
           this._searchService.setSearchTerm(term || '');
           this._searchService.updateQueryParams();
@@ -45,7 +45,7 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this._searchService.searchTerm$.pipe(takeUntil(this._destroy$)).subscribe((term) => {
+    this._searchService.searchTerm$.pipe(takeUntil(this._destroy$)).subscribe(term => {
       this.searchFormControl.patchValue(term);
       this._cdr.detectChanges();
     });

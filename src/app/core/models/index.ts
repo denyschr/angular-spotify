@@ -9,8 +9,6 @@ export * from './copyright.model';
 export * from './external-urls.model';
 export * from './restrictions.model';
 export * from './followers.model';
-export * from './menu-item.model';
-export * from './social-item.model';
 export * from './image.model';
 export * from './media-response-body.model';
 export * from './media-item.model';

@@ -11,12 +11,15 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./components/search-categories/search-categories').then((m) => m.SearchCategoriesModule),
+          import('./components/search-categories/search-categories').then(
+            m => m.SearchCategoriesModule
+          ),
         pathMatch: 'full'
       },
       {
         path: ':term',
-        loadChildren: () => import('./components/search-results/search-results').then((m) => m.SearchResultsModule)
+        loadChildren: () =>
+          import('./components/search-results/search-results').then(m => m.SearchResultsModule)
       },
       {
         path: `:term/${MediaType.All}`,
@@ -24,7 +27,8 @@ const routes: Routes = [
       },
       {
         path: ':term/:type',
-        loadChildren: () => import('./components/search-results/search-results').then((m) => m.SearchResultsModule)
+        loadChildren: () =>
+          import('./components/search-results/search-results').then(m => m.SearchResultsModule)
       }
     ]
   }

@@ -12,7 +12,7 @@ export class SearchPage {
   private readonly _router = inject(Router);
   public readonly showNavBar$ = this._router.events.pipe(
     filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-    map((event) => {
+    map(event => {
       return event.url.startsWith('/search/');
     }),
     startWith(this._router.url.startsWith('/search/'))

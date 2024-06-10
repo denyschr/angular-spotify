@@ -1,0 +1,70 @@
+@import "mixins";
+
+.card {
+	height: 100%;
+	padding: toRem(12);
+	overflow: hidden;
+	border-radius: var(--corner-radius-larger);
+	background-color: var(--background-ghost-white);
+	@media (any-hover: hover) {
+		&:hover {
+			.card__play {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+	// .card__top
+	&__top {
+		position: relative;
+		margin-bottom: toRem(18);
+	}
+	// .card__img
+	&__img {
+		padding-bottom: 100%;
+		border-radius: var(--corner-radius-larger);
+		&._rounded {
+			border-radius: 50%;
+		}
+	}
+	// .card__play
+	&__play {
+		position: absolute;
+		z-index: 2;
+		inset: 0;
+		overflow: hidden;
+		border-radius: var(--corner-radius-larger);
+		background-color: rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			background 0.1s linear,
+			opacity 0.1s linear,
+			visibility 0.1s linear;
+		& button {
+			pointer-events: all;
+		}
+	}
+	// .card__interactive-area
+	&__interactive-area {
+		gap: toRem(8);
+	}
+	// .card__details
+	&__details {
+		color: var(--text-silver);
+	}
+	// .card__artist
+	&__artist {
+		position: relative;
+		z-index: 1;
+		display: inline;
+		word-break: break-all;
+		line-height: 1.2;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}

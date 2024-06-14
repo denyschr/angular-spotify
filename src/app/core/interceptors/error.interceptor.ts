@@ -11,7 +11,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       if (err.status === 401) {
         jwtService.destroyAccessToken();
         return authService.generateNewToken().pipe(
-          switchMap((res) => {
+          switchMap(res => {
             const accessToken = res.access_token;
             const refreshToken = res.refresh_token;
             jwtService.saveAccessToken(accessToken);

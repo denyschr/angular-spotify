@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class StandardPageLayoutComponent {
   constructor(private _router: Router) {}
 
-  public showSearchBar(): boolean {
+  public isSearchBar(): boolean {
     return this._router.url.startsWith('/search');
   }
 }

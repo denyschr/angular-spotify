@@ -1,17 +1,16 @@
 <div class="wrapper">
-	<app-left-sidebar></app-left-sidebar>
-	<div class="main-view">
-		<div class="main-view__content">
-			<app-header>
-				<app-search-bar class="search-bar" *ngIf="showSearchBar()">
-				</app-search-bar>
-			</app-header>
-			<main class="page">
-				<div class="page__container">
-					<router-outlet></router-outlet>
-				</div>
-			</main>
-			<app-footer></app-footer>
-		</div>
-	</div>
+  <app-left-sidebar></app-left-sidebar>
+  <div class="main-view">
+    <div class="main-view__content">
+      <app-header>
+        <app-search-bar class="search-bar" *ngIf="isSearchBar()"> </app-search-bar>
+      </app-header>
+      <main class="page">
+        <div class="page__container">
+          <router-outlet></router-outlet>
+        </div>
+      </main>
+      <app-footer></app-footer>
+    </div>
+  </div>
 </div>

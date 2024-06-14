@@ -2,7 +2,10 @@
   <section class="section">
     <h2 class="section__title text-title-small">Browse All</h2>
     <div class="section__items">
-      <app-category *ngFor="let category of categories" [category]="category"></app-category>
+      <app-category
+        *ngFor="let category of categories; trackById"
+        [category]="category"
+      ></app-category>
     </div>
   </section>
 </ng-container>

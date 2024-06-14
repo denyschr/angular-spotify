@@ -29,7 +29,8 @@
 		&::before {
 			font-size: toRem(20);
 		}
-		&.is-active {
+		&._active {
+			pointer-events: none;
 			color: var(--text-cyan);
 			background-color: var(--background-misty-white);
 		}

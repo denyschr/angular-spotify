@@ -1,17 +1,21 @@
 import { Injectable, inject } from '@angular/core';
 import {
+  Album,
   AlbumsResponse,
+  Artist,
   ArtistsResponse,
-  MediaType,
+  Playlist,
   PlaylistsResponse,
+  Track,
+  TracksResponse,
+  MediaSectionType,
+  Search,
   SearchResponse,
-  SearchResults,
-  SearchResultsArray,
-  TracksResponse
+  SearchResults
 } from '@models';
 import { MAX_FETCH_CONTENT } from '@constants';
 import { SpotifyConfig } from '@environment';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { objectToValues } from 'src/app/core/utils';
@@ -20,95 +24,89 @@ import { objectToValues } from 'src/app/core/utils';
 export class SearchService {
   private readonly _router = inject(Router);
   private readonly _http = inject(HttpClient);
-
   private readonly _searchTermSubject = new BehaviorSubject<string>('');
-  private readonly _searchTypeSubject = new BehaviorSubject<MediaType>(MediaType.All);
-  private readonly _searchTypesSubject = new BehaviorSubject<MediaType[]>([]);
+  private readonly _sectionTypesSubject = new BehaviorSubject<MediaSectionType[]>([]);
+  private readonly _currSectionTypeSubject = new BehaviorSubject<MediaSectionType>(
+    MediaSectionType.All
+  );
   private readonly _paginationSubject = new BehaviorSubject<number>(0);
-
   public readonly searchTerm$ = this._searchTermSubject.asObservable();
-  public readonly searchType$ = this._searchTypeSubject.asObservable();
-  public readonly searchTypes$ = this._searchTypesSubject.asObservable();
+  public readonly sectionTypes$ = this._sectionTypesSubject.asObservable();
+  public readonly currSectionType$ = this._currSectionTypeSubject.asObservable();
   public readonly pagination$ = this._paginationSubject.asObservable();
 
-  public getAllResults(term: string): Observable<SearchResponse> {
+  public getAll(term: string): Observable<Search> {
     const params = {
       q: term,
       type: 'album,artist,playlist,track',
       limit: MAX_FETCH_CONTENT
     };
-    return this._http.get<SearchResults>(`${SpotifyConfig.apiUrl}/search`, { params }).pipe(
-      map((res) => ({
+    return this._http.get<SearchResponse>(`${SpotifyConfig.apiUrl}/search`, { params }).pipe(
+      tap(res => {
+        const sectionTypes = this.getSectionTypes(res);
+        this._sectionTypesSubject.next(sectionTypes);
+      }),
+      map(res => ({
         results: this.formatResults(res),
-        totalResults: this.calcTotalResults(res),
-        mediaTypes: this.extractMediaTypes(res)
+        total: this.calcTotal(res)
       }))
     );
   }
 
-  public getAlbumResults(term: string) {
-    const params = { type: 'albums', term };
+  public getAlbums(term: string, page: number): Observable<Album[]> {
+    const params = {
+      q: term,
+      type: 'album',
+      offset: page,
+      limit: MAX_FETCH_CONTENT
+    };
     return this._http
       .get<AlbumsResponse>(`${SpotifyConfig.apiUrl}/search`, { params })
-      .pipe(map((res) => res.albums.items));
+      .pipe(map(res => res.albums.items));
   }
 
-  public getArtistResults(term: string) {
-    const params = { type: 'artists', term };
+  public getArtists(term: string, page: number): Observable<Artist[]> {
+    const params = {
+      q: term,
+      type: 'artist',
+      offset: page,
+      limit: MAX_FETCH_CONTENT
+    };
     return this._http
       .get<ArtistsResponse>(`${SpotifyConfig.apiUrl}/search`, { params })
-      .pipe(map((res) => res.artists.items));
+      .pipe(map(res => res.artists.items));
   }
 
-  public getTrackResults(term: string) {
-    const params = { type: 'tracks', term };
+  public getTracks(term: string, page: number): Observable<Track[]> {
+    const params = {
+      q: term,
+      type: 'track',
+      offset: page,
+      limit: MAX_FETCH_CONTENT
+    };
     return this._http
       .get<TracksResponse>(`${SpotifyConfig.apiUrl}/search`, { params })
-      .pipe(map((res) => res.tracks.items));
+      .pipe(map(res => res.tracks.items));
   }
 
-  public getPlaylistResults(term: string) {
-    const params = { type: 'playlists', term };
+  public getPlaylists(term: string, page: number): Observable<Playlist[]> {
+    const params = {
+      q: term,
+      type: 'playlist',
+      offset: page,
+      limit: MAX_FETCH_CONTENT
+    };
     return this._http
       .get<PlaylistsResponse>(`${SpotifyConfig.apiUrl}/search`, { params })
-      .pipe(map((res) => res.playlists.items));
-  }
-
-  private formatResults(res: SearchResults): SearchResultsArray {
-    return {
-      albums: res.albums.items,
-      artists: res.artists.items,
-      tracks: res.tracks.items,
-      playlists: res.playlists.items
-    };
-  }
-
-  private calcTotalResults(res: SearchResults): number {
-    return objectToValues(res).reduce((total, searchResult) => {
-      total += searchResult.total;
-      return total;
-    }, 0);
-  }
-
-  private extractMediaTypes(res: SearchResults): MediaType[] {
-    return objectToValues(res).reduce(
-      (mediaTypes: MediaType[], searchResult) => {
-        const mediaType = searchResult.items[0]?.type;
-        if (mediaType) {
-          mediaTypes.push(`${mediaType}s` as MediaType);
-        }
-        return mediaTypes;
-      },
-      [MediaType.All]
-    );
+      .pipe(map(res => res.playlists.items));
   }
 
   public setSearchTerm(term: string): void {
     this._searchTermSubject.next(term);
   }
 
-  public setSearchType(type: MediaType): void {
-    this._searchTypeSubject.next(type);
+  public setSectionType(type: MediaSectionType): void {
+    this._currSectionTypeSubject.next(type);
   }
 
   public nextPage(page: number): void {
@@ -121,11 +119,40 @@ export class SearchService {
 
   public updateQueryParams(): void {
     const term = this._searchTermSubject.value;
-    const type = this._searchTypeSubject.value;
+    const type = this._currSectionTypeSubject.value;
     if (term) {
       this._router.navigate(['/search', term, type]);
     } else {
       this._router.navigate(['/search']);
     }
+  }
+
+  private getSectionTypes(res: SearchResponse): MediaSectionType[] {
+    return objectToValues(res).reduce(
+      (sectionTypes: MediaSectionType[], result) => {
+        const mediaType = result.items[0]?.type;
+        if (mediaType) {
+          sectionTypes.push(`${mediaType}s` as MediaSectionType);
+        }
+        return sectionTypes;
+      },
+      [MediaSectionType.All]
+    );
+  }
+
+  private formatResults(res: SearchResponse): SearchResults {
+    return {
+      albums: res.albums.items,
+      artists: res.artists.items,
+      tracks: res.tracks.items,
+      playlists: res.playlists.items
+    };
+  }
+
+  private calcTotal(res: SearchResponse): number {
+    return objectToValues(res).reduce((total, result) => {
+      total += result.total;
+      return total;
+    }, 0);
   }
 }

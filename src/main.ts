@@ -5,4 +5,4 @@ import { register as registerSwiperElements } from 'swiper/element/bundle';
 registerSwiperElements();
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+  .catch(err => console.error(err));

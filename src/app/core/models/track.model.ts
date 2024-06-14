@@ -1,28 +1,32 @@
-import { Album, Artist, MediaResponseBody, MediaItemBody, MediaItemType } from '.';
+import {
+  Album,
+  Artist,
+  MediaResponse,
+  MediaItemContent,
+  MediaType,
+  ExternalIds,
+  Restrictions
+} from '.';
 
-export interface Track extends Omit<MediaItemBody, 'images'>, Pick<Album, 'available_markets' | 'restrictions'> {
+export interface Track extends MediaItemContent {
   album: Album;
   artists: Artist[];
+  available_markets: string[];
   disc_number: number;
   duration_ms: number;
   explicit: boolean;
   external_ids: ExternalIds;
   is_playable: boolean;
   linked_from: unknown;
+  restrictions: Restrictions;
   popularity: number;
   preview_url: string | null;
   track_number: number;
-  type: MediaItemType.Track;
+  type: MediaType.Track;
   is_local: boolean;
 }
 
-export interface ExternalIds {
-  isrc: string;
-  ean: string;
-  upc: string;
-}
-
-export interface Tracks extends MediaResponseBody<Track> {
+export interface Tracks extends MediaResponse<Track> {
   items: Track[];
 }
 

@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { MediaItem, MediaItemType } from '@models';
+import { MediaItem, MediaType } from '@models';
 
 @Component({
   template: ''
 })
 export class BaseCardComponent {
-  @Input() mediaItem!: MediaItem;
-  public mediaItemTypes = MediaItemType;
+  @Input({ required: true }) mediaItem!: MediaItem;
+  public mediaTypes = MediaType;
 }

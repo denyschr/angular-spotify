@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./core/auth').then((m) => m.LoginModule)
+    loadChildren: () => import('./core/auth').then(m => m.LoginModule)
   },
   {
     path: '',
@@ -20,19 +20,19 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('./modules/home/home').then((m) => m.HomeModule)
+        loadChildren: () => import('./modules/home/home').then(m => m.HomeModule)
       },
       {
         path: 'search',
-        loadChildren: () => import('./modules/search/search').then((m) => m.SearchModule)
+        loadChildren: () => import('./modules/search/search').then(m => m.SearchModule)
       },
       {
         path: 'artist/:id',
-        loadChildren: () => import('./modules/artist/artist').then((m) => m.ArtistModule)
+        loadChildren: () => import('./modules/artist/artist').then(m => m.ArtistModule)
       },
       {
         path: 'album/:id',
-        loadChildren: () => import('./modules/album/album').then((m) => m.AlbumModule)
+        loadChildren: () => import('./modules/album/album').then(m => m.AlbumModule)
       }
     ]
   },
@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'not-found',
-    loadChildren: () => import('./modules/not-found/not-found').then((m) => m.NotFoundModule)
+    loadChildren: () => import('./modules/not-found/not-found').then(m => m.NotFoundModule)
   }
 ];
 

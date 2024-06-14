@@ -1,27 +1,28 @@
-import { Followers, MediaResponseBody, MediaItemBody, MediaItemType } from '.';
+import { Followers, MediaResponse, MediaItemContent, MediaType, Track, Owner } from '.';
 
-export interface Playlist extends MediaItemBody {
+export interface Playlist extends MediaItemContent {
   collaborative: boolean;
   description: string;
+  followers: Followers;
   owner: Owner;
   public: boolean;
   snapshot_id: string;
-  tracks: Tracks;
-  type: MediaItemType.Playlist;
+  tracks: PlaylistTracks;
+  type: MediaType.Playlist;
 }
 
-export interface Owner extends Omit<MediaItemBody, 'images' | 'name'> {
-  followers: Followers;
-  type: 'user';
-  display_name: string;
+export interface PlaylistTrack {
+  added_at: string | null;
+  added_by: string | null;
+  is_local: boolean;
+  track: Track;
 }
 
-interface Tracks {
-  href: string;
-  total: number;
+export interface PlaylistTracks extends MediaResponse<PlaylistTrack> {
+  items: PlaylistTrack[];
 }
 
-export interface Playlists extends MediaResponseBody<Playlist> {
+export interface Playlists extends MediaResponse<Playlist> {
   items: Playlist[];
 }
 

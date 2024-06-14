@@ -10,6 +10,6 @@ export interface Show extends MediaItemContent {
   languages: string[];
   media_type: string;
   publisher: string;
-  type: MediaType.Show;
+  type: typeof MediaType.show;
   total_episodes: number;
 }

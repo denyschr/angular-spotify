@@ -10,6 +10,7 @@ import {
   SearchResultsComponent
 } from './components';
 import { CardModule, CategoryModule, NoResultsModule, SectionModule } from '@ui';
+import { IntersectionListenerModule } from '@directives';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CardModule, CategoryModule, NoResultsModule, SectionModule } from '@ui'
     CommonModule,
     SearchRoutingModule,
     ReactiveFormsModule,
+    IntersectionListenerModule,
     SectionModule,
     CategoryModule,
     CardModule,

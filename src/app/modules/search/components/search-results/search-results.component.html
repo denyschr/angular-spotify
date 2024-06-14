@@ -1,5 +1,5 @@
 <ng-container *ngIf="vm$ | async as vm">
-  <ng-container *ngIf="vm.type === sectionTypes.All && vm.allResults?.total; else filteredResults">
+  <ng-container *ngIf="vm.type === sectionTypes.all && vm.allResults?.total; else filteredResults">
     <app-section
       *ngIf="vm.allResults?.results?.artists?.length"
       [sectionTitle]="'Artists'"
@@ -22,7 +22,7 @@
       <div class="section__items">
         <ng-container *ngFor="let filteredResult of vm.filteredResults; let i = index; trackById">
           <ng-container [ngSwitch]="filteredResult.type">
-            <ng-container *ngSwitchCase="mediaTypes.Album">
+            <ng-container *ngSwitchCase="mediaTypes.album">
               <app-album-card
                 *ngIf="i + 1 === vm.filteredResults.length"
                 [mediaItem]="filteredResult"
@@ -36,7 +36,7 @@
                 [isAlbumDate]="true"
               ></app-album-card>
             </ng-container>
-            <ng-container *ngSwitchCase="mediaTypes.Artist">
+            <ng-container *ngSwitchCase="mediaTypes.artist">
               <app-artist-card
                 *ngIf="i + 1 === vm.filteredResults.length"
                 [mediaItem]="filteredResult"
@@ -48,7 +48,7 @@
                 [mediaItem]="filteredResult"
               ></app-artist-card>
             </ng-container>
-            <ng-container *ngSwitchCase="mediaTypes.Playlist">
+            <ng-container *ngSwitchCase="mediaTypes.playlist">
               <app-playlist-card
                 *ngIf="i + 1 === vm.filteredResults.length"
                 [mediaItem]="filteredResult"

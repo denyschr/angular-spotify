@@ -22,19 +22,23 @@ export interface MediaItemContent {
 
 export type MediaItem = Album | Artist | Playlist | Track;
 
-export enum MediaType {
-  Album = 'album',
-  Artist = 'artist',
-  Playlist = 'playlist',
-  Track = 'track',
-  Episode = 'episode',
-  Show = 'show'
-}
+export const MediaType = {
+  album: 'album',
+  artist: 'artist',
+  playlist: 'playlist',
+  track: 'track',
+  episode: 'episode',
+  show: 'show'
+} as const;
 
-export enum MediaSectionType {
-  All = 'all',
-  Albums = 'albums',
-  Artists = 'artists',
-  Playlists = 'playlists',
-  Tracks = 'tracks'
-}
+export type MediaType = (typeof MediaType)[keyof typeof MediaType];
+
+export const MediaSectionType = {
+  all: 'all',
+  albums: 'albums',
+  artists: 'artists',
+  playlists: 'playlists',
+  tracks: 'tracks'
+} as const;
+
+export type MediaSectionType = (typeof MediaSectionType)[keyof typeof MediaSectionType];

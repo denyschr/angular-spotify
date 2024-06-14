@@ -27,7 +27,7 @@ export class SearchService {
   private readonly _searchTermSubject = new BehaviorSubject<string>('');
   private readonly _sectionTypesSubject = new BehaviorSubject<MediaSectionType[]>([]);
   private readonly _currSectionTypeSubject = new BehaviorSubject<MediaSectionType>(
-    MediaSectionType.All
+    MediaSectionType.all
   );
   private readonly _paginationSubject = new BehaviorSubject<number>(0);
   public readonly searchTerm$ = this._searchTermSubject.asObservable();
@@ -136,7 +136,7 @@ export class SearchService {
         }
         return sectionTypes;
       },
-      [MediaSectionType.All]
+      [MediaSectionType.all]
     );
   }
 

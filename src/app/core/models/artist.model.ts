@@ -4,7 +4,7 @@ export interface Artist extends MediaItemContent {
   followers: Followers;
   genres: string[];
   popularity: number;
-  type: MediaType.Artist;
+  type: typeof MediaType.artist;
 }
 
 export interface Artists extends MediaResponse<Artist> {

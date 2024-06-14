@@ -17,7 +17,7 @@ export interface Album extends MediaItemContent {
   release_date: string;
   release_date_precision: ExactDate;
   restrictions: Restrictions;
-  type: MediaType.Album;
+  type: typeof MediaType.album;
   artists: AlbumArtist[];
   tracks: Tracks;
   copyrights: Copyright;
@@ -27,11 +27,13 @@ export interface Album extends MediaItemContent {
   popularity: number;
 }
 
-export const enum AlbumType {
-  Album = 'album',
-  Compilation = 'compilation',
-  Single = 'single'
-}
+export const AlbumType = {
+  album: 'album',
+  compilation: 'compilation',
+  single: 'single'
+} as const;
+
+export type AlbumType = (typeof AlbumType)[keyof typeof AlbumType];
 
 export interface AlbumArtist {
   external_urls: ExternalUrls;

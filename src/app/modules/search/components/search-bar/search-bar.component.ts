@@ -36,7 +36,7 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
         debounceTime(300),
         distinctUntilChanged(),
         tap(term => {
-          if (!term) this._searchService.setSectionType(MediaSectionType.All);
+          if (!term) this._searchService.setSectionType(MediaSectionType.all);
           this._searchService.setSearchTerm(term);
           this._searchService.updateQueryParams();
         })

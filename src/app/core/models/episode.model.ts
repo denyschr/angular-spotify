@@ -12,6 +12,6 @@ export interface Episode extends MediaItemContent {
   release_date: string;
   release_date_precision: ExactDate;
   resume_point: ResumePoint;
-  type: MediaType.Episode;
+  type: typeof MediaType.episode;
   restrictions: Restrictions;
 }

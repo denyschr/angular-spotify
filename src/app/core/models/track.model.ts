@@ -22,7 +22,7 @@ export interface Track extends MediaItemContent {
   popularity: number;
   preview_url: string | null;
   track_number: number;
-  type: MediaType.Track;
+  type: typeof MediaType.track;
   is_local: boolean;
 }
 

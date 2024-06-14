@@ -16,7 +16,7 @@ const routes: Routes = [
         component: SearchCategoriesComponent
       },
       {
-        path: `:term/${MediaSectionType.All}`,
+        path: `:term/${MediaSectionType.all}`,
         redirectTo: ':term'
       },
       {

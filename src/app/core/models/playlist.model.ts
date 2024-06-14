@@ -8,7 +8,7 @@ export interface Playlist extends MediaItemContent {
   public: boolean;
   snapshot_id: string;
   tracks: PlaylistTracks;
-  type: MediaType.Playlist;
+  type: typeof MediaType.playlist;
 }
 
 export interface PlaylistTrack {

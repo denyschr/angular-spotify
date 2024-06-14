@@ -19,7 +19,7 @@ export class SearchResultsComponent {
   private readonly _routeParams$ = this._activatedRoute.paramMap.pipe(
     map(paramMap => ({
       term: paramMap.get('term') ?? '',
-      type: (paramMap.get('type') as MediaSectionType) ?? MediaSectionType.All
+      type: (paramMap.get('type') as MediaSectionType) ?? MediaSectionType.all
     })),
     tap(({ term, type }) => {
       this._searchService.setSearchTerm(term);
@@ -43,13 +43,13 @@ export class SearchResultsComponent {
       return this._searchService.pagination$.pipe(
         concatMap((page): Observable<[] | MediaItem[]> => {
           switch (type) {
-            case this.sectionTypes.Albums:
+            case this.sectionTypes.albums:
               return this._searchService.getAlbums(term, page);
-            case this.sectionTypes.Artists:
+            case this.sectionTypes.artists:
               return this._searchService.getArtists(term, page);
-            case this.sectionTypes.Tracks:
+            case this.sectionTypes.tracks:
               return this._searchService.getTracks(term, page);
-            case this.sectionTypes.Playlists:
+            case this.sectionTypes.playlists:
               return this._searchService.getPlaylists(term, page);
             default:
               return of([]);

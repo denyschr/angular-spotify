@@ -1,4 +1,4 @@
-<article class="card" *ngIf="mediaItem.type === mediaItemTypes.Artist">
+<article class="card" *ngIf="mediaItem.type === mediaTypes.Artist">
   <div class="card__top">
     <div class="card__play flex-all-center">
       <button
@@ -20,7 +20,7 @@
       {{ mediaItem.name }}
     </a>
     <div class="card__details truncate-double text-body-small">
-      <span>{{ mediaItem.type }}</span>
+      <span>{{ mediaItem.type | titlecase }}</span>
     </div>
   </div>
 </article>

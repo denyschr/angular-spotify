@@ -5,7 +5,8 @@ import { CategoriesService } from '@modules/search/services/categories.service';
   selector: 'app-search-categories',
   templateUrl: './search-categories.component.html',
   styleUrl: './search-categories.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [CategoriesService]
 })
 export class SearchCategoriesComponent {
   public readonly categories$ = inject(CategoriesService).getCategories();

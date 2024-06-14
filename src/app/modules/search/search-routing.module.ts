@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchPage } from './pages/search.page';
-import { MediaType } from '@models';
+import { MediaSectionType } from '@models';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { SearchCategoriesComponent } from './components';
 
 const routes: Routes = [
   {
@@ -10,25 +12,20 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () =>
-          import('./components/search-categories/search-categories').then(
-            m => m.SearchCategoriesModule
-          ),
-        pathMatch: 'full'
+        pathMatch: 'full',
+        component: SearchCategoriesComponent
       },
       {
-        path: ':term',
-        loadChildren: () =>
-          import('./components/search-results/search-results').then(m => m.SearchResultsModule)
-      },
-      {
-        path: `:term/${MediaType.All}`,
+        path: `:term/${MediaSectionType.All}`,
         redirectTo: ':term'
       },
       {
+        path: ':term',
+        component: SearchResultsComponent
+      },
+      {
         path: ':term/:type',
-        loadChildren: () =>
-          import('./components/search-results/search-results').then(m => m.SearchResultsModule)
+        component: SearchResultsComponent
       }
     ]
   }

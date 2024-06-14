@@ -7,5 +7,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoResultsComponent {
-  @Input({ required: true }) term!: string;
+  @Input({ required: true }) query!: string;
 }

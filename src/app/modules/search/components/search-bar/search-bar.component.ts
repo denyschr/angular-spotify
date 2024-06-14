@@ -12,8 +12,8 @@ import { FormControl } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime, distinctUntilChanged, takeUntil, tap } from 'rxjs';
 import { SearchService } from '@modules/search/services/search.service';
-import { MediaType } from '@models';
-import { onDestroy } from 'src/app/core/utils';
+import { MediaSectionType } from '@models';
+import { onDestroy } from '@utils';
 
 @Component({
   selector: 'app-search-bar',
@@ -22,10 +22,10 @@ import { onDestroy } from 'src/app/core/utils';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchBarComponent implements OnInit, AfterViewInit {
+  public searchFormControl: FormControl = new FormControl('');
   private readonly _searchService = inject(SearchService);
   private readonly _cdr = inject(ChangeDetectorRef);
   private readonly _destroy$ = onDestroy();
-  public searchFormControl = new FormControl<string | null>('');
 
   @ViewChild('input') inputRef?: ElementRef<HTMLInputElement>;
 
@@ -36,8 +36,8 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
         debounceTime(300),
         distinctUntilChanged(),
         tap(term => {
-          if (!term) this._searchService.setSearchType(MediaType.All);
-          this._searchService.setSearchTerm(term || '');
+          if (!term) this._searchService.setSectionType(MediaSectionType.All);
+          this._searchService.setSearchTerm(term);
           this._searchService.updateQueryParams();
         })
       )
@@ -57,7 +57,10 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
 
   public clear(): void {
     this._searchService.setSearchTerm('');
-    this._searchService.setSearchType(MediaType.All);
     this.inputRef?.nativeElement.focus();
+  }
+
+  public showClearButton(): boolean {
+    return !!this.searchFormControl.value;
   }
 }

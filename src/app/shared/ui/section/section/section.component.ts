@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MediaItem, MediaItemType } from '@models';
+import { MediaItem, MediaType } from '@models';
 
 @Component({
   selector: 'app-section',
@@ -11,5 +11,5 @@ export class SectionComponent {
   @Input() sectionTitle?: string;
   @Input() mediaItems!: MediaItem[];
   @Input() isAlbumDate?: boolean;
-  public mediaItemTypes = MediaItemType;
+  public mediaTypes = MediaType;
 }

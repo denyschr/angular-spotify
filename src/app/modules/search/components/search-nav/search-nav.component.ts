@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MediaType } from '@models';
+import { MediaSectionType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 
 @Component({
@@ -10,11 +10,10 @@ import { SearchService } from '@modules/search/services/search.service';
 })
 export class SearchNavComponent {
   private readonly _searchService = inject(SearchService);
-  public readonly currMediaType$ = this._searchService.searchType$;
-  public readonly mediaTypes$ = this._searchService.searchTypes$;
-
-  public onSearchFilter(mediaType: MediaType): void {
-    this._searchService.setSearchType(mediaType);
+  public readonly currentSectionType$ = this._searchService.currSectionType$;
+  public readonly sectionTypes$ = this._searchService.sectionTypes$;
+  public onUpdateSearchType(type: MediaSectionType): void {
+    this._searchService.setSectionType(type);
     this._searchService.updateQueryParams();
   }
 }

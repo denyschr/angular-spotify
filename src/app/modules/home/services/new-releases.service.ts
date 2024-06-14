@@ -13,6 +13,6 @@ export class NewReleasesService {
     const params = { limit: MAX_FETCH_CONTENT };
     return this._http
       .get<AlbumsResponse>(`${SpotifyConfig.apiUrl}/browse/new-releases`, { params })
-      .pipe(map((res) => res.albums.items));
+      .pipe(map(res => res.albums.items));
   }
 }

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseCardComponent } from '../base-card/base-card.component';
 
 @Component({
-  selector: 'app-artist-item',
+  selector: 'app-artist-card',
   templateUrl: './artist-card.component.html',
   styleUrls: ['../base-card/base-card.component.scss', './artist-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

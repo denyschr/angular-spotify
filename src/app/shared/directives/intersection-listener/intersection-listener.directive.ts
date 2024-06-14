@@ -1,4 +1,13 @@
-import { AfterViewInit, Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+  inject
+} from '@angular/core';
 
 @Directive({
   selector: '[intersectionListener]'
@@ -23,13 +32,13 @@ export class IntersectionListenerDirective implements OnInit, AfterViewInit, OnD
       threshold: 1
     };
 
-    this._observer = new IntersectionObserver((entries) => {
+    this._observer = new IntersectionObserver(entries => {
       this.checkForIntersection(entries);
     }, options);
   }
 
-  private checkForIntersection = (entries: Array<IntersectionObserverEntry>) => {
-    entries.forEach((entry) => {
+  private checkForIntersection(entries: IntersectionObserverEntry[]): void {
+    entries.forEach(entry => {
       const isIntersecting = entry.isIntersecting && entry.target === this._el.nativeElement;
 
       if (isIntersecting) {
@@ -37,7 +46,7 @@ export class IntersectionListenerDirective implements OnInit, AfterViewInit, OnD
         this._observer.unobserve(entry.target);
       }
     });
-  };
+  }
 
   ngOnDestroy(): void {
     if (this._observer) this._observer.disconnect();

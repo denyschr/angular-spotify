@@ -29,7 +29,6 @@ export class SearchResultsComponent {
 
   private readonly _allResults$ = this._routeParams$.pipe(
     switchMap(({ term }) => {
-      console.log(term);
       return this._searchService.getAll(term);
     })
   );

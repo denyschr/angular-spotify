@@ -38,7 +38,7 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
         tap(term => {
           if (!term) this._searchService.setSectionType(MediaSectionType.all);
           this._searchService.setSearchTerm(term);
-          this._searchService.updateQueryParams();
+          this._searchService.updateRouteParams();
         })
       )
       .subscribe();

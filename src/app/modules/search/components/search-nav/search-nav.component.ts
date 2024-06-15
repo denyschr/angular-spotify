@@ -10,10 +10,11 @@ import { SearchService } from '@modules/search/services/search.service';
 })
 export class SearchNavComponent {
   private readonly _searchService = inject(SearchService);
-  public readonly currentSectionType$ = this._searchService.currSectionType$;
+  public readonly selectedSectionType$ = this._searchService.selectedSectionType$;
   public readonly sectionTypes$ = this._searchService.sectionTypes$;
+
   public onUpdateSearchType(type: MediaSectionType): void {
     this._searchService.setSectionType(type);
-    this._searchService.updateQueryParams();
+    this._searchService.updateRouteParams();
   }
 }

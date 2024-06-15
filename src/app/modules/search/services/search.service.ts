@@ -26,13 +26,13 @@ export class SearchService {
   private readonly _http = inject(HttpClient);
   private readonly _searchTermSubject = new BehaviorSubject<string>('');
   private readonly _sectionTypesSubject = new BehaviorSubject<MediaSectionType[]>([]);
-  private readonly _currSectionTypeSubject = new BehaviorSubject<MediaSectionType>(
+  private readonly _selectedSectionTypeSubject = new BehaviorSubject<MediaSectionType>(
     MediaSectionType.all
   );
   private readonly _paginationSubject = new BehaviorSubject<number>(0);
   public readonly searchTerm$ = this._searchTermSubject.asObservable();
   public readonly sectionTypes$ = this._sectionTypesSubject.asObservable();
-  public readonly currSectionType$ = this._currSectionTypeSubject.asObservable();
+  public readonly selectedSectionType$ = this._selectedSectionTypeSubject.asObservable();
   public readonly pagination$ = this._paginationSubject.asObservable();
 
   public getAll(term: string): Observable<Search> {
@@ -106,7 +106,7 @@ export class SearchService {
   }
 
   public setSectionType(type: MediaSectionType): void {
-    this._currSectionTypeSubject.next(type);
+    this._selectedSectionTypeSubject.next(type);
   }
 
   public nextPage(page: number): void {
@@ -117,9 +117,9 @@ export class SearchService {
     this._paginationSubject.next(0);
   }
 
-  public updateQueryParams(): void {
+  public updateRouteParams(): void {
     const term = this._searchTermSubject.value;
-    const type = this._currSectionTypeSubject.value;
+    const type = this._selectedSectionTypeSubject.value;
     if (term) {
       this._router.navigate(['/search', term, type]);
     } else {

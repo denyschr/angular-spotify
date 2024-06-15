@@ -1,69 +1,15 @@
 <ng-container *ngIf="vm$ | async as vm">
-  <ng-container *ngIf="vm.type === sectionTypes.all && vm.allResults?.total; else filteredResults">
-    <app-section
-      *ngIf="vm.allResults?.results?.artists?.length"
-      [sectionTitle]="'Artists'"
-      [mediaItems]="vm.allResults!.results.artists"
-    ></app-section>
-    <app-section
-      *ngIf="vm.allResults?.results?.albums?.length"
-      [sectionTitle]="'Albums'"
-      [mediaItems]="vm.allResults!.results.albums"
-      [isAlbumDate]="true"
-    ></app-section>
-    <app-section
-      *ngIf="vm.allResults?.results?.playlists?.length"
-      [sectionTitle]="'Playlists'"
-      [mediaItems]="vm.allResults!.results.playlists"
-    ></app-section>
+  <ng-container *ngIf="vm.allResults.total; else noResults">
+    <app-search-all-results
+      *ngIf="vm.type === sectionTypes.all; else filteredResults"
+      [results]="vm.allResults.results"
+    ></app-search-all-results>
   </ng-container>
   <ng-template #filteredResults>
-    <section class="section" *ngIf="vm.filteredResults.length; else noResults">
-      <div class="section__items">
-        <ng-container *ngFor="let filteredResult of vm.filteredResults; let i = index; trackById">
-          <ng-container [ngSwitch]="filteredResult.type">
-            <ng-container *ngSwitchCase="mediaTypes.album">
-              <app-album-card
-                *ngIf="i + 1 === vm.filteredResults.length"
-                [mediaItem]="filteredResult"
-                [isAlbumDate]="true"
-                (intersectionListener)="loadMore()"
-                #lastItem
-              ></app-album-card>
-              <app-album-card
-                *ngIf="i + 1 !== vm.filteredResults.length"
-                [mediaItem]="filteredResult"
-                [isAlbumDate]="true"
-              ></app-album-card>
-            </ng-container>
-            <ng-container *ngSwitchCase="mediaTypes.artist">
-              <app-artist-card
-                *ngIf="i + 1 === vm.filteredResults.length"
-                [mediaItem]="filteredResult"
-                (intersectionListener)="loadMore()"
-                #lastItem
-              ></app-artist-card>
-              <app-artist-card
-                *ngIf="i + 1 !== vm.filteredResults.length"
-                [mediaItem]="filteredResult"
-              ></app-artist-card>
-            </ng-container>
-            <ng-container *ngSwitchCase="mediaTypes.playlist">
-              <app-playlist-card
-                *ngIf="i + 1 === vm.filteredResults.length"
-                [mediaItem]="filteredResult"
-                (intersectionListener)="loadMore()"
-                #lastItem
-              ></app-playlist-card>
-              <app-playlist-card
-                *ngIf="i + 1 !== vm.filteredResults.length"
-                [mediaItem]="filteredResult"
-              ></app-playlist-card>
-            </ng-container>
-          </ng-container>
-        </ng-container>
-      </div>
-    </section>
+    <app-search-filtered-results
+      *ngIf="vm.filteredResults.length; else noResults"
+      [results]="vm.filteredResults"
+    ></app-search-filtered-results>
   </ng-template>
   <ng-template #noResults>
     <app-no-results [query]="vm.term"></app-no-results>

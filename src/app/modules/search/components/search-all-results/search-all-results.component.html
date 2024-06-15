@@ -1,0 +1,16 @@
+<app-section
+  *ngIf="results?.artists?.length"
+  [sectionTitle]="'Artists'"
+  [mediaItems]="results!.artists"
+></app-section>
+<app-section
+  *ngIf="results?.albums?.length"
+  [sectionTitle]="'Albums'"
+  [mediaItems]="results!.albums"
+  [isAlbumDate]="true"
+></app-section>
+<app-section
+  *ngIf="results?.playlists?.length"
+  [sectionTitle]="'Playlists'"
+  [mediaItems]="results!.playlists"
+></app-section>

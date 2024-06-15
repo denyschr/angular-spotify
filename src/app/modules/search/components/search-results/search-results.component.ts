@@ -27,21 +27,18 @@ export class SearchResultsComponent {
     })
   );
 
-  public readonly allResults$ = this._routeParams$.pipe(
+  private readonly _allResults$ = this._routeParams$.pipe(
     switchMap(({ term }) => {
-      if (term) {
-        return this._searchService.getAll(term);
-      } else {
-        return of(null);
-      }
+      console.log(term);
+      return this._searchService.getAll(term);
     })
   );
 
-  public readonly filteredResults$ = this._routeParams$.pipe(
+  private readonly _filteredResults$ = this._routeParams$.pipe(
     switchMap(({ term, type }) => {
       this._searchService.resetPage();
       return this._searchService.pagination$.pipe(
-        concatMap((page): Observable<[] | MediaItem[]> => {
+        concatMap((page): Observable<MediaItem[]> => {
           switch (type) {
             case this.sectionTypes.albums:
               return this._searchService.getAlbums(term, page);
@@ -62,8 +59,8 @@ export class SearchResultsComponent {
 
   public readonly vm$ = combineLatest([
     this._routeParams$,
-    this.allResults$,
-    this.filteredResults$
+    this._allResults$,
+    this._filteredResults$
   ]).pipe(
     map(([params, allResults, filteredResults]) => ({
       term: params.term,
@@ -72,10 +69,4 @@ export class SearchResultsComponent {
       filteredResults
     }))
   );
-
-  public loadMore(): void {
-    setTimeout(() => {
-      this._searchService.nextPage(10);
-    }, 500);
-  }
 }

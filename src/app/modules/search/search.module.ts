@@ -11,6 +11,8 @@ import {
 } from './components';
 import { CardModule, CategoryModule, NoResultsModule, SectionModule } from '@ui';
 import { IntersectionListenerModule } from '@directives';
+import { SearchAllResultsComponent } from './components/search-all-results/search-all-results.component';
+import { SearchFilteredResultsComponent } from './components/search-filtered-results/search-filtered-results.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { IntersectionListenerModule } from '@directives';
     SearchBarComponent,
     SearchNavComponent,
     SearchCategoriesComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    SearchAllResultsComponent,
+    SearchFilteredResultsComponent
   ],
   imports: [
     CommonModule,

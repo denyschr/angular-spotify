@@ -42,14 +42,14 @@ export class SearchService {
       limit: MAX_FETCH_CONTENT
     };
     return this._http.get<SearchResponse>(`${SpotifyConfig.apiUrl}/search`, { params }).pipe(
-      tap(res => {
-        const sectionTypes = this.getSectionTypes(res);
-        this._sectionTypesSubject.next(sectionTypes);
-      }),
       map(res => ({
         results: this.formatResults(res),
         total: this.calcTotal(res)
-      }))
+      })),
+      tap(res => {
+        const sectionTypes = this.retrieveSectionTypes(res);
+        this._sectionTypesSubject.next(sectionTypes);
+      })
     );
   }
 
@@ -129,26 +129,25 @@ export class SearchService {
     }
   }
 
-  private getSectionTypes(res: SearchResponse): MediaSectionType[] {
-    return objectToValues(res).reduce(
+  private formatResults(res: SearchResponse): SearchResults {
+    return {
+      albums: { items: res.albums.items, type: MediaSectionType.albums },
+      artists: { items: res.artists.items, type: MediaSectionType.artists },
+      tracks: { items: res.tracks.items, type: MediaSectionType.tracks },
+      playlists: { items: res.playlists.items, type: MediaSectionType.playlists }
+    };
+  }
+
+  private retrieveSectionTypes(res: Search): MediaSectionType[] {
+    return objectToValues(res.results).reduce(
       (sectionTypes: MediaSectionType[], result) => {
-        const mediaType = result.items[0]?.type;
-        if (mediaType) {
-          sectionTypes.push(`${mediaType}s` as MediaSectionType);
+        if (result.items.length) {
+          sectionTypes.push(result.type);
         }
         return sectionTypes;
       },
       [MediaSectionType.all]
     );
-  }
-
-  private formatResults(res: SearchResponse): SearchResults {
-    return {
-      albums: res.albums.items,
-      artists: res.artists.items,
-      tracks: res.tracks.items,
-      playlists: res.playlists.items
-    };
   }
 
   private calcTotal(res: SearchResponse): number {

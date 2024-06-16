@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +6,4 @@ import { Router } from '@angular/router';
   styleUrl: './search.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchPage {
-  private readonly _router = inject(Router);
-  public isNavBar(): boolean {
-    return this._router.url.startsWith('/search/');
-  }
-}
+export class SearchPage {}

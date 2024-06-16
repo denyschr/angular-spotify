@@ -120,8 +120,10 @@ export class SearchService {
   public updateRouteParams(): void {
     const term = this._searchTermSubject.value;
     const type = this._selectedSectionTypeSubject.value;
-    if (term) {
+    if (term && type !== MediaSectionType.all) {
       this._router.navigate(['/search', term, type]);
+    } else if (term && type === MediaSectionType.all) {
+      this._router.navigate(['/search', term]);
     } else {
       this._router.navigate(['/search']);
     }

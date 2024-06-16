@@ -22,12 +22,11 @@ import { onDestroy } from '@utils';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchBarComponent implements OnInit, AfterViewInit {
+  @ViewChild('input') inputRef?: ElementRef<HTMLInputElement>;
   public searchFormControl: FormControl = new FormControl('');
   private readonly _searchService = inject(SearchService);
   private readonly _cdr = inject(ChangeDetectorRef);
   private readonly _destroy$ = onDestroy();
-
-  @ViewChild('input') inputRef?: ElementRef<HTMLInputElement>;
 
   constructor() {
     this.searchFormControl.valueChanges

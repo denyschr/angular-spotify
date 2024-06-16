@@ -9,6 +9,10 @@
 .main-view {
 	grid-area: main-view;
 	min-height: 0;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow-y: auto;
 	&__content {
 		display: flex;
 		flex-direction: column;
@@ -23,4 +27,10 @@
 	&__container {
 		height: 100%;
 	}
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--min-column-width), 1fr));
+	gap: toRem(32) toRem(12);
 }

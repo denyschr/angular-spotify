@@ -1,8 +1,10 @@
 <ng-container *ngIf="vm$ | async as vm">
-  <app-section
-    *ngIf="vm.newReleases.length"
-    [sectionTitle]="'New Releases'"
-    [mediaItems]="vm.newReleases"
-  >
-  </app-section>
+  <div class="grid-container">
+    <app-section
+      *ngIf="vm.newReleases.length"
+      [sectionTitle]="'New Releases'"
+      [mediaItems]="vm.newReleases"
+    >
+    </app-section>
+  </div>
 </ng-container>

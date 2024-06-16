@@ -1,17 +1,26 @@
-<ng-container *ngIf="vm$ | async as vm">
-  <ng-container *ngIf="vm.allResults.total; else noResults">
-    <app-search-all-results
-      *ngIf="vm.type === sectionTypes.all; else filteredResults"
-      [results]="vm.allResults.results"
-    ></app-search-all-results>
+<div class="grid-container">
+  <ng-container *ngIf="allResults$ | async as allResults">
+    <ng-container *ngIf="allResults.total; else noResults">
+      <app-search-nav class="col-span-full"></app-search-nav>
+      <app-search-all-results
+        class="grid-container col-span-full"
+        *ngIf="selectedSectionType === sectionTypes.all; else filteredResults"
+        [results]="allResults.results"
+      ></app-search-all-results>
+    </ng-container>
   </ng-container>
-  <ng-template #filteredResults>
+</div>
+
+<ng-template #filteredResults>
+  <ng-container *ngIf="filteredResults$ | async as filteredResults">
     <app-search-filtered-results
-      *ngIf="vm.filteredResults.length; else noResults"
-      [results]="vm.filteredResults"
+      class="col-span-full"
+      *ngIf="filteredResults.length; else noResults"
+      [results]="filteredResults"
     ></app-search-filtered-results>
-  </ng-template>
-  <ng-template #noResults>
-    <app-no-results [query]="vm.term"></app-no-results>
-  </ng-template>
-</ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #noResults>
+  <app-no-results class="col-span-full" [query]="searchTerm"></app-no-results>
+</ng-template>

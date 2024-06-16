@@ -5,21 +5,21 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   SearchBarComponent,
-  SearchCategoriesComponent,
+  CategoriesComponent,
   SearchNavComponent,
-  SearchResultsComponent
+  SearchResultsComponent,
+  SearchAllResultsComponent,
+  SearchFilteredResultsComponent
 } from './components';
 import { CardModule, CategoryModule, NoResultsModule, SectionModule } from '@ui';
-import { IntersectionListenerModule } from '@directives';
-import { SearchAllResultsComponent } from './components/search-all-results/search-all-results.component';
-import { SearchFilteredResultsComponent } from './components/search-filtered-results/search-filtered-results.component';
+import { IntersectionListenerModule, NgForTrackByIdModule } from '@directives';
 
 @NgModule({
   declarations: [
     SearchPage,
+    CategoriesComponent,
     SearchBarComponent,
     SearchNavComponent,
-    SearchCategoriesComponent,
     SearchResultsComponent,
     SearchAllResultsComponent,
     SearchFilteredResultsComponent
@@ -29,6 +29,7 @@ import { SearchFilteredResultsComponent } from './components/search-filtered-res
     SearchRoutingModule,
     ReactiveFormsModule,
     IntersectionListenerModule,
+    NgForTrackByIdModule,
     SectionModule,
     CategoryModule,
     CardModule,

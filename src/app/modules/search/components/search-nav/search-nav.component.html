@@ -1,5 +1,5 @@
 <ng-container *ngIf="sectionTypes$ | async as sectionTypes">
-  <ul class="search-nav" *ngIf="sectionTypes.length > 1">
+  <ul class="search-nav">
     <li class="search-nav__item" *ngFor="let sectionType of sectionTypes">
       <button
         [ngClass]="{ _active: (selectedSectionType$ | async) === sectionType }"

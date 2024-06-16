@@ -1,16 +1,17 @@
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import { MediaItem, MediaType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 
 @Component({
   selector: 'app-search-filtered-results',
   templateUrl: './search-filtered-results.component.html',
-  styleUrl: './search-filtered-results.component.scss'
+  styleUrl: './search-filtered-results.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchFilteredResultsComponent {
+  @Input({ required: true }) results!: MediaItem[];
   public mediaTypes = MediaType;
   private _searchService = inject(SearchService);
-  @Input({ required: true }) results!: MediaItem[];
 
   public loadMore(): void {
     setTimeout(() => {

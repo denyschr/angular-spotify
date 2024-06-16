@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CategoriesService } from '@modules/search/services/categories.service';
 
 @Component({
-  selector: 'app-search-categories',
-  templateUrl: './search-categories.component.html',
-  styleUrl: './search-categories.component.scss',
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrl: './categories.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CategoriesService]
 })
-export class SearchCategoriesComponent {
+export class CategoriesComponent {
   public readonly categories$ = inject(CategoriesService).getCategories();
 }

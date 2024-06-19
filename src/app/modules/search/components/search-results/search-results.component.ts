@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MediaItem, MediaSectionType, MediaType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
-import { Observable, combineLatest, concatMap, map, of, scan, switchMap, tap } from 'rxjs';
+import { Observable, concatMap, map, of, scan, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-search-results',
@@ -13,15 +13,19 @@ import { Observable, combineLatest, concatMap, map, of, scan, switchMap, tap } f
 export class SearchResultsComponent {
   public mediaTypes = MediaType;
   public sectionTypes = MediaSectionType;
+  public searchTerm = '';
+  public selectedSectionType?: MediaSectionType;
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _searchService = inject(SearchService);
 
   private readonly _routeParams$ = this._activatedRoute.paramMap.pipe(
     map(paramMap => ({
       term: paramMap.get('term') ?? '',
-      type: (paramMap.get('type') as MediaSectionType) ?? MediaSectionType.all
+      type: (paramMap.get('type') as MediaSectionType) || MediaSectionType.all
     })),
     tap(({ term, type }) => {
+      this.searchTerm = term;
+      this.selectedSectionType = type;
       this._searchService.setSearchTerm(term);
       this._searchService.setSectionType(type);
     })
@@ -29,11 +33,7 @@ export class SearchResultsComponent {
 
   public readonly allResults$ = this._routeParams$.pipe(
     switchMap(({ term }) => {
-      if (term) {
-        return this._searchService.getAll(term);
-      } else {
-        return of(null);
-      }
+      return this._searchService.getAll(term);
     })
   );
 
@@ -41,7 +41,7 @@ export class SearchResultsComponent {
     switchMap(({ term, type }) => {
       this._searchService.resetPage();
       return this._searchService.pagination$.pipe(
-        concatMap((page): Observable<[] | MediaItem[]> => {
+        concatMap((page): Observable<MediaItem[]> => {
           switch (type) {
             case this.sectionTypes.albums:
               return this._searchService.getAlbums(term, page);
@@ -59,23 +59,4 @@ export class SearchResultsComponent {
       );
     })
   );
-
-  public readonly vm$ = combineLatest([
-    this._routeParams$,
-    this.allResults$,
-    this.filteredResults$
-  ]).pipe(
-    map(([params, allResults, filteredResults]) => ({
-      term: params.term,
-      type: params.type,
-      allResults,
-      filteredResults
-    }))
-  );
-
-  public loadMore(): void {
-    setTimeout(() => {
-      this._searchService.nextPage(10);
-    }, 500);
-  }
 }

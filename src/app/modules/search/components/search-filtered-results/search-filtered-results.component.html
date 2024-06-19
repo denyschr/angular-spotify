@@ -1,0 +1,43 @@
+<section class="section">
+  <div class="section__items">
+    <ng-container *ngFor="let result of results; let i = index; trackById">
+      <ng-container [ngSwitch]="result.type">
+        <ng-container *ngSwitchCase="mediaTypes.album">
+          <app-album-card
+            *ngIf="i + 1 === results.length"
+            [mediaItem]="result"
+            [isAlbumDate]="true"
+            (intersectionListener)="loadMore()"
+            #lastItem
+          ></app-album-card>
+          <app-album-card
+            *ngIf="i + 1 !== results.length"
+            [mediaItem]="result"
+            [isAlbumDate]="true"
+          ></app-album-card>
+        </ng-container>
+        <ng-container *ngSwitchCase="mediaTypes.artist">
+          <app-artist-card
+            *ngIf="i + 1 === results.length"
+            [mediaItem]="result"
+            (intersectionListener)="loadMore()"
+            #lastItem
+          ></app-artist-card>
+          <app-artist-card *ngIf="i + 1 !== results.length" [mediaItem]="result"></app-artist-card>
+        </ng-container>
+        <ng-container *ngSwitchCase="mediaTypes.playlist">
+          <app-playlist-card
+            *ngIf="i + 1 === results.length"
+            [mediaItem]="result"
+            (intersectionListener)="loadMore()"
+            #lastItem
+          ></app-playlist-card>
+          <app-playlist-card
+            *ngIf="i + 1 !== results.length"
+            [mediaItem]="result"
+          ></app-playlist-card>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</section>

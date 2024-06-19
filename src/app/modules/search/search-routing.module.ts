@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { SearchPage } from './pages/search.page';
-import { MediaSectionType } from '@models';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-import { SearchCategoriesComponent } from './components';
+import { CategoriesComponent } from './components';
 
 const routes: Routes = [
   {
@@ -13,18 +12,21 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: SearchCategoriesComponent
+        component: CategoriesComponent
       },
       {
-        path: `:term/${MediaSectionType.all}`,
-        redirectTo: ':term'
-      },
-      {
-        path: ':term',
-        component: SearchResultsComponent
-      },
-      {
-        path: ':term/:type',
+        matcher: url => {
+          if (url.length >= 1) {
+            return {
+              consumed: url,
+              posParams: {
+                term: new UrlSegment(url[0].path, {}),
+                type: new UrlSegment(url[1] ? url[1].path : '', {})
+              }
+            };
+          }
+          return null;
+        },
         component: SearchResultsComponent
       }
     ]

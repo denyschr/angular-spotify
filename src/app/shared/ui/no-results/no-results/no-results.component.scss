@@ -1,9 +1,5 @@
 @import "mixins";
 
-:host {
-	grid-column: 1/-1;
-}
-
 .no-results {
 	display: flex;
 	flex-direction: column;

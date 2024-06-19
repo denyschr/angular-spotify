@@ -1,4 +1,14 @@
-import { Album, Albums, Artist, Artists, Playlist, Playlists, Track, Tracks } from '.';
+import {
+  Album,
+  Albums,
+  Artist,
+  Artists,
+  MediaSectionType,
+  Playlist,
+  Playlists,
+  Track,
+  Tracks
+} from '.';
 
 export interface Search {
   total: number;
@@ -13,8 +23,8 @@ export interface SearchResponse {
 }
 
 export interface SearchResults {
-  albums: Album[];
-  artists: Artist[];
-  tracks: Track[];
-  playlists: Playlist[];
+  albums: { items: Album[]; type: typeof MediaSectionType.albums };
+  artists: { items: Artist[]; type: typeof MediaSectionType.artists };
+  tracks: { items: Track[]; type: typeof MediaSectionType.tracks };
+  playlists: { items: Playlist[]; type: typeof MediaSectionType.playlists };
 }

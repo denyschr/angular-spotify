@@ -20,19 +20,19 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { objectToValues } from 'src/app/core/utils';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class SearchService {
   private readonly _router = inject(Router);
   private readonly _http = inject(HttpClient);
   private readonly _searchTermSubject = new BehaviorSubject<string>('');
   private readonly _sectionTypesSubject = new BehaviorSubject<MediaSectionType[]>([]);
-  private readonly _currSectionTypeSubject = new BehaviorSubject<MediaSectionType>(
+  private readonly _selectedSectionTypeSubject = new BehaviorSubject<MediaSectionType>(
     MediaSectionType.all
   );
   private readonly _paginationSubject = new BehaviorSubject<number>(0);
   public readonly searchTerm$ = this._searchTermSubject.asObservable();
   public readonly sectionTypes$ = this._sectionTypesSubject.asObservable();
-  public readonly currSectionType$ = this._currSectionTypeSubject.asObservable();
+  public readonly selectedSectionType$ = this._selectedSectionTypeSubject.asObservable();
   public readonly pagination$ = this._paginationSubject.asObservable();
 
   public getAll(term: string): Observable<Search> {
@@ -42,14 +42,14 @@ export class SearchService {
       limit: MAX_FETCH_CONTENT
     };
     return this._http.get<SearchResponse>(`${SpotifyConfig.apiUrl}/search`, { params }).pipe(
-      tap(res => {
-        const sectionTypes = this.getSectionTypes(res);
-        this._sectionTypesSubject.next(sectionTypes);
-      }),
       map(res => ({
         results: this.formatResults(res),
         total: this.calcTotal(res)
-      }))
+      })),
+      tap(res => {
+        const sectionTypes = this.retrieveSectionTypes(res);
+        this._sectionTypesSubject.next(sectionTypes);
+      })
     );
   }
 
@@ -106,7 +106,7 @@ export class SearchService {
   }
 
   public setSectionType(type: MediaSectionType): void {
-    this._currSectionTypeSubject.next(type);
+    this._selectedSectionTypeSubject.next(type);
   }
 
   public nextPage(page: number): void {
@@ -117,22 +117,32 @@ export class SearchService {
     this._paginationSubject.next(0);
   }
 
-  public updateQueryParams(): void {
+  public updateRouteParams(): void {
     const term = this._searchTermSubject.value;
-    const type = this._currSectionTypeSubject.value;
-    if (term) {
+    const type = this._selectedSectionTypeSubject.value;
+    if (term && type !== MediaSectionType.all) {
       this._router.navigate(['/search', term, type]);
+    } else if (term && type === MediaSectionType.all) {
+      this._router.navigate(['/search', term]);
     } else {
       this._router.navigate(['/search']);
     }
   }
 
-  private getSectionTypes(res: SearchResponse): MediaSectionType[] {
-    return objectToValues(res).reduce(
-      (sectionTypes: MediaSectionType[], result) => {
-        const mediaType = result.items[0]?.type;
-        if (mediaType) {
-          sectionTypes.push(`${mediaType}s` as MediaSectionType);
+  private formatResults(res: SearchResponse): SearchResults {
+    return {
+      albums: { items: res.albums.items, type: MediaSectionType.albums },
+      artists: { items: res.artists.items, type: MediaSectionType.artists },
+      tracks: { items: res.tracks.items, type: MediaSectionType.tracks },
+      playlists: { items: res.playlists.items, type: MediaSectionType.playlists }
+    };
+  }
+
+  private retrieveSectionTypes(res: Search): MediaSectionType[] {
+    return objectToValues(res.results).reduce(
+      (sectionTypes: MediaSectionType[], media) => {
+        if (media.items.length) {
+          sectionTypes.push(media.type);
         }
         return sectionTypes;
       },
@@ -140,18 +150,9 @@ export class SearchService {
     );
   }
 
-  private formatResults(res: SearchResponse): SearchResults {
-    return {
-      albums: res.albums.items,
-      artists: res.artists.items,
-      tracks: res.tracks.items,
-      playlists: res.playlists.items
-    };
-  }
-
   private calcTotal(res: SearchResponse): number {
-    return objectToValues(res).reduce((total, result) => {
-      total += result.total;
+    return objectToValues(res).reduce((total, media) => {
+      total += media.total;
       return total;
     }, 0);
   }

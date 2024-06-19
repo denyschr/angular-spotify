@@ -8,11 +8,11 @@
 	width: 100%;
 }
 
-.header {
-	// .header__container
+.top-bar {
+	// .top-bar__container
 	&__container {
 		gap: toRem(10);
-		min-height: var(--header-height);
+		min-height: var(--top-bar-height);
 	}
 	// .header__content-wrapper
 	&__content-wrapper {

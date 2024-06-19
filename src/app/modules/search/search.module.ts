@@ -5,31 +5,36 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   SearchBarComponent,
-  SearchCategoriesComponent,
+  CategoriesComponent,
   SearchNavComponent,
-  SearchResultsComponent
+  SearchResultsComponent,
+  SearchAllResultsComponent,
+  SearchFilteredResultsComponent
 } from './components';
-import { CardModule, CategoryModule, NoResultsModule, SectionModule } from '@ui';
-import { IntersectionListenerModule } from '@directives';
+import { CardModule, CategoryModule, NoResultsModule, SectionModule, TopBarModule } from '@ui';
+import { IntersectionListenerModule, NgForTrackByIdModule } from '@directives';
 
 @NgModule({
   declarations: [
     SearchPage,
+    CategoriesComponent,
     SearchBarComponent,
     SearchNavComponent,
-    SearchCategoriesComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    SearchAllResultsComponent,
+    SearchFilteredResultsComponent
   ],
   imports: [
     CommonModule,
     SearchRoutingModule,
     ReactiveFormsModule,
+    TopBarModule,
+    NgForTrackByIdModule,
     IntersectionListenerModule,
     SectionModule,
     CategoryModule,
     CardModule,
     NoResultsModule
-  ],
-  exports: [SearchBarComponent]
+  ]
 })
 export class SearchModule {}

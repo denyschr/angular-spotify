@@ -1,0 +1,21 @@
+<header class="top-bar" aria-label="Top bar">
+  <div class="top-bar__container flex-sb-center">
+    <div class="top-bar__control nav-controls">
+      <button
+        class="nav-controls__button nav-controls__button--prev _icon-chevron"
+        title="Go back"
+        aria-label="Go back"
+        (click)="goBack()"
+      ></button>
+      <button
+        class="nav-controls__button nav-controls__button--next _icon-chevron"
+        title="Go forward"
+        aria-label="Go forward"
+        (click)="goForward()"
+      ></button>
+    </div>
+    <div class="top-bar__content-wrapper">
+      <ng-content select="app-search-bar"></ng-content>
+    </div>
+  </div>
+</header>

@@ -6,7 +6,8 @@ import { NewReleasesService } from '../services/new-releases.service';
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [NewReleasesService]
 })
 export class HomePage {
   private readonly _newReleases$ = inject(NewReleasesService).getNewReleases();

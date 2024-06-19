@@ -1,26 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from '../app-routing.module';
-import {
-  StandardPageLayoutComponent,
-  FooterComponent,
-  HeaderComponent,
-  LeftSidebarComponent
-} from '@components';
+import { StandardPageLayoutComponent, LeftSidebarComponent } from '@components';
+import { RouterModule } from '@angular/router';
 import { AlbumModule, ArtistModule, HomeModule, NotFoundModule, SearchModule } from '@modules';
 
 @NgModule({
-  declarations: [
-    StandardPageLayoutComponent,
-    HeaderComponent,
-    LeftSidebarComponent,
-    FooterComponent
-  ],
+  declarations: [StandardPageLayoutComponent, LeftSidebarComponent],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    HttpClientModule,
+    RouterModule,
     AlbumModule,
     ArtistModule,
     HomeModule,

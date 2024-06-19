@@ -20,7 +20,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { objectToValues } from 'src/app/core/utils';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class SearchService {
   private readonly _router = inject(Router);
   private readonly _http = inject(HttpClient);
@@ -140,9 +140,9 @@ export class SearchService {
 
   private retrieveSectionTypes(res: Search): MediaSectionType[] {
     return objectToValues(res.results).reduce(
-      (sectionTypes: MediaSectionType[], result) => {
-        if (result.items.length) {
-          sectionTypes.push(result.type);
+      (sectionTypes: MediaSectionType[], media) => {
+        if (media.items.length) {
+          sectionTypes.push(media.type);
         }
         return sectionTypes;
       },
@@ -151,8 +151,8 @@ export class SearchService {
   }
 
   private calcTotal(res: SearchResponse): number {
-    return objectToValues(res).reduce((total, result) => {
-      total += result.total;
+    return objectToValues(res).reduce((total, media) => {
+      total += media.total;
       return total;
     }, 0);
   }

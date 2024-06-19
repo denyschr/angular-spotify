@@ -11,7 +11,14 @@ import {
   SearchAllResultsComponent,
   SearchFilteredResultsComponent
 } from './components';
-import { CardModule, CategoryModule, NoResultsModule, SectionModule } from '@ui';
+import {
+  CardModule,
+  CategoryModule,
+  FooterModule,
+  NoResultsModule,
+  SectionModule,
+  TopBarModule
+} from '@ui';
 import { IntersectionListenerModule, NgForTrackByIdModule } from '@directives';
 
 @NgModule({
@@ -28,13 +35,14 @@ import { IntersectionListenerModule, NgForTrackByIdModule } from '@directives';
     CommonModule,
     SearchRoutingModule,
     ReactiveFormsModule,
-    IntersectionListenerModule,
+    TopBarModule,
+    FooterModule,
     NgForTrackByIdModule,
+    IntersectionListenerModule,
     SectionModule,
     CategoryModule,
     CardModule,
     NoResultsModule
-  ],
-  exports: [SearchBarComponent]
+  ]
 })
 export class SearchModule {}

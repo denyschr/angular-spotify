@@ -14,19 +14,12 @@
 	height: 100%;
 	overflow-y: auto;
 	&__content {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
 		overflow-y: auto;
 	}
 }
 
 .page {
-	flex-grow: 1;
 	margin-top: toRem(8);
-	&__container {
-		height: 100%;
-	}
 }
 
 .grid-container {

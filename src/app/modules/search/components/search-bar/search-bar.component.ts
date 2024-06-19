@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -25,7 +24,6 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
   @ViewChild('input') inputRef?: ElementRef<HTMLInputElement>;
   public searchFormControl: FormControl = new FormControl('');
   private readonly _searchService = inject(SearchService);
-  private readonly _cdr = inject(ChangeDetectorRef);
   private readonly _destroy$ = onDestroy();
 
   constructor() {
@@ -46,7 +44,6 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this._searchService.searchTerm$.pipe(takeUntil(this._destroy$)).subscribe(term => {
       this.searchFormControl.patchValue(term);
-      this._cdr.detectChanges();
     });
   }
 

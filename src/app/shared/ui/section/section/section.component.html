@@ -17,18 +17,17 @@
   <swiper-container slides-per-view="5" space-between="14px">
     <ng-container *ngFor="let mediaItem of mediaItems" [ngSwitch]="mediaItem.type">
       <swiper-slide>
-        <app-album-card
+        <sp-album-card
           *ngSwitchCase="mediaTypes.album"
           [mediaItem]="mediaItem"
           [isAlbumDate]="isAlbumDate"
         >
-        </app-album-card>
-        <app-artist-card *ngSwitchCase="mediaTypes.artist" [mediaItem]="mediaItem">
-        </app-artist-card>
-        <app-playlist-card
+        </sp-album-card>
+        <sp-artist-card *ngSwitchCase="mediaTypes.artist" [mediaItem]="mediaItem"> </sp-artist-card>
+        <sp-playlist-card
           *ngSwitchCase="mediaTypes.playlist"
           [mediaItem]="mediaItem"
-        ></app-playlist-card>
+        ></sp-playlist-card>
       </swiper-slide>
     </ng-container>
   </swiper-container>

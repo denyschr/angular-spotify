@@ -1,14 +1,14 @@
-<app-top-bar></app-top-bar>
+<sp-top-bar></sp-top-bar>
 <main class="page">
   <div class="page__container">
     <ng-container *ngIf="vm$ | async as vm">
       <div class="grid-container">
-        <app-section
+        <sp-section
           *ngIf="vm.newReleases.length"
           [sectionTitle]="'New Releases'"
           [mediaItems]="vm.newReleases"
         >
-        </app-section>
+        </sp-section>
       </div>
     </ng-container>
   </div>

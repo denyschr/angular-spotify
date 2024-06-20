@@ -3,7 +3,7 @@ import { MediaItem, MediaType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 
 @Component({
-  selector: 'app-search-filtered-results',
+  selector: 'sp-search-filtered-results',
   templateUrl: './search-filtered-results.component.html',
   styleUrl: './search-filtered-results.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

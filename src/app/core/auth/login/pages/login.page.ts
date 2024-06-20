@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService, JwtService } from '@services';
 
 @Component({
-  selector: 'app-login',
+  selector: 'sf-login',
   templateUrl: './login.page.html',
   styleUrl: './login.page.scss'
 })
@@ -15,10 +15,10 @@ export class LoginPage implements OnInit {
   private readonly _jwtService = inject(JwtService);
 
   constructor() {
-    this._activatedRoute.queryParams.pipe(takeUntilDestroyed()).subscribe((params) => {
+    this._activatedRoute.queryParams.pipe(takeUntilDestroyed()).subscribe(params => {
       const code: string | undefined = params['code'];
       if (code) {
-        this._authService.generateToken(code).subscribe((res) => {
+        this._authService.generateToken(code).subscribe(res => {
           const accessToken = res.access_token;
           const refreshToken = res.refresh_token;
           this._jwtService.saveAccessToken(accessToken);

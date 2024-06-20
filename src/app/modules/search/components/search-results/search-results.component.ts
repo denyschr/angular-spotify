@@ -5,7 +5,7 @@ import { SearchService } from '@modules/search/services/search.service';
 import { Observable, concatMap, map, of, scan, switchMap, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-search-results',
+  selector: 'sp-search-results',
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

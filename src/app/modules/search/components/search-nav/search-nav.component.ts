@@ -3,7 +3,7 @@ import { MediaSectionType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 
 @Component({
-  selector: 'app-search-nav',
+  selector: 'sp-search-nav',
   templateUrl: './search-nav.component.html',
   styleUrl: './search-nav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

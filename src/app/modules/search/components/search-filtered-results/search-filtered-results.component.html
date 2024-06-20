@@ -3,39 +3,39 @@
     <ng-container *ngFor="let result of results; let i = index; trackById">
       <ng-container [ngSwitch]="result.type">
         <ng-container *ngSwitchCase="mediaTypes.album">
-          <app-album-card
+          <sp-album-card
             *ngIf="i + 1 === results.length"
             [mediaItem]="result"
             [isAlbumDate]="true"
             (intersectionListener)="loadMore()"
             #lastItem
-          ></app-album-card>
-          <app-album-card
+          ></sp-album-card>
+          <sp-album-card
             *ngIf="i + 1 !== results.length"
             [mediaItem]="result"
             [isAlbumDate]="true"
-          ></app-album-card>
+          ></sp-album-card>
         </ng-container>
         <ng-container *ngSwitchCase="mediaTypes.artist">
-          <app-artist-card
+          <sp-artist-card
             *ngIf="i + 1 === results.length"
             [mediaItem]="result"
             (intersectionListener)="loadMore()"
             #lastItem
-          ></app-artist-card>
-          <app-artist-card *ngIf="i + 1 !== results.length" [mediaItem]="result"></app-artist-card>
+          ></sp-artist-card>
+          <sp-artist-card *ngIf="i + 1 !== results.length" [mediaItem]="result"></sp-artist-card>
         </ng-container>
         <ng-container *ngSwitchCase="mediaTypes.playlist">
-          <app-playlist-card
+          <sp-playlist-card
             *ngIf="i + 1 === results.length"
             [mediaItem]="result"
             (intersectionListener)="loadMore()"
             #lastItem
-          ></app-playlist-card>
-          <app-playlist-card
+          ></sp-playlist-card>
+          <sp-playlist-card
             *ngIf="i + 1 !== results.length"
             [mediaItem]="result"
-          ></app-playlist-card>
+          ></sp-playlist-card>
         </ng-container>
       </ng-container>
     </ng-container>

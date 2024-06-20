@@ -3,7 +3,7 @@ import { forkJoin, map } from 'rxjs';
 import { NewReleasesService } from '../services/new-releases.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'sp-home',
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

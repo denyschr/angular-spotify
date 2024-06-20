@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CategoriesService } from '@modules/search/services/categories.service';
 
 @Component({
-  selector: 'app-categories',
+  selector: 'sp-categories',
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

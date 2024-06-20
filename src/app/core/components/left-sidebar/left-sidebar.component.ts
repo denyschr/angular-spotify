@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AuthService } from '@core/services';
 
 @Component({
-  selector: 'app-left-sidebar',
+  selector: 'sf-left-sidebar',
   templateUrl: './left-sidebar.component.html',
   styleUrl: './left-sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -17,4 +17,9 @@ export class SearchNavComponent {
     this._searchService.setSectionType(type);
     this._searchService.updateRouteParams();
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public trackById(index: number, item: unknown) {
+    return index;
+  }
 }

@@ -2,7 +2,7 @@ import { Followers, MediaResponse, MediaItemContent, MediaType, Track, Owner } f
 
 export interface Playlist extends MediaItemContent {
   collaborative: boolean;
-  description: string;
+  description: string | null;
   followers: Followers;
   owner: Owner;
   public: boolean;

@@ -1,24 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExtractColorModule, PlayBtnLabelModule } from '@directives';
 import { NotFoundImageModule } from '@pipes';
 import { RouterModule } from '@angular/router';
-import {
-  BaseCardComponent,
-  AlbumCardComponent,
-  ArtistCardComponent,
-  PlaylistCardComponent
-} from './card/index';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
-  declarations: [BaseCardComponent, AlbumCardComponent, ArtistCardComponent, PlaylistCardComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    ExtractColorModule,
-    PlayBtnLabelModule,
-    NotFoundImageModule
-  ],
-  exports: [AlbumCardComponent, ArtistCardComponent, PlaylistCardComponent]
+  declarations: [CardComponent],
+  imports: [CommonModule, RouterModule, NotFoundImageModule],
+  exports: [CardComponent]
 })
 export class CardModule {}

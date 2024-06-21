@@ -2,6 +2,7 @@ export * from './common.model';
 export * from './api-token.model';
 export * from './media.model';
 export * from './album.model';
+export * from './new-release.model';
 export * from './artist.model';
 export * from './playlist.model';
 export * from './track.model';

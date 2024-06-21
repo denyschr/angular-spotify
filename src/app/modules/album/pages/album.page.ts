@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AlbumService } from '../services/album.service';
 
 @Component({
   selector: 'sp-album',
   templateUrl: './album.page.html',
   styleUrl: './album.page.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [AlbumService]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumPage {}

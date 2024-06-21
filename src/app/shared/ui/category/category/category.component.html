@@ -1,11 +1,9 @@
 <article class="category">
-  <a class="category__content category__content-ibg" [routerLink]="['/home']" #categoryItem>
+  <a href="#" class="category__content category__content-ibg">
     <img
       class="category__img"
-      *ngIf="category.icons[0] && category.icons[0].url"
+      *ngIf="category.icons[0] && category.icons[0]?.url"
       [src]="category.icons[0].url"
-      [extractColor]="categoryItem"
-      crossorigin
       alt
     />
     <span class="category__title text-center text-title-small" [title]="category.name">

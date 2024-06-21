@@ -1,8 +1,0 @@
-@import "mixins";
-
-.section {
-	// .section__title
-	&__title {
-		margin-bottom: var(--section-internal-gap);
-	}
-}

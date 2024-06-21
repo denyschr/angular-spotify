@@ -1,0 +1,36 @@
+@import "mixins";
+
+.card {
+	position: relative;
+	height: 100%;
+	padding: toRem(12);
+	overflow: hidden;
+	border-radius: var(--corner-radius-larger);
+	background-color: var(--background-ghost-white);
+	transition: background 0.2s linear;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: var(--background-misty-white);
+		}
+	}
+	// .card__content
+	&__content {
+		width: 100%;
+	}
+	// .card__top
+	&__top {
+		margin-bottom: toRem(18);
+	}
+	// .card__img
+	&__img {
+		padding-bottom: 100%;
+		border-radius: var(--corner-radius-larger);
+		&._rounded {
+			border-radius: 50%;
+		}
+	}
+	// .card__body
+	&__body {
+		gap: toRem(8);
+	}
+}

@@ -8,7 +8,7 @@ import {
   Restrictions
 } from '.';
 
-export interface Track extends MediaItemContent {
+export interface Track extends Omit<MediaItemContent, 'images'> {
   album: Album;
   artists: Artist[];
   available_markets: string[];

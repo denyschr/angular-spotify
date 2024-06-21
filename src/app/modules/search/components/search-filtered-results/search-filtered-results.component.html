@@ -1,43 +1,82 @@
-<section class="section">
-  <div class="section__items">
-    <ng-container *ngFor="let result of results; let i = index; trackById">
-      <ng-container [ngSwitch]="result.type">
-        <ng-container *ngSwitchCase="mediaTypes.album">
-          <sp-album-card
-            *ngIf="i + 1 === results.length"
-            [mediaItem]="result"
-            [isAlbumDate]="true"
-            (intersectionListener)="loadMore()"
-            #lastItem
-          ></sp-album-card>
-          <sp-album-card
-            *ngIf="i + 1 !== results.length"
-            [mediaItem]="result"
-            [isAlbumDate]="true"
-          ></sp-album-card>
-        </ng-container>
-        <ng-container *ngSwitchCase="mediaTypes.artist">
-          <sp-artist-card
-            *ngIf="i + 1 === results.length"
-            [mediaItem]="result"
-            (intersectionListener)="loadMore()"
-            #lastItem
-          ></sp-artist-card>
-          <sp-artist-card *ngIf="i + 1 !== results.length" [mediaItem]="result"></sp-artist-card>
-        </ng-container>
-        <ng-container *ngSwitchCase="mediaTypes.playlist">
-          <sp-playlist-card
-            *ngIf="i + 1 === results.length"
-            [mediaItem]="result"
-            (intersectionListener)="loadMore()"
-            #lastItem
-          ></sp-playlist-card>
-          <sp-playlist-card
-            *ngIf="i + 1 !== results.length"
-            [mediaItem]="result"
-          ></sp-playlist-card>
-        </ng-container>
-      </ng-container>
+<div class="common-grid">
+  <ng-container *ngFor="let result of results; let i = index; trackById">
+    <!-- Albums -->
+    <ng-container *ngIf="result.type === mediaTypes.album">
+      <sp-card
+        *ngIf="i + 1 === results.length"
+        [title]="result.name"
+        [description]="result.artists[0].name"
+        [routerUrl]="'/album/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+        (intersectionListener)="loadMore()"
+        #lastItem
+      ></sp-card>
+      <sp-card
+        *ngIf="i + 1 !== results.length"
+        [title]="result.name"
+        [description]="result.artists[0].name"
+        [routerUrl]="'/album/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+      ></sp-card>
     </ng-container>
-  </div>
-</section>
+    <!-- Artists -->
+    <ng-container *ngIf="result.type === mediaTypes.artist">
+      <sp-card
+        *ngIf="i + 1 === results.length"
+        [title]="result.name"
+        [description]="result.type | titlecase"
+        [routerUrl]="'/artist/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+        [roundedImage]="true"
+        (intersectionListener)="loadMore()"
+        #lastItem
+      ></sp-card>
+      <sp-card
+        *ngIf="i + 1 !== results.length"
+        [title]="result.name"
+        [description]="result.type | titlecase"
+        [routerUrl]="'/artist/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+        [roundedImage]="true"
+      ></sp-card>
+    </ng-container>
+    <!-- Tracks -->
+    <ng-container *ngIf="result.type === mediaTypes.track">
+      <sp-card
+        *ngIf="i + 1 === results.length"
+        [title]="result.name"
+        [description]="result.artists[0].name"
+        [routerUrl]="'/track/' + result.id"
+        [imageUrl]="result.album.images[0]?.url"
+        (intersectionListener)="loadMore()"
+        #lastItem
+      ></sp-card>
+      <sp-card
+        *ngIf="i + 1 !== results.length"
+        [title]="result.name"
+        [description]="result.artists[0].name"
+        [routerUrl]="'/track/' + result.id"
+        [imageUrl]="result.album.images[0]?.url"
+      ></sp-card>
+    </ng-container>
+    <!-- Playlists -->
+    <ng-container *ngIf="result.type === mediaTypes.playlist">
+      <sp-card
+        *ngIf="i + 1 === results.length"
+        [title]="result.name"
+        [description]="result.type | titlecase"
+        [routerUrl]="'/playlist/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+        (intersectionListener)="loadMore()"
+        #lastItem
+      ></sp-card>
+      <sp-card
+        *ngIf="i + 1 !== results.length"
+        [title]="result.name"
+        [description]="result.type | titlecase"
+        [routerUrl]="'/playlist/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+      ></sp-card>
+    </ng-container>
+  </ng-container>
+</div>

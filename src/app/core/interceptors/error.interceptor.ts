@@ -12,14 +12,12 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         jwtService.destroyAccessToken();
         return authService.generateNewToken().pipe(
           switchMap(res => {
-            const accessToken = res.access_token;
-            const refreshToken = res.refresh_token;
-            jwtService.saveAccessToken(accessToken);
-            jwtService.saveRefreshToken(refreshToken);
+            jwtService.saveAccessToken(res.access_token);
+            jwtService.saveRefreshToken(res.refresh_token);
             return next(
               req.clone({
                 setHeaders: {
-                  Authorization: `Bearer ${accessToken}`
+                  Authorization: `Bearer ${res.access_token}`
                 }
               })
             );

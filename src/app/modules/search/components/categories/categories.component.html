@@ -1,4 +1,4 @@
-<ng-container *ngIf="categories$ | async as categories">
+<ng-container *ngIf="categories$ | async as categories; else loading">
   <div class="grid-container">
     <section class="section col-span-full">
       <h2 class="section__title text-title-small">Browse All</h2>
@@ -10,3 +10,7 @@
     </section>
   </div>
 </ng-container>
+
+<ng-template #loading>
+  <sp-loading-spinner></sp-loading-spinner>
+</ng-template>

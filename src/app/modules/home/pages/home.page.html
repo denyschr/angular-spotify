@@ -1,20 +1,26 @@
 <sp-top-bar></sp-top-bar>
 <main class="page">
   <div class="page__container">
-    <div class="grid-container" *ngIf="vm$ | async as vm">
-      <section class="section col-span-full" *ngIf="vm.newReleases.length">
-        <h2 class="section__title text-title-small">New Releases</h2>
-        <div class="section__items common-grid">
-          <ng-container *ngFor="let item of vm.newReleases; trackById">
-            <sp-card
-              [title]="item.name"
-              [description]="item.artists[0].name"
-              [routerUrl]="'/album/' + item.id"
-              [imageUrl]="item.images[0]?.url"
-            ></sp-card>
-          </ng-container>
-        </div>
-      </section>
-    </div>
+    <ng-container *ngIf="vm$ | async as vm; else loading">
+      <div class="grid-container">
+        <section class="section col-span-full" *ngIf="vm.newReleases.length">
+          <h2 class="section__title text-title-small">New Releases</h2>
+          <div class="section__items common-grid">
+            <ng-container *ngFor="let item of vm.newReleases; trackById">
+              <sp-card
+                [title]="item.name"
+                [description]="item.artists[0].name"
+                [routerUrl]="'/album/' + item.id"
+                [imageUrl]="item.images[0]?.url"
+              ></sp-card>
+            </ng-container>
+          </div>
+        </section>
+      </div>
+    </ng-container>
   </div>
 </main>
+
+<ng-template #loading>
+  <sp-loading-spinner></sp-loading-spinner>
+</ng-template>

@@ -16,6 +16,6 @@ export class SearchFilteredResultsComponent {
   public loadMore(): void {
     setTimeout(() => {
       this._searchService.nextPage(10);
-    }, 500);
+    }, 300);
   }
 }

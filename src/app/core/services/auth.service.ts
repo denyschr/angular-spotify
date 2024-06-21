@@ -33,7 +33,7 @@ export class AuthService {
       scope: SpotifyConfig.scopes,
       code_challenge_method: 'S256',
       code_challenge: codeChallenge,
-      redirect_uri: SpotifyConfig.redirectUri
+      redirect_uri: SpotifyConfig.redirectUrl
     };
     const paramString = new HttpParams({ fromObject: params }).toString();
     return `${SpotifyConfig.authEndPoint}?` + paramString;
@@ -45,7 +45,7 @@ export class AuthService {
       client_id: this._clientId,
       grant_type: 'authorization_code',
       code,
-      redirect_uri: SpotifyConfig.redirectUri,
+      redirect_uri: SpotifyConfig.redirectUrl,
       code_verifier: codeVerifier
     });
     return this._http.post<ApiToken>(SpotifyConfig.tokenUrl, body, { headers: this._headers });

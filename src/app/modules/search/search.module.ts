@@ -11,7 +11,13 @@ import {
   SearchAllResultsComponent,
   SearchFilteredResultsComponent
 } from './components';
-import { CardModule, CategoryModule, NoResultsModule, TopBarModule } from '@ui';
+import {
+  CardModule,
+  CategoryModule,
+  LoadingSpinnerModule,
+  NoResultsModule,
+  TopBarModule
+} from '@ui';
 import { IntersectionListenerModule, NgForTrackByIdModule } from '@directives';
 
 @NgModule({
@@ -33,7 +39,8 @@ import { IntersectionListenerModule, NgForTrackByIdModule } from '@directives';
     IntersectionListenerModule,
     CategoryModule,
     CardModule,
-    NoResultsModule
+    NoResultsModule,
+    LoadingSpinnerModule
   ]
 })
 export class SearchModule {}

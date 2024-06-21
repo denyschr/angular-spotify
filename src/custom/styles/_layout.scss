@@ -7,6 +7,7 @@
 }
 
 .main-view {
+	position: relative;
 	grid-area: main-view;
 	min-height: 0;
 	display: flex;
@@ -19,7 +20,7 @@
 }
 
 .page {
-	margin: toRem(8) 0 toRem(70);
+	margin: toRem(8) 0 toRem(40);
 }
 
 .grid-container {

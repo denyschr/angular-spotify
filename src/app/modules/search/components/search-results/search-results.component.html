@@ -1,5 +1,5 @@
 <div class="grid-container">
-  <ng-container *ngIf="allResults$ | async as allResults">
+  <ng-container *ngIf="allResults$ | async as allResults; else loading">
     <ng-container *ngIf="allResults.total; else noResults">
       <sp-search-nav class="col-span-full"></sp-search-nav>
       <sp-search-all-results
@@ -23,4 +23,8 @@
 
 <ng-template #noResults>
   <sp-no-results class="col-span-full" [query]="searchTerm"></sp-no-results>
+</ng-template>
+
+<ng-template #loading>
+  <sp-loading-spinner></sp-loading-spinner>
 </ng-template>

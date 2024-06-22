@@ -9,3 +9,4 @@ export * from './track.model';
 export * from './episode.model';
 export * from './category.model';
 export * from './search.model';
+export * from './cache.model';

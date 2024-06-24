@@ -18,11 +18,11 @@ export interface PlaylistTrack {
   track: Track;
 }
 
-export interface PlaylistTracks extends MediaResponse<PlaylistTrack> {
+export interface PlaylistTracks extends MediaResponse {
   items: PlaylistTrack[];
 }
 
-export interface Playlists extends MediaResponse<Playlist> {
+export interface Playlists extends MediaResponse {
   items: Playlist[];
 }
 

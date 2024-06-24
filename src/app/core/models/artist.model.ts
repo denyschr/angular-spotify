@@ -7,7 +7,7 @@ export interface Artist extends MediaItemContent {
   type: typeof MediaType.artist;
 }
 
-export interface Artists extends MediaResponse<Artist> {
+export interface Artists extends MediaResponse {
   items: Artist[];
 }
 

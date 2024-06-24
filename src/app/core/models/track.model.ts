@@ -26,7 +26,7 @@ export interface Track extends Omit<MediaItemContent, 'images'> {
   is_local: boolean;
 }
 
-export interface Tracks extends MediaResponse<Track> {
+export interface Tracks extends MediaResponse {
   items: Track[];
 }
 

@@ -1,8 +1,7 @@
 import { ExternalUrls, Image, Album, Artist, Playlist, Track } from '.';
 
-export interface MediaResponse<MediaItem> {
+export interface MediaResponse {
   href: string;
-  items: MediaItem[];
   limit: number;
   next: string | null;
   offset: number;

@@ -3,15 +3,45 @@
   <div class="page__container">
     <ng-container *ngIf="vm$ | async as vm; else loading">
       <div class="grid-container">
-        <section class="section col-span-full" *ngIf="vm.newReleases.length">
-          <h2 class="section__title text-title-small">New Releases</h2>
+        <!-- Recently played -->
+        <section class="section col-span-full" *ngIf="vm.recentPlayed.length">
+          <h2 class="section__title text-title-small">Recently played</h2>
           <div class="section__items common-grid">
-            <ng-container *ngFor="let item of vm.newReleases; trackById">
+            <ng-container *ngFor="let item of vm.recentPlayed">
               <sp-card
                 [title]="item.name"
                 [description]="item.artists[0].name"
-                [routerUrl]="'/album/' + item.id"
+                [routerUrl]="'/track/' + item.id"
+                [imageUrl]="item.album.images[0]?.url"
+              ></sp-card>
+            </ng-container>
+          </div>
+        </section>
+        <!-- Favorite tracks -->
+        <section class="section col-span-full" *ngIf="vm.topTracks.length">
+          <h2 class="section__title text-title-small">Your favorite tracks</h2>
+          <div class="section__items common-grid">
+            <ng-container *ngFor="let item of vm.topTracks; trackById">
+              <sp-card
+                [title]="item.name"
+                [description]="item.artists[0].name"
+                [routerUrl]="'/track/' + item.id"
+                [imageUrl]="item.album.images[0]?.url"
+              ></sp-card>
+            </ng-container>
+          </div>
+        </section>
+        <!-- Favorite artists -->
+        <section class="section col-span-full" *ngIf="vm.topArtists.length">
+          <h2 class="section__title text-title-small">Your favorite artists</h2>
+          <div class="section__items common-grid">
+            <ng-container *ngFor="let item of vm.topArtists; trackById">
+              <sp-card
+                [title]="item.name"
+                [description]="item.type | titlecase"
+                [routerUrl]="'/artist/' + item.id"
                 [imageUrl]="item.images[0]?.url"
+                [roundedImage]="true"
               ></sp-card>
             </ng-container>
           </div>

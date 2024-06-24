@@ -24,13 +24,14 @@ export class AuthService {
     const codeVerifier = generateRandomString(64);
     const hashed = shajs('sha256').update(codeVerifier).digest().toString('base64');
     const codeChallenge = hashed.replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
+    const scope = SpotifyConfig.scopes.join(' ');
 
     window.localStorage.setItem('code_verifier', codeVerifier);
 
     const params = {
       response_type: 'code',
       client_id: this._clientId,
-      scope: SpotifyConfig.scopes,
+      scope,
       code_challenge_method: 'S256',
       code_challenge: codeChallenge,
       redirect_uri: SpotifyConfig.redirectUrl

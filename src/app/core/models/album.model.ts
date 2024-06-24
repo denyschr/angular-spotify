@@ -44,7 +44,7 @@ export interface AlbumArtist {
   type: string;
 }
 
-export interface Albums extends MediaResponse<Album> {
+export interface Albums extends MediaResponse {
   items: Album[];
 }
 

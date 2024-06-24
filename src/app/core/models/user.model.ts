@@ -1,4 +1,4 @@
-import { ExternalUrls, Followers, Image } from '.';
+import { Artist, ExternalUrls, Followers, Image, MediaResponse, Track } from '.';
 
 export interface UserProfile {
   country: string;
@@ -17,4 +17,12 @@ export interface UserProfile {
 export interface ExplicitContent {
   filter_enabled: boolean;
   filter_locked: boolean;
+}
+
+export interface UserTopArtists extends MediaResponse {
+  items: Artist[];
+}
+
+export interface UserTopTracks extends MediaResponse {
+  items: Track[];
 }

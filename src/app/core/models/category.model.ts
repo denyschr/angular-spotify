@@ -7,7 +7,7 @@ export interface Category {
   name: string;
 }
 
-export interface Categories extends MediaResponse<Category> {
+export interface Categories extends MediaResponse {
   items: Category[];
 }
 

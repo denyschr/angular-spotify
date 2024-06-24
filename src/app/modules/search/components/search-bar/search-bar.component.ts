@@ -22,12 +22,12 @@ import { onDestroy } from '@utils';
 })
 export class SearchBarComponent implements OnInit, AfterViewInit {
   @ViewChild('input') inputRef?: ElementRef<HTMLInputElement>;
-  public searchFormControl: FormControl = new FormControl('');
+  public searchControl: FormControl = new FormControl('');
   private readonly _searchService = inject(SearchService);
   private readonly _destroy$ = onDestroy();
 
   constructor() {
-    this.searchFormControl.valueChanges
+    this.searchControl.valueChanges
       .pipe(
         takeUntilDestroyed(),
         debounceTime(300),
@@ -43,7 +43,7 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this._searchService.searchTerm$.pipe(takeUntil(this._destroy$)).subscribe(term => {
-      this.searchFormControl.patchValue(term);
+      this.searchControl.patchValue(term);
     });
   }
 
@@ -57,6 +57,6 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
   }
 
   public showClearButton(): boolean {
-    return !!this.searchFormControl.value;
+    return !!this.searchControl.value;
   }
 }

@@ -30,7 +30,7 @@
 	&__input {
 		width: 100%;
 		height: toRem(40);
-		padding: toRem(12) toRem(40) toRem(12) toRem(40);
+		padding: 0 toRem(40);
 		border-radius: var(--corner-radius-base);
 		background-color: var(--background-ghost-white);
 		color: var(--text-base);

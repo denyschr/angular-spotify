@@ -10,6 +10,6 @@ export class CardComponent {
   @Input({ required: true }) title!: string;
   @Input({ required: true }) description!: string;
   @Input({ required: true }) routerUrl!: string;
-  @Input() imageUrl?: string;
+  @Input({ required: true }) imageUrl?: string;
   @Input() roundedImage = false;
 }

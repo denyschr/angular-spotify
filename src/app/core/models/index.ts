@@ -10,3 +10,4 @@ export * from './episode.model';
 export * from './category.model';
 export * from './search.model';
 export * from './cache.model';
+export * from './user.model';

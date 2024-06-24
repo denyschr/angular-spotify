@@ -8,5 +8,5 @@ import { SearchResults } from '@models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchAllResultsComponent {
-  @Input({ required: true }) results!: SearchResults | null;
+  @Input({ required: true }) results!: SearchResults;
 }

@@ -1,0 +1,20 @@
+<ng-container *ngIf="user$ | async as user">
+  <button
+    class="user-profile flex-all-center button"
+    type="button"
+    [title]="user.display_name"
+    [ariaLabel]="user.display_name"
+  >
+    <figure class="user-profile__figure flex-all-center" *ngIf="user.images[0]">
+      <div class="user-profile__img">
+        <img [src]="user.images[0].url" width="26" height="26" alt />
+      </div>
+    </figure>
+    <span
+      class="user-profile__figure user-profile__figure--unset flex-all-center text-body-small-bold"
+      *ngIf="!user.images[0]"
+    >
+      {{ user.display_name | firstLetter }}
+    </span>
+  </button>
+</ng-container>

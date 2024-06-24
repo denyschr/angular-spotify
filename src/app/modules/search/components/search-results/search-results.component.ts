@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MediaItem, MediaSectionType, MediaType } from '@models';
+import { MediaItem, MediaSectionType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 import { Observable, concatMap, map, of, scan, switchMap, tap } from 'rxjs';
 
@@ -11,8 +11,7 @@ import { Observable, concatMap, map, of, scan, switchMap, tap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchResultsComponent {
-  public mediaTypes = MediaType;
-  public sectionTypes = MediaSectionType;
+  public readonly sectionTypes = MediaSectionType;
   public searchTerm = '';
   public selectedSectionType?: MediaSectionType;
   private readonly _activatedRoute = inject(ActivatedRoute);

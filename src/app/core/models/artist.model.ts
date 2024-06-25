@@ -11,6 +11,10 @@ export interface Artists extends MediaResponse {
   items: Artist[];
 }
 
+export interface UserTopArtists extends MediaResponse {
+  items: Artist[];
+}
+
 export interface ArtistsResponse {
   artists: Artists;
 }

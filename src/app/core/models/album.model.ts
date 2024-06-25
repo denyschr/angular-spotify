@@ -44,8 +44,17 @@ export interface AlbumArtist {
   type: string;
 }
 
+export interface SavedAlbum {
+  added_at: string;
+  album: Album;
+}
+
 export interface Albums extends MediaResponse {
   items: Album[];
+}
+
+export interface UserSavedAlbums extends MediaResponse {
+  items: SavedAlbum[];
 }
 
 export interface AlbumsResponse {

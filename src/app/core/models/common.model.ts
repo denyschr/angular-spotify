@@ -1,3 +1,5 @@
+import { MediaType, Track } from '.';
+
 export interface Copyright {
   text: string;
   type: string;
@@ -11,6 +13,11 @@ export interface ExternalIds {
   isrc: string;
   ean: string;
   upc: string;
+}
+
+export interface ExplicitContent {
+  filter_enabled: boolean;
+  filter_locked: boolean;
 }
 
 export interface Followers {
@@ -47,4 +54,22 @@ export interface Owner {
   type: string;
   uri: string;
   display_name: string | null;
+}
+
+export interface Cursors {
+  after: string;
+  before: string;
+}
+
+export interface PlayHistory {
+  track: Track;
+  played_at: string;
+  context: Context;
+}
+
+export interface Context {
+  href: string;
+  type: MediaType;
+  external_urls: ExternalUrls;
+  uri: string;
 }

@@ -1,0 +1,8 @@
+@import "mixins";
+
+.empty {
+	// .empty__container
+	&__container {
+		row-gap: toRem(16);
+	}
+}

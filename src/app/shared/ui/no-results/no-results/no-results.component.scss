@@ -1,14 +1,8 @@
 @import "mixins";
 
 .no-results {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: 100%;
-	text-align: center;
 	// .no-results__title
 	&__title {
 		margin-bottom: toRem(20);
-		overflow-wrap: break-word;
 	}
 }

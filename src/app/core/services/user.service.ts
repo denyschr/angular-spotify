@@ -3,10 +3,12 @@ import { Injectable, inject } from '@angular/core';
 import { MAX_FETCH_CONTENT } from '@constants';
 import { SpotifyConfig } from '@environment';
 import {
+  Album,
   Artist,
   RecentPlayedTracks,
   Track,
   UserProfile,
+  UserSavedAlbums,
   UserTopArtists,
   UserTopTracks
 } from '@models';
@@ -39,5 +41,12 @@ export class UserService {
     return this._http
       .get<UserTopTracks>(`${SpotifyConfig.apiUrl}/me/top/tracks`, { params })
       .pipe(map(res => res.items));
+  }
+
+  public getUserSavedAlbums(): Observable<Album[]> {
+    const params = { limit: MAX_FETCH_CONTENT };
+    return this._http
+      .get<UserSavedAlbums>(`${SpotifyConfig.apiUrl}/me/albums`, { params })
+      .pipe(map(res => res.items.map(item => item.album)));
   }
 }

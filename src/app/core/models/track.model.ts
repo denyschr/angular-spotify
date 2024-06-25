@@ -5,7 +5,9 @@ import {
   MediaItemContent,
   MediaType,
   ExternalIds,
-  Restrictions
+  Restrictions,
+  Cursors,
+  PlayHistory
 } from '.';
 
 export interface Track extends Omit<MediaItemContent, 'images'> {
@@ -27,6 +29,15 @@ export interface Track extends Omit<MediaItemContent, 'images'> {
 }
 
 export interface Tracks extends MediaResponse {
+  items: Track[];
+}
+
+export interface RecentPlayedTracks extends Omit<MediaResponse, 'offset' | 'previous'> {
+  cursors: Cursors;
+  items: PlayHistory[];
+}
+
+export interface UserTopTracks extends MediaResponse {
   items: Track[];
 }
 

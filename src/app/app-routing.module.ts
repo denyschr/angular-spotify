@@ -27,6 +27,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/search/search').then(m => m.SearchModule)
       },
       {
+        path: 'library',
+        loadChildren: () => import('./modules/library/library').then(m => m.LibraryModule)
+      },
+      {
         path: 'artist/:id',
         loadChildren: () => import('./modules/artist/artist').then(m => m.ArtistModule)
       },

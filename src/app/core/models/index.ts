@@ -9,5 +9,4 @@ export * from './episode.model';
 export * from './category.model';
 export * from './search.model';
 export * from './cache.model';
-export * from './user.model';
-export * from './recent-played-tracks';
+export * from './user-profile.model';

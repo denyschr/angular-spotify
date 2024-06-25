@@ -23,6 +23,11 @@
 	grid-column: 1/-1;
 }
 
+.grid-row-center {
+	display: grid;
+	justify-items: center;
+}
+
 // Flex styles //
 .flex-row-center {
 	display: flex;
@@ -106,4 +111,18 @@
 	-webkit-line-clamp: 1;
 	overflow: hidden;
 	overflow-wrap: anywhere;
+}
+
+// Positioning //
+.inset-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+}
+
+// Word break //
+.break-words {
+	overflow-wrap: break-word;
 }

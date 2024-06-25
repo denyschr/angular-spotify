@@ -27,6 +27,7 @@
 		display: inline-block;
 		width: 100%;
 		padding: toRem(12);
-		overflow-wrap: break-word;
+		font-size: toRem(20);
+		font-weight: var(--font-weight-bold);
 	}
 }

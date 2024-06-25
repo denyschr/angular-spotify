@@ -1,0 +1,32 @@
+<sp-top-bar></sp-top-bar>
+<main class="page">
+  <div class="page__container">
+    <ng-container *ngIf="albums$ | async as albums; else loading">
+      <div class="grid-container">
+        <div class="common-grid col-span-full" *ngIf="albums.length; else emptyContent">
+          <ng-container *ngFor="let item of albums; trackById">
+            <sp-card
+              [title]="item.name"
+              [description]="item.artists[0].name"
+              [routerUrl]="'/album/' + item.id"
+              [imageUrl]="item.images[0]?.url"
+            ></sp-card>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</main>
+
+<ng-template #emptyContent>
+  <sp-empty-content
+    [title]="'Albums you save will appear here'"
+    [description]="'Save albums by tapping the add icon'"
+    [routerUrl]="'/search'"
+    [buttonText]="'Find albums'"
+  ></sp-empty-content>
+</ng-template>
+
+<ng-template #loading>
+  <sp-loading-spinner></sp-loading-spinner>
+</ng-template>

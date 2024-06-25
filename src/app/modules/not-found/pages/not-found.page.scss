@@ -5,29 +5,18 @@
 	height: 100%;
 	// .not-found__block
 	&__block {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-		display: grid;
-		justify-items: center;
-		width: 100%;
 		padding: toRem(32);
-		text-align: center;
 	}
 	// .not-found__icon
 	&__icon {
-		margin-bottom: toRem(40);
+		margin-bottom: toRem(20);
 	}
-	// .not-found__title
-	&__title {
-		margin-bottom: toRem(16);
-		font-size: toRem(46);
+	// .not-found__content
+	&__content {
+		row-gap: toRem(25);
 	}
 	// .not-found__text
 	&__text {
-		margin-bottom: toRem(40);
 		color: var(--text-silver);
 	}
-	// .not-found__button
 }

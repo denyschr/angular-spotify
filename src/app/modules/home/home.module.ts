@@ -4,9 +4,10 @@ import { HomeRoutingModule } from './home-routing.module';
 import { CommonModule } from '@angular/common';
 import { TopBarModule, CardModule, LoadingSpinnerModule } from '@ui';
 import { NgForTrackByIdModule } from '@directives';
+import { GreetingComponent } from './components/greeting/greeting.component';
 
 @NgModule({
-  declarations: [HomePage],
+  declarations: [HomePage, GreetingComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

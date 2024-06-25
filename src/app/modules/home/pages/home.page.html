@@ -2,6 +2,7 @@
 <main class="page">
   <div class="page__container">
     <ng-container *ngIf="vm$ | async as vm; else loading">
+      <sp-greeting></sp-greeting>
       <div class="grid-container">
         <!-- Recently played -->
         <section class="section col-span-full" *ngIf="vm.recentPlayed.length">

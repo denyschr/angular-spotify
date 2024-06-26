@@ -1,4 +1,5 @@
-<header class="top-bar" aria-label="Top bar">
+<header class="top-bar sticky" aria-label="Top bar">
+  <div class="top-bar__lining lining" aria-hidden="true"></div>
   <div class="top-bar__container flex-sb-center">
     <div class="top-bar__control nav-controls">
       <button
@@ -14,7 +15,7 @@
         (click)="goForward()"
       ></button>
     </div>
-    <div class="top-bar__content-wrapper">
+    <div class="top-bar__content-wrapper flex-row-center">
       <ng-content select="sp-search-bar"></ng-content>
     </div>
     <div class="top-bar__user-block">

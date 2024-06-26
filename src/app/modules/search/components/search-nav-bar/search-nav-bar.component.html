@@ -1,0 +1,16 @@
+<ng-container *ngIf="sectionTypes$ | async as sectionTypes">
+  <nav class="search-nav sticky" aria-label="Search filters">
+    <div class="search-nav__lining lining" aria-hidden="true"></div>
+    <ul class="search-nav__list flex-row-center">
+      <li class="search-nav__item" *ngFor="let sectionType of sectionTypes">
+        <button
+          [ngClass]="{ _active: (selectedSectionType$ | async) === sectionType }"
+          class="search-nav__button button button--secondary"
+          (click)="onUpdateSearchType(sectionType)"
+        >
+          {{ sectionType | titlecase }}
+        </button>
+      </li>
+    </ul>
+  </nav>
+</ng-container>

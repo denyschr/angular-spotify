@@ -5,18 +5,24 @@
 }
 
 .left-sidebar {
+	--left-sidebar-offset: 1.125rem;
 	gap: toRem(24);
 	width: var(--left-sidebar-width);
-	height: 100%;
-	padding: toRem(18);
+	height: 100vh;
+	padding: var(--left-sidebar-offset);
 	background-color: var(--background-press);
 	// .left-sidebar__body
 	&__body {
 		flex-grow: 1;
+		margin: 0 calc(-1 * var(--left-sidebar-offset));
+		padding: 0 var(--left-sidebar-offset);
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
-	// .left-sidebar__item
-	&__item {
-		margin-bottom: toRem(4);
+	// .left-sidebar__list
+	&__list {
+		display: grid;
+		row-gap: toRem(4);
 	}
 	// .left-sidebar__link
 	&__link {

@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   SearchBarComponent,
   CategoriesComponent,
-  SearchNavComponent,
+  SearchNavBarComponent,
   SearchResultsComponent,
   SearchAllResultsComponent,
   SearchFilteredResultsComponent
@@ -25,7 +25,7 @@ import { IntersectionListenerModule, NgForTrackByIdModule } from '@directives';
     SearchPage,
     CategoriesComponent,
     SearchBarComponent,
-    SearchNavComponent,
+    SearchNavBarComponent,
     SearchResultsComponent,
     SearchAllResultsComponent,
     SearchFilteredResultsComponent

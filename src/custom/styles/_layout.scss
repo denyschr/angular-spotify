@@ -3,20 +3,12 @@
 	grid-template-areas: "left-sidebar main-view";
 	height: 100%;
 	grid-template-columns: auto 1fr;
-	overflow: clip;
 }
 
 .main-view {
 	position: relative;
 	grid-area: main-view;
-	min-height: 0;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	overflow-y: auto;
-	&__content {
-		overflow-y: auto;
-	}
+	background: var(--background-base);
 }
 
 .page {

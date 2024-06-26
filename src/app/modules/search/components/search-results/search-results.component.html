@@ -1,15 +1,13 @@
-<div class="grid-container">
-  <ng-container *ngIf="allResults$ | async as allResults; else loading">
-    <ng-container *ngIf="allResults.total; else noResults">
-      <sp-search-nav class="col-span-full"></sp-search-nav>
-      <sp-search-all-results
-        class="grid-container col-span-full"
-        *ngIf="selectedSectionType === sectionTypes.all; else filteredResults"
-        [results]="allResults.results"
-      ></sp-search-all-results>
-    </ng-container>
+<ng-container *ngIf="allResults$ | async as allResults; else loading">
+  <ng-container *ngIf="allResults.total; else noResults">
+    <sp-search-nav-bar></sp-search-nav-bar>
+    <sp-search-all-results
+      class="grid-container"
+      *ngIf="selectedSectionType === sectionTypes.all; else filteredResults"
+      [results]="allResults.results"
+    ></sp-search-all-results>
   </ng-container>
-</div>
+</ng-container>
 
 <ng-template #filteredResults>
   <ng-container *ngIf="filteredResults$ | async as filteredResults">

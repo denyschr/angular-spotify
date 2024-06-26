@@ -32,10 +32,13 @@
 	--text-silver: rgb(209 213 219);
 
 	// Layout //
-	--left-sidebar-width: 15.063rem; // 241px
+	--left-sidebar-width: 15rem; // 240px
 	--top-bar-height: 4rem; // 64px
 	--section-internal-gap: 1.25rem; // 20px
 	--min-column-width: 11.25rem; // 180px
+
+	// Other //
+	--top-bar-opacity: 0;
 }
 
 // Adaptive grid //

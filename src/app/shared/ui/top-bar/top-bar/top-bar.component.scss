@@ -1,23 +1,14 @@
 @import "mixins";
 
-:host {
-	position: sticky;
-	z-index: 50;
-	left: 0;
-	top: 0;
-	width: 100%;
-}
-
 .top-bar {
+	z-index: 50;
 	// .top-bar__container
 	&__container {
 		gap: toRem(10);
 		min-height: var(--top-bar-height);
 	}
-	// .header__content-wrapper
+	// .top-bar__content-wrapper
 	&__content-wrapper {
-		display: flex;
-		align-items: center;
 		flex-grow: 1;
 	}
 }

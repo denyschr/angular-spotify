@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { UserService } from '@services';
 import { randomEmoji } from '@utils';
 import { map } from 'rxjs';
@@ -10,9 +10,11 @@ import { map } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GreetingComponent {
-  public readonly $message = inject(UserService)
+  public readonly $message = this._userService
     .getUserProfile()
     .pipe(map(res => this.getMessage(res.display_name)));
+
+  constructor(private _userService: UserService) {}
 
   private getMessage(name: string): string {
     const now = new Date();

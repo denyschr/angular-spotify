@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CategoriesService } from '@modules/search/services/categories.service';
 
 @Component({
@@ -9,5 +9,7 @@ import { CategoriesService } from '@modules/search/services/categories.service';
   providers: [CategoriesService]
 })
 export class CategoriesComponent {
-  public readonly categories$ = inject(CategoriesService).getCategories();
+  public readonly categories$ = this._categoriesService.getCategories();
+
+  constructor(private _categoriesService: CategoriesService) {}
 }

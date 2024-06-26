@@ -4,8 +4,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild,
-  inject
+  ViewChild
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -23,10 +22,9 @@ import { onDestroy } from '@utils';
 export class SearchBarComponent implements OnInit, AfterViewInit {
   @ViewChild('input') inputRef?: ElementRef<HTMLInputElement>;
   public searchControl: FormControl = new FormControl('');
-  private readonly _searchService = inject(SearchService);
   private readonly _destroy$ = onDestroy();
 
-  constructor() {
+  constructor(private _searchService: SearchService) {
     this.searchControl.valueChanges
       .pipe(
         takeUntilDestroyed(),

@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   Album,
   AlbumsResponse,
@@ -18,12 +18,10 @@ import { SpotifyConfig } from '@environment';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { objectToValues } from 'src/app/core/utils';
+import { objectToValues } from '@utils';
 
 @Injectable()
 export class SearchService {
-  private readonly _router = inject(Router);
-  private readonly _http = inject(HttpClient);
   private readonly _searchTermSubject = new BehaviorSubject<string>('');
   private readonly _sectionTypesSubject = new BehaviorSubject<MediaSectionType[]>([]);
   private readonly _selectedSectionTypeSubject = new BehaviorSubject<MediaSectionType>(
@@ -34,6 +32,11 @@ export class SearchService {
   public readonly sectionTypes$ = this._sectionTypesSubject.asObservable();
   public readonly selectedSectionType$ = this._selectedSectionTypeSubject.asObservable();
   public readonly pagination$ = this._paginationSubject.asObservable();
+
+  constructor(
+    private _http: HttpClient,
+    private _router: Router
+  ) {}
 
   public getAll(term: string): Observable<Search> {
     const params = {

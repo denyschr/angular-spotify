@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MediaItem, MediaType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 
@@ -11,7 +11,8 @@ import { SearchService } from '@modules/search/services/search.service';
 export class SearchFilteredResultsComponent {
   @Input({ required: true }) results!: MediaItem[];
   public mediaTypes = MediaType;
-  private _searchService = inject(SearchService);
+
+  constructor(private _searchService: SearchService) {}
 
   public loadMore(): void {
     setTimeout(() => {

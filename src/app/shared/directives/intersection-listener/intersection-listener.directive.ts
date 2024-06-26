@@ -5,24 +5,28 @@ import {
   EventEmitter,
   OnDestroy,
   OnInit,
-  Output,
-  inject
+  Output
 } from '@angular/core';
 
 @Directive({
   selector: '[intersectionListener]'
 })
 export class IntersectionListenerDirective implements OnInit, AfterViewInit, OnDestroy {
-  private readonly _el = inject(ElementRef);
-  private _observer!: IntersectionObserver;
   @Output() intersectionListener = new EventEmitter<boolean>();
+  private _observer!: IntersectionObserver;
+
+  constructor(private _elementRef: ElementRef) {}
 
   ngOnInit(): void {
     this.onIntersection();
   }
 
   ngAfterViewInit(): void {
-    this._observer.observe(this._el.nativeElement);
+    this._observer.observe(this._elementRef.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    if (this._observer) this._observer.disconnect();
   }
 
   private onIntersection(): void {
@@ -39,16 +43,13 @@ export class IntersectionListenerDirective implements OnInit, AfterViewInit, OnD
 
   private checkForIntersection(entries: IntersectionObserverEntry[]): void {
     entries.forEach(entry => {
-      const isIntersecting = entry.isIntersecting && entry.target === this._el.nativeElement;
+      const isIntersecting =
+        entry.isIntersecting && entry.target === this._elementRef.nativeElement;
 
       if (isIntersecting) {
         this.intersectionListener.emit(true);
         this._observer.unobserve(entry.target);
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    if (this._observer) this._observer.disconnect();
   }
 }

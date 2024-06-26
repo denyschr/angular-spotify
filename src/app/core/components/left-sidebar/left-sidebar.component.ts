@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AuthService } from '@core/services';
 
 @Component({
@@ -8,7 +8,7 @@ import { AuthService } from '@core/services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LeftSidebarComponent {
-  private readonly _authService = inject(AuthService);
+  constructor(private _authService: AuthService) {}
   public onLogout(): void {
     this._authService.logout();
   }

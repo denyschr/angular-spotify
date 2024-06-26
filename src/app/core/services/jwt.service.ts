@@ -27,4 +27,8 @@ export class JwtService {
   public destroyRefreshToken(): void {
     window.localStorage.removeItem('refresh_token');
   }
+
+  public clearStorage(): void {
+    window.localStorage.clear();
+  }
 }

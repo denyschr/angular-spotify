@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpotifyConfig } from '@environment';
 import { JwtService } from './jwt.service';
-import { ApiToken } from '@core/models';
+import { ApiToken } from '@models';
 import { generateRandomString } from '@utils';
 import shajs from 'sha.js';
 import { Observable } from 'rxjs';
@@ -13,25 +13,26 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private readonly _clientId: string = import.meta.env['NG_APP_CLIENT_ID'];
-  private readonly _router = inject(Router);
-  private readonly _http = inject(HttpClient);
-  private readonly _jwtService = inject(JwtService);
   private readonly _headers = new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded'
   });
+  private readonly _scope = SpotifyConfig.scopes.join(' ');
+
+  constructor(
+    private _router: Router,
+    private _http: HttpClient,
+    private _jwtService: JwtService
+  ) {}
 
   public getAuthUrl(): string {
     const codeVerifier = generateRandomString(64);
     const hashed = shajs('sha256').update(codeVerifier).digest().toString('base64');
     const codeChallenge = hashed.replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
-    const scope = SpotifyConfig.scopes.join(' ');
-
     window.localStorage.setItem('code_verifier', codeVerifier);
-
     const params = {
       response_type: 'code',
       client_id: this._clientId,
-      scope,
+      scope: this._scope,
       code_challenge_method: 'S256',
       code_challenge: codeChallenge,
       redirect_uri: SpotifyConfig.redirectUrl
@@ -63,7 +64,7 @@ export class AuthService {
   }
 
   public logout(): void {
-    window.localStorage.clear();
+    this._jwtService.clearStorage();
     this._router.navigate(['/login']);
   }
 }

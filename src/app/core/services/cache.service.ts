@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CACHE_EXPIRATION } from '@core/constants';
-import { CacheEntry } from '@core/models';
+import { CACHE_EXPIRATION } from '@constants';
+import { CacheEntry } from '@models';
 
 @Injectable({
   providedIn: 'root'

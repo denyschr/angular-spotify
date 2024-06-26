@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService, JwtService } from '@services';
@@ -9,13 +9,13 @@ import { AuthService, JwtService } from '@services';
   styleUrl: './login.page.scss'
 })
 export class LoginPage {
-  private readonly _router = inject(Router);
-  private readonly _activatedRoute = inject(ActivatedRoute);
-  private readonly _authService = inject(AuthService);
-  private readonly _jwtService = inject(JwtService);
-
-  constructor() {
-    this._activatedRoute.queryParams.pipe(takeUntilDestroyed()).subscribe(params => {
+  constructor(
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _authService: AuthService,
+    private _jwtService: JwtService
+  ) {
+    this._route.queryParams.pipe(takeUntilDestroyed()).subscribe(params => {
       const code: string | undefined = params['code'];
       if (code) {
         this._authService

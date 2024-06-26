@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { UserService } from '@services';
 
 @Component({
@@ -8,5 +8,7 @@ import { UserService } from '@services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent {
-  public readonly user$ = inject(UserService).getUserProfile();
+  public readonly user$ = this._userService.getUserProfile();
+
+  constructor(private _userService: UserService) {}
 }

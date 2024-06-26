@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MAX_FETCH_CONTENT } from '@constants';
 import { SpotifyConfig } from '@environment';
 import {
@@ -16,7 +16,7 @@ import { Observable, map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private readonly _http = inject(HttpClient);
+  constructor(private _http: HttpClient) {}
 
   public getUserProfile(): Observable<UserProfile> {
     return this._http.get<UserProfile>(`${SpotifyConfig.apiUrl}/me`);

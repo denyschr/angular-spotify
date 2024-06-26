@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'sp-top-bar',
@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TopBarComponent {
-  private readonly _location = inject(Location);
+  constructor(private _location: Location) {}
 
   public goBack(): void {
     this._location.back();

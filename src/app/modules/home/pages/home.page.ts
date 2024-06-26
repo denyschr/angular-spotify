@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { UserService } from '@services';
 
@@ -9,13 +9,14 @@ import { UserService } from '@services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePage {
-  private readonly _userService = inject(UserService);
-  private readonly _recentPlayedTracks = this._userService.getRecentPlayedTracks();
+  private readonly _recentPlayedTracks$ = this._userService.getRecentPlayedTracks();
   private readonly _userTopArtists$ = this._userService.getUserTopArtists();
   private readonly _userTopTracks$ = this._userService.getUserTopTracks();
   public readonly vm$ = forkJoin({
-    recentPlayed: this._recentPlayedTracks,
+    recentPlayed: this._recentPlayedTracks$,
     topArtists: this._userTopArtists$,
     topTracks: this._userTopTracks$
   });
+
+  constructor(private _userService: UserService) {}
 }

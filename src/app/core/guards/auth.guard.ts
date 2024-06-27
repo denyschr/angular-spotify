@@ -1,14 +1,18 @@
 import { inject } from '@angular/core';
-import { CanMatchFn } from '@angular/router';
+import { CanMatchFn, Router } from '@angular/router';
 import { JwtService } from '../services/jwt.service';
-import { AuthService } from '@core/services';
 
-export const authGuard: CanMatchFn = () => {
-  const authService = inject(AuthService);
-  const accessToken = inject(JwtService).getAccessToken();
-  if (!accessToken) {
-    authService.logout();
-    return false;
-  }
-  return true;
-};
+export function authGuard(options: {
+  readonly loggedIn: boolean;
+  readonly otherwise: string;
+}): CanMatchFn {
+  const { loggedIn, otherwise } = options;
+  return () => {
+    const router = inject(Router);
+    const hasAccessToken = !!inject(JwtService).getAccessToken();
+    if (hasAccessToken !== loggedIn) {
+      return router.createUrlTree([otherwise]);
+    }
+    return true;
+  };
+}

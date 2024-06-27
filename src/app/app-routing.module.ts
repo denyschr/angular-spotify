@@ -11,12 +11,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./core/auth').then(m => m.LoginModule)
+    loadChildren: () => import('./core/auth').then(m => m.LoginModule),
+    canMatch: [authGuard({ loggedIn: false, otherwise: '' })]
   },
   {
     path: '',
     component: StandardPageLayoutComponent,
-    canMatch: [authGuard],
+    canMatch: [authGuard({ loggedIn: true, otherwise: '/login' })],
     children: [
       {
         path: 'home',

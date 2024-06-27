@@ -18,9 +18,5 @@
 		&--prev {
 			transform: rotate(180deg);
 		}
-		&._active {
-			cursor: not-allowed;
-			opacity: 0.6;
-		}
 	}
 }

@@ -10,7 +10,7 @@ import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, CoreModule],
   providers: [
-    provideHttpClient(withInterceptors([tokenInterceptor, cacheInterceptor, errorInterceptor]))
+    provideHttpClient(withInterceptors([tokenInterceptor, errorInterceptor, cacheInterceptor]))
   ],
   bootstrap: [AppComponent]
 })

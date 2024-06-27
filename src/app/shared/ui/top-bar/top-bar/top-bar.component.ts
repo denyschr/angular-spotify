@@ -1,5 +1,5 @@
-import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NavigationService } from '@services';
 
 @Component({
   selector: 'sp-top-bar',
@@ -8,13 +8,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TopBarComponent {
-  constructor(private _location: Location) {}
+  constructor(private _navigation: NavigationService) {}
 
   public goBack(): void {
-    this._location.back();
+    this._navigation.back();
   }
 
   public goForward(): void {
-    this._location.forward();
+    this._navigation.forward();
   }
 }

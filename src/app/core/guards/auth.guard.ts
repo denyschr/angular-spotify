@@ -3,14 +3,14 @@ import { CanMatchFn, Router } from '@angular/router';
 import { JwtService } from '../services/jwt.service';
 
 export function authGuard(options: {
-  readonly loggedIn: boolean;
+  readonly isAuthenticated: boolean;
   readonly otherwise: string;
 }): CanMatchFn {
-  const { loggedIn, otherwise } = options;
+  const { isAuthenticated, otherwise } = options;
   return () => {
     const router = inject(Router);
     const hasAccessToken = !!inject(JwtService).getAccessToken();
-    if (hasAccessToken !== loggedIn) {
+    if (hasAccessToken !== isAuthenticated) {
       return router.createUrlTree([otherwise]);
     }
     return true;

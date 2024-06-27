@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ArtistsResponse } from '@models';
+import { Artist } from '@models';
 import { SpotifyConfig } from '@environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class ArtistService {
   constructor(private _http: HttpClient) {}
 
-  public getArtist(id: string): Observable<ArtistsResponse> {
-    return this._http.get<ArtistsResponse>(`${SpotifyConfig.apiUrl}/artists/${id}`);
+  public getArtist(id: string): Observable<Artist> {
+    return this._http.get<Artist>(`${SpotifyConfig.apiUrl}/artists/${id}`);
   }
 }

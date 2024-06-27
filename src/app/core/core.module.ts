@@ -2,7 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StandardPageLayoutComponent, LeftSidebarComponent } from '@components';
 import { RouterModule } from '@angular/router';
-import { AlbumModule, ArtistModule, HomeModule, NotFoundModule, SearchModule } from '@modules';
+import {
+  AlbumModule,
+  ArtistModule,
+  HomeModule,
+  LibraryModule,
+  NotFoundModule,
+  PlaylistModule,
+  SearchModule,
+  TrackModule
+} from '@modules';
 import { OpacityScrollModule } from '@directives';
 
 @NgModule({
@@ -10,12 +19,15 @@ import { OpacityScrollModule } from '@directives';
   imports: [
     CommonModule,
     RouterModule,
+    HomeModule,
+    SearchModule,
+    LibraryModule,
     AlbumModule,
     ArtistModule,
-    HomeModule,
-    NotFoundModule,
-    SearchModule,
-    OpacityScrollModule
+    PlaylistModule,
+    TrackModule,
+    OpacityScrollModule,
+    NotFoundModule
   ]
 })
 export class CoreModule {}

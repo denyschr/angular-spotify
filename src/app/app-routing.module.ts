@@ -12,12 +12,12 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./core/auth').then(m => m.LoginModule),
-    canMatch: [authGuard({ loggedIn: false, otherwise: '' })]
+    canMatch: [authGuard({ isAuthenticated: false, otherwise: '' })]
   },
   {
     path: '',
     component: StandardPageLayoutComponent,
-    canMatch: [authGuard({ loggedIn: true, otherwise: '/login' })],
+    canMatch: [authGuard({ isAuthenticated: true, otherwise: '/login' })],
     children: [
       {
         path: 'home',
@@ -32,12 +32,20 @@ const routes: Routes = [
         loadChildren: () => import('./modules/library/library').then(m => m.LibraryModule)
       },
       {
+        path: 'album/:id',
+        loadChildren: () => import('./modules/album/album').then(m => m.AlbumModule)
+      },
+      {
         path: 'artist/:id',
         loadChildren: () => import('./modules/artist/artist').then(m => m.ArtistModule)
       },
       {
-        path: 'album/:id',
-        loadChildren: () => import('./modules/album/album').then(m => m.AlbumModule)
+        path: 'playlist/:id',
+        loadChildren: () => import('./modules/playlist/playlist').then(m => m.PlaylistModule)
+      },
+      {
+        path: 'track/:id',
+        loadChildren: () => import('./modules/track/track').then(m => m.TrackModule)
       }
     ]
   },

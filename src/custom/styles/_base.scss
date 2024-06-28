@@ -67,6 +67,10 @@ textarea {
 	border: none;
 }
 
+iframe {
+	border: none;
+}
+
 [class*="_container"] {
 	padding: 0 toRem($containerOffset);
 	max-width: toRem($containerWidth);

@@ -1,6 +1,16 @@
 <sp-top-bar></sp-top-bar>
 <main class="page">
   <div class="page__container">
-    <p>album works!</p>
+    <ng-container *ngIf="album$ | async as album">
+      <sp-media-summary
+        [type]="'Album'"
+        [title]="album.name"
+        [uri]="album.uri"
+        [imageUrl]="album.images[0]?.url"
+        [creator]="album.artists[0]?.name"
+        [releaseDate]="album.release_date"
+        [trackCount]="album.tracks.total"
+      ></sp-media-summary>
+    </ng-container>
   </div>
 </main>

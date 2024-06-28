@@ -1,0 +1,50 @@
+<section class="media-summary">
+  <div class="media-summary__top flex-row-end mb-5">
+    <div class="media-summary__img relative">
+      <img [src]="imageUrl | notFoundImage" [alt]="title" />
+    </div>
+    <div class="media-summary__about flex-col">
+      <span class="media-summary__label text-body-small">{{ type | uppercase }}</span>
+      <h1 class="media-summary__title truncate truncate-one-line text-title-large break-words">
+        {{ title }}
+      </h1>
+      <p
+        class="media-summary__description truncate truncate-two-line break-words"
+        *ngIf="description"
+      >
+        {{ description }}
+      </p>
+      <div class="media-summary__details flex-row-center flex-wrap">
+        <span class="media-summary__creator text-body-small-bold" *ngIf="creator">{{
+          creator
+        }}</span>
+        <time
+          class="media-summary__date text-body-small"
+          *ngIf="releaseDate"
+          [attr.datetime]="releaseDate | date: 'yyyy'"
+        >
+          {{ releaseDate | date: 'yyyy' }}
+        </time>
+        <span class="media-summary__like text-body-small" *ngIf="likesCount">{{
+          likesCount | i18nPlural: likeMapping
+        }}</span>
+        <span class="media-summary__track text-body-small" *ngIf="trackCount">{{
+          trackCount | i18nPlural: trackMapping
+        }}</span>
+        <span class="media-summary__follower text-body-small" *ngIf="followerCount">{{
+          followerCount | i18nPlural: followerMapping
+        }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="media-summary__body">
+    <iframe
+      class="media-summary__tracks"
+      [src]="uri | uri"
+      height="600"
+      frameborsrcder="0"
+      allowtransparency="true"
+      allow="encrypted-media"
+    ></iframe>
+  </div>
+</section>

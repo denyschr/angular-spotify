@@ -15,7 +15,7 @@ import {
 } from '@models';
 import { MAX_FETCH_CONTENT } from '@constants';
 import { SpotifyConfig } from '@environment';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, distinctUntilChanged, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { objectToValues } from '@utils';
@@ -28,8 +28,10 @@ export class SearchService {
     MediaSectionType.all
   );
   private readonly _paginationSubject = new BehaviorSubject<number>(0);
-  public readonly searchTerm$ = this._searchTermSubject.asObservable();
-  public readonly sectionTypes$ = this._sectionTypesSubject.asObservable();
+  public readonly searchTerm$ = this._searchTermSubject.asObservable().pipe(distinctUntilChanged());
+  public readonly sectionTypes$ = this._sectionTypesSubject
+    .asObservable()
+    .pipe(distinctUntilChanged());
   public readonly selectedSectionType$ = this._selectedSectionTypeSubject.asObservable();
   public readonly pagination$ = this._paginationSubject.asObservable();
 

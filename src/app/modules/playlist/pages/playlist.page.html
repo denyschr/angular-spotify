@@ -1,6 +1,17 @@
 <sp-top-bar></sp-top-bar>
 <main class="page">
   <div class="page__container">
-    <p>playlist works!</p>
+    <ng-container *ngIf="playlist$ | async as playlist">
+      <sp-media-summary
+        [type]="'Playlist'"
+        [title]="playlist.name"
+        [uri]="playlist.uri"
+        [imageUrl]="playlist.images[0]?.url"
+        [description]="playlist.description"
+        [creator]="playlist.owner.display_name"
+        [trackCount]="playlist.tracks.total"
+        [followerCount]="playlist.followers.total"
+      ></sp-media-summary>
+    </ng-container>
   </div>
 </main>

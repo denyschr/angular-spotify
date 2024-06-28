@@ -8,6 +8,7 @@
 	// .media-summary__img
 	&__img {
 		flex: 0 0 toRem(232);
+		aspect-ratio: 232 / 232;
 		overflow: hidden;
 		border-radius: var(--corner-radius-larger);
 		@media (any-hover: hover) {

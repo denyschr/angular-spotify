@@ -1,6 +1,14 @@
 <sp-top-bar></sp-top-bar>
 <main class="page">
   <div class="page__container">
-    <p>artist works!</p>
+    <ng-container *ngIf="artist$ | async as artist">
+      <sp-media-summary
+        [type]="'Artist'"
+        [title]="artist.name"
+        [uri]="artist.uri"
+        [imageUrl]="artist.images[0]?.url"
+        [followerCount]="artist.followers.total"
+      ></sp-media-summary>
+    </ng-container>
   </div>
 </main>

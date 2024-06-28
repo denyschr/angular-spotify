@@ -4,19 +4,19 @@
       <img [src]="imageUrl | notFoundImage" [alt]="title" />
     </div>
     <div class="media-summary__about flex-col">
-      <span class="media-summary__label text-body-small">{{ type | uppercase }}</span>
-      <h1 class="media-summary__title truncate truncate-one-line text-title-large break-words">
+      <span class="media-summary__label text-body-small">{{ type | titlecase }}</span>
+      <h1 class="media-summary__title truncate truncate-one-line text-title-large">
         {{ title }}
       </h1>
-      <p
-        class="media-summary__description truncate truncate-two-line break-words"
-        *ngIf="description"
-      >
+      <p class="media-summary__description truncate truncate-two-line" *ngIf="description">
         {{ description }}
       </p>
       <div class="media-summary__details flex-row-center flex-wrap">
         <span class="media-summary__creator text-body-small-bold" *ngIf="creator">{{
           creator
+        }}</span>
+        <span class="media-summary__album text-body-small" *ngIf="songAlbumTitle">{{
+          songAlbumTitle
         }}</span>
         <time
           class="media-summary__date text-body-small"
@@ -25,9 +25,6 @@
         >
           {{ releaseDate | date: 'yyyy' }}
         </time>
-        <span class="media-summary__like text-body-small" *ngIf="likesCount">{{
-          likesCount | i18nPlural: likeMapping
-        }}</span>
         <span class="media-summary__track text-body-small" *ngIf="trackCount">{{
           trackCount | i18nPlural: trackMapping
         }}</span>
@@ -41,7 +38,7 @@
     <iframe
       class="media-summary__tracks"
       [src]="uri | uri"
-      height="600"
+      height="352"
       frameborsrcder="0"
       allowtransparency="true"
       allow="encrypted-media"

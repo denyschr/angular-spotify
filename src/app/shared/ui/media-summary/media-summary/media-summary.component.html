@@ -4,8 +4,8 @@
       <img [src]="imageUrl | notFoundImage" [alt]="title" />
     </div>
     <div class="media-summary__about flex-col">
-      <span class="media-summary__label text-body-small">{{ type | titlecase }}</span>
-      <h1 class="media-summary__title truncate truncate-one-line text-title-large">
+      <span class="media-summary__label text-body-small-bold">{{ type | titlecase }}</span>
+      <h1 class="media-summary__title truncate truncate-two-line text-title-large">
         {{ title }}
       </h1>
       <p class="media-summary__description truncate truncate-two-line" *ngIf="description">

@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Router } from '@angular/router';
-import { JwtService } from '../services/jwt.service';
+import { JwtService } from '@services';
 
 export function authGuard(options: {
   readonly isAuthenticated: boolean;
@@ -9,8 +9,10 @@ export function authGuard(options: {
   const { isAuthenticated, otherwise } = options;
   return () => {
     const router = inject(Router);
-    const hasAccessToken = !!inject(JwtService).getAccessToken();
+    const jwtService = inject(JwtService);
+    const hasAccessToken = !!jwtService.getAccessToken();
     if (hasAccessToken !== isAuthenticated) {
+      jwtService.clearStorage();
       return router.createUrlTree([otherwise]);
     }
     return true;

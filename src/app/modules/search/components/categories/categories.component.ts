@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CategoriesService } from '@modules/search/services/categories.service';
+import { catchError, ignoreElements, of } from 'rxjs';
 
 @Component({
   selector: 'sp-categories',
@@ -10,6 +11,11 @@ import { CategoriesService } from '@modules/search/services/categories.service';
 })
 export class CategoriesComponent {
   public readonly categories$ = this._categoriesService.getCategories();
+
+  public readonly categoryError$ = this.categories$.pipe(
+    ignoreElements(),
+    catchError(() => of('Could not fetch categories'))
+  );
 
   constructor(private _categoriesService: CategoriesService) {}
 }

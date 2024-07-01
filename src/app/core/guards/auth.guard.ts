@@ -9,10 +9,8 @@ export function authGuard(options: {
   const { isAuthenticated, otherwise } = options;
   return () => {
     const router = inject(Router);
-    const jwtService = inject(JwtService);
-    const hasAccessToken = !!jwtService.getAccessToken();
+    const hasAccessToken = !!inject(JwtService).getAccessToken();
     if (hasAccessToken !== isAuthenticated) {
-      jwtService.clearStorage();
       return router.createUrlTree([otherwise]);
     }
     return true;

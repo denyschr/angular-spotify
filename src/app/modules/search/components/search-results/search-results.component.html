@@ -1,28 +1,36 @@
-<ng-container *ngIf="allResults$ | async as allResults; else loading">
-  <ng-container *ngIf="allResults.total; else noResults">
-    <sp-search-nav-bar></sp-search-nav-bar>
-    <sp-search-all-results
-      class="grid-container"
-      *ngIf="selectedSectionType === sectionTypes.all; else filteredResults"
-      [results]="allResults.results"
-    ></sp-search-all-results>
+<ng-container
+  *ngIf="{
+    allResults: allResults$ | async,
+    filteredResults: filteredResults$ | async,
+    resultError: resultError$ | async
+  } as vm"
+>
+  <ng-container *ngIf="!vm.resultError && vm.allResults as allResults; else loading">
+    <ng-container *ngIf="allResults.total; else noResults">
+      <sp-search-nav-bar></sp-search-nav-bar>
+      <sp-search-all-results
+        class="grid-container"
+        *ngIf="selectedSectionType === sectionTypes.all; else filteredResults"
+        [results]="allResults.results"
+      ></sp-search-all-results>
+    </ng-container>
   </ng-container>
+
+  <ng-template #filteredResults>
+    <ng-container *ngIf="vm.filteredResults as filteredResults">
+      <sp-search-filtered-results
+        class="col-span-full"
+        *ngIf="filteredResults.length; else noResults"
+        [results]="filteredResults"
+      ></sp-search-filtered-results>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #loading>
+    <sp-loading-spinner *ngIf="!vm.resultError; else noResults"></sp-loading-spinner>
+  </ng-template>
+
+  <ng-template #noResults>
+    <sp-no-results [query]="searchTerm"></sp-no-results>
+  </ng-template>
 </ng-container>
-
-<ng-template #filteredResults>
-  <ng-container *ngIf="filteredResults$ | async as filteredResults">
-    <sp-search-filtered-results
-      class="col-span-full"
-      *ngIf="filteredResults.length; else noResults"
-      [results]="filteredResults"
-    ></sp-search-filtered-results>
-  </ng-container>
-</ng-template>
-
-<ng-template #noResults>
-  <sp-no-results [query]="searchTerm"></sp-no-results>
-</ng-template>
-
-<ng-template #loading>
-  <sp-loading-spinner></sp-loading-spinner>
-</ng-template>

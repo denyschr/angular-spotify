@@ -2,7 +2,17 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MediaItem, MediaSectionType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
-import { Observable, concatMap, map, of, scan, switchMap, tap } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  concatMap,
+  ignoreElements,
+  map,
+  of,
+  scan,
+  switchMap,
+  tap
+} from 'rxjs';
 
 @Component({
   selector: 'sp-search-results',
@@ -55,6 +65,11 @@ export class SearchResultsComponent {
         scan((prevResults, currResults) => [...prevResults, ...currResults])
       );
     })
+  );
+
+  public readonly resultError$ = this.allResults$.pipe(
+    ignoreElements(),
+    catchError(() => of('Could not fetch search results'))
   );
 
   constructor(

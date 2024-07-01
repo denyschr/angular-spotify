@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MediaItem, MediaSectionType } from '@models';
 import { SearchService } from '@modules/search/services/search.service';
 import {
@@ -62,7 +62,12 @@ export class SearchResultsComponent {
               return of([]);
           }
         }),
-        scan((prevResults, currResults) => [...prevResults, ...currResults])
+        scan((prevResults, currResults) => [...prevResults, ...currResults]),
+        tap(res => {
+          if (!res.length) {
+            this._router.navigate(['/search', term]);
+          }
+        })
       );
     })
   );
@@ -73,6 +78,7 @@ export class SearchResultsComponent {
   );
 
   constructor(
+    private _router: Router,
     private _route: ActivatedRoute,
     private _searchService: SearchService
   ) {}

@@ -17,10 +17,10 @@
   </ng-container>
 
   <ng-template #filteredResults>
-    <ng-container *ngIf="vm.filteredResults as filteredResults">
+    <ng-container *ngIf="vm.filteredResults as filteredResults; else loading">
       <sp-search-filtered-results
         class="col-span-full"
-        *ngIf="filteredResults.length; else noResults"
+        *ngIf="filteredResults.length"
         [results]="filteredResults"
       ></sp-search-filtered-results>
     </ng-container>

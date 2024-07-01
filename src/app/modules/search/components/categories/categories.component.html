@@ -13,6 +13,7 @@
       </section>
     </div>
   </ng-container>
+  <span *ngIf="vm.categoryError as error">{{ error }}</span>
 
   <ng-template #loading>
     <sp-loading-spinner *ngIf="!vm.categoryError"></sp-loading-spinner>

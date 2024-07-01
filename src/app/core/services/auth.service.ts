@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { SpotifyConfig } from '@environment';
 import { JwtService } from './jwt.service';
 import { ApiToken } from '@models';
@@ -16,10 +15,8 @@ export class AuthService {
   private readonly _headers = new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded'
   });
-  private readonly _scope = SpotifyConfig.scopes.join(' ');
 
   constructor(
-    private _router: Router,
     private _http: HttpClient,
     private _jwtService: JwtService
   ) {}
@@ -32,13 +29,13 @@ export class AuthService {
     const params = {
       response_type: 'code',
       client_id: this._clientId,
-      scope: this._scope,
+      scope: SpotifyConfig.scopes.join(' '),
       code_challenge_method: 'S256',
       code_challenge: codeChallenge,
       redirect_uri: SpotifyConfig.redirectUrl
     };
     const paramString = new HttpParams({ fromObject: params }).toString();
-    return `${SpotifyConfig.authEndPoint}?` + paramString;
+    return `${SpotifyConfig.authEndPoint}?${paramString}`;
   }
 
   public generateToken(code: string): Observable<ApiToken> {
@@ -53,18 +50,14 @@ export class AuthService {
     return this._http.post<ApiToken>(SpotifyConfig.tokenUrl, body, { headers: this._headers });
   }
 
-  public generateNewToken(): Observable<ApiToken> {
+  public refreshToken(): Observable<ApiToken> {
     const refreshToken = this._jwtService.getRefreshToken();
+    this._jwtService.destroyAccessToken();
     const body = new URLSearchParams({
       grant_type: 'refresh_token',
       refresh_token: refreshToken,
       client_id: this._clientId
     });
     return this._http.post<ApiToken>(SpotifyConfig.tokenUrl, body, { headers: this._headers });
-  }
-
-  public logout(): void {
-    this._jwtService.clearStorage();
-    this._router.navigate(['/login']);
   }
 }

@@ -13,10 +13,16 @@ import {
   UserTopTracks
 } from '@models';
 import { Observable, map } from 'rxjs';
+import { JwtService } from './jwt.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private _http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    private _jwtService: JwtService,
+    private _router: Router
+  ) {}
 
   public getUserProfile(): Observable<UserProfile> {
     return this._http.get<UserProfile>(`${SpotifyConfig.apiUrl}/me`);
@@ -48,5 +54,10 @@ export class UserService {
     return this._http
       .get<UserSavedAlbums>(`${SpotifyConfig.apiUrl}/me/albums`, { params })
       .pipe(map(res => res.items.map(item => item.album)));
+  }
+
+  public logout(): void {
+    this._jwtService.clearStorage();
+    this._router.navigateByUrl('/login');
   }
 }

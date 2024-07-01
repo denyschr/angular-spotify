@@ -4,7 +4,7 @@ import { StandardPageLayoutComponent, LeftSidebarComponent } from '@components';
 import { RouterModule } from '@angular/router';
 import { OpacityScrollModule } from '@directives';
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { tokenInterceptor, errorInterceptor, cacheInterceptor } from './interceptors';
+import { tokenInterceptor, errorInterceptor, cacheInterceptor } from '@interceptors';
 
 @NgModule({
   declarations: [StandardPageLayoutComponent, LeftSidebarComponent],

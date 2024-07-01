@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AuthService } from '@core/services';
+import { UserService } from '@core/services';
 
 @Component({
   selector: 'sf-left-sidebar',
@@ -8,8 +8,8 @@ import { AuthService } from '@core/services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LeftSidebarComponent {
-  constructor(private _authService: AuthService) {}
+  constructor(private _userService: UserService) {}
   public onLogout(): void {
-    this._authService.logout();
+    this._userService.logout();
   }
 }

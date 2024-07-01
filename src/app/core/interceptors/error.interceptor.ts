@@ -9,8 +9,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
       if (err.status === 401) {
-        jwtService.destroyAccessToken();
-        return authService.generateNewToken().pipe(
+        return authService.refreshToken().pipe(
           switchMap(res => {
             jwtService.saveAccessToken(res.access_token);
             jwtService.saveRefreshToken(res.refresh_token);

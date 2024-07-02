@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly _clientId: string = import.meta.env['NG_APP_CLIENT_ID'];
+  private readonly _clientId = SpotifyConfig.clientId;
   private readonly _headers = new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded'
   });

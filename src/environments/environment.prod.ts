@@ -3,6 +3,7 @@ export const environment = {
 };
 
 export const SpotifyConfig = {
+  clientId: 'd49c038f96234ecf946b2bab56d6a127',
   apiUrl: 'https://api.spotify.com/v1',
   tokenUrl: 'https://accounts.spotify.com/api/token',
   redirectUrl: 'https://denyschr.netlify.app/login',

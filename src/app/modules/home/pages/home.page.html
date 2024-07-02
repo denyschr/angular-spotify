@@ -1,7 +1,7 @@
-<sp-top-bar></sp-top-bar>
+<as-top-bar></as-top-bar>
 <main class="page">
   <div class="page__container">
-    <sp-greeting></sp-greeting>
+    <as-greeting></as-greeting>
     <ng-container
       *ngIf="{userData: userData$ | async, userDataError: userDataError$ | async} as vm"
     >
@@ -12,12 +12,12 @@
             <h2 class="section__title text-title-small">Recently played</h2>
             <div class="section__items common-grid">
               <ng-container *ngFor="let item of userData.recentPlayed">
-                <sp-card
+                <as-card
                   [title]="item.name"
                   [description]="item.artists[0].name"
                   [routerUrl]="'/track/' + item.id"
                   [imageUrl]="item.album.images[0]?.url"
-                ></sp-card>
+                ></as-card>
               </ng-container>
             </div>
           </section>
@@ -26,12 +26,12 @@
             <h2 class="section__title text-title-small">Your favorite tracks</h2>
             <div class="section__items common-grid">
               <ng-container *ngFor="let item of userData.topTracks; trackById">
-                <sp-card
+                <as-card
                   [title]="item.name"
                   [description]="item.artists[0].name"
                   [routerUrl]="'/track/' + item.id"
                   [imageUrl]="item.album.images[0]?.url"
-                ></sp-card>
+                ></as-card>
               </ng-container>
             </div>
           </section>
@@ -40,13 +40,13 @@
             <h2 class="section__title text-title-small">Your favorite artists</h2>
             <div class="section__items common-grid">
               <ng-container *ngFor="let item of userData.topArtists; trackById">
-                <sp-card
+                <as-card
                   [title]="item.name"
                   [description]="item.type | titlecase"
                   [routerUrl]="'/artist/' + item.id"
                   [imageUrl]="item.images[0]?.url"
                   [roundedImage]="true"
-                ></sp-card>
+                ></as-card>
               </ng-container>
             </div>
           </section>
@@ -55,7 +55,7 @@
       <span *ngIf="vm.userDataError as error">{{ error }}</span>
 
       <ng-template #loading>
-        <sp-loading-spinner *ngIf="!vm.userDataError"></sp-loading-spinner>
+        <as-loading-spinner *ngIf="!vm.userDataError"></as-loading-spinner>
       </ng-template>
     </ng-container>
   </div>

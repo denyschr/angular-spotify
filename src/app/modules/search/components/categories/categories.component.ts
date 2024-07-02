@@ -3,7 +3,7 @@ import { CategoriesService } from '@modules/search/services/categories.service';
 import { catchError, ignoreElements, of } from 'rxjs';
 
 @Component({
-  selector: 'sp-categories',
+  selector: 'as-categories',
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

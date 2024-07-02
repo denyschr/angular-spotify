@@ -4,7 +4,7 @@ import { Artist } from '@models';
 import { Observable, map } from 'rxjs';
 
 @Component({
-  selector: 'sp-artist',
+  selector: 'as-artist',
   templateUrl: './artist.page.html',
   styleUrl: './artist.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

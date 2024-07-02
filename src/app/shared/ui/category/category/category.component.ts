@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Category } from '@models';
 
 @Component({
-  selector: 'sp-category',
+  selector: 'as-category',
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

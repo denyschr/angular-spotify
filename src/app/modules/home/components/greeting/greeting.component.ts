@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { randomEmoji } from '@utils';
 
 @Component({
-  selector: 'sp-greeting',
+  selector: 'as-greeting',
   templateUrl: './greeting.component.html',
   styleUrl: './greeting.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

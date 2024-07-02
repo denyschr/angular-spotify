@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavigationService } from '@services';
 
 @Component({
-  selector: 'sp-top-bar',
+  selector: 'as-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

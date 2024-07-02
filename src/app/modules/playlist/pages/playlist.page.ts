@@ -4,7 +4,7 @@ import { Playlist } from '@core/models';
 import { Observable, map } from 'rxjs';
 
 @Component({
-  selector: 'sp-playlist',
+  selector: 'as-playlist',
   templateUrl: './playlist.page.html',
   styleUrl: './playlist.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SearchService } from '../services/search.service';
 
 @Component({
-  selector: 'sp-search',
+  selector: 'as-search',
   templateUrl: './search.page.html',
   styleUrl: './search.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

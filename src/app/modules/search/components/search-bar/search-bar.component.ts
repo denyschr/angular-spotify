@@ -14,7 +14,7 @@ import { MediaSectionType } from '@models';
 import { onDestroy } from '@utils';
 
 @Component({
-  selector: 'sp-search-bar',
+  selector: 'as-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

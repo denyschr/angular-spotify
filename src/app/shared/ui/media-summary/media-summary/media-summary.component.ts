@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'sp-media-summary',
+  selector: 'as-media-summary',
   templateUrl: './media-summary.component.html',
   styleUrl: './media-summary.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

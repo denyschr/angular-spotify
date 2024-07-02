@@ -7,30 +7,30 @@
 >
   <ng-container *ngIf="!vm.resultError && vm.allResults as allResults; else loading">
     <ng-container *ngIf="allResults.total; else noResults">
-      <sp-search-nav-bar></sp-search-nav-bar>
-      <sp-search-all-results
+      <as-search-nav-bar></as-search-nav-bar>
+      <as-search-all-results
         class="grid-container"
         *ngIf="selectedSectionType === sectionTypes.all; else filteredResults"
         [results]="allResults.results"
-      ></sp-search-all-results>
+      ></as-search-all-results>
     </ng-container>
   </ng-container>
 
   <ng-template #filteredResults>
     <ng-container *ngIf="vm.filteredResults as filteredResults; else loading">
-      <sp-search-filtered-results
+      <as-search-filtered-results
         class="col-span-full"
         *ngIf="filteredResults.length"
         [results]="filteredResults"
-      ></sp-search-filtered-results>
+      ></as-search-filtered-results>
     </ng-container>
   </ng-template>
 
   <ng-template #loading>
-    <sp-loading-spinner *ngIf="!vm.resultError; else noResults"></sp-loading-spinner>
+    <as-loading-spinner *ngIf="!vm.resultError; else noResults"></as-loading-spinner>
   </ng-template>
 
   <ng-template #noResults>
-    <sp-no-results [query]="searchTerm"></sp-no-results>
+    <as-no-results [query]="searchTerm"></as-no-results>
   </ng-template>
 </ng-container>

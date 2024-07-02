@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService, JwtService } from '@services';
 
 @Component({
-  selector: 'sf-login',
+  selector: 'as-login',
   templateUrl: './login.page.html',
   styleUrl: './login.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

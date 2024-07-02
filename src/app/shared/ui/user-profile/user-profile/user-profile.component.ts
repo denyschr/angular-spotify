@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { UserService } from '@services';
 
 @Component({
-  selector: 'sp-user-profile',
+  selector: 'as-user-profile-picture',
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

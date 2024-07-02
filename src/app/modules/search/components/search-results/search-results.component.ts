@@ -15,7 +15,7 @@ import {
 } from 'rxjs';
 
 @Component({
-  selector: 'sp-search-results',
+  selector: 'as-search-results',
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

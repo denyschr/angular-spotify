@@ -4,7 +4,7 @@ import { Album } from '@models';
 import { Observable, map } from 'rxjs';
 
 @Component({
-  selector: 'sp-album',
+  selector: 'as-album',
   templateUrl: './album.page.html',
   styleUrl: './album.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

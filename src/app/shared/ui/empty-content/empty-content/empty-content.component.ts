@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'sp-empty-content',
+  selector: 'as-empty-content',
   templateUrl: './empty-content.component.html',
   styleUrl: './empty-content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

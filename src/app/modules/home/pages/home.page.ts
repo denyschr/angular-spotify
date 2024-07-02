@@ -3,7 +3,7 @@ import { catchError, forkJoin, ignoreElements, of } from 'rxjs';
 import { UserService } from '@services';
 
 @Component({
-  selector: 'sp-home',
+  selector: 'as-home',
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

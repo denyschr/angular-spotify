@@ -1,8 +1,8 @@
-<sp-top-bar></sp-top-bar>
+<as-top-bar></as-top-bar>
 <main class="page">
   <div class="page__container">
     <ng-container *ngIf="album$ | async as album">
-      <sp-media-summary
+      <as-media-summary
         [type]="'Album'"
         [title]="album.name"
         [uri]="album.uri"
@@ -10,7 +10,7 @@
         [creator]="album.artists[0]?.name"
         [releaseDate]="album.release_date"
         [trackCount]="album.tracks.total"
-      ></sp-media-summary>
+      ></as-media-summary>
     </ng-container>
   </div>
 </main>

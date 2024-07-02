@@ -4,7 +4,7 @@ import { Track } from '@models';
 import { Observable, map } from 'rxjs';
 
 @Component({
-  selector: 'sp-track',
+  selector: 'as-track',
   templateUrl: './track.page.html',
   styleUrl: './track.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'sp-no-results',
+  selector: 'as-no-results',
   templateUrl: './no-results.component.html',
   styleUrl: './no-results.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

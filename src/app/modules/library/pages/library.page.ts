@@ -3,7 +3,7 @@ import { UserService } from '@services';
 import { ignoreElements, catchError, of } from 'rxjs';
 
 @Component({
-  selector: 'sp-library',
+  selector: 'as-library',
   templateUrl: './library.page.html',
   styleUrl: './library.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

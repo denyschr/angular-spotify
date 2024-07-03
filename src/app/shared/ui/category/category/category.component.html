@@ -1,0 +1,13 @@
+<article class="category">
+  <a href="#" class="category__content category__content-ibg">
+    <img
+      class="category__img"
+      *ngIf="category.icons[0] && category.icons[0]?.url"
+      [src]="category.icons[0].url"
+      alt
+    />
+    <span class="category__title text-center break-words" [title]="category.name">
+      {{ category.name }}
+    </span>
+  </a>
+</article>

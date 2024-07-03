@@ -1,0 +1,82 @@
+<div class="common-grid">
+  <ng-container *ngFor="let result of results; let i = index; trackById">
+    <!-- Albums -->
+    <ng-container *ngIf="result.type === mediaTypes.album">
+      <as-card
+        *ngIf="i + 1 === results.length"
+        [title]="result.name"
+        [description]="result.artists[0].name"
+        [routerUrl]="'/album/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+        (intersectionListener)="loadMore()"
+        #lastItem
+      ></as-card>
+      <as-card
+        *ngIf="i + 1 !== results.length"
+        [title]="result.name"
+        [description]="result.artists[0].name"
+        [routerUrl]="'/album/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+      ></as-card>
+    </ng-container>
+    <!-- Artists -->
+    <ng-container *ngIf="result.type === mediaTypes.artist">
+      <as-card
+        *ngIf="i + 1 === results.length"
+        [title]="result.name"
+        [description]="result.type | titlecase"
+        [routerUrl]="'/artist/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+        [roundedImage]="true"
+        (intersectionListener)="loadMore()"
+        #lastItem
+      ></as-card>
+      <as-card
+        *ngIf="i + 1 !== results.length"
+        [title]="result.name"
+        [description]="result.type | titlecase"
+        [routerUrl]="'/artist/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+        [roundedImage]="true"
+      ></as-card>
+    </ng-container>
+    <!-- Tracks -->
+    <ng-container *ngIf="result.type === mediaTypes.track">
+      <as-card
+        *ngIf="i + 1 === results.length"
+        [title]="result.name"
+        [description]="result.artists[0].name"
+        [routerUrl]="'/track/' + result.id"
+        [imageUrl]="result.album.images[0]?.url"
+        (intersectionListener)="loadMore()"
+        #lastItem
+      ></as-card>
+      <as-card
+        *ngIf="i + 1 !== results.length"
+        [title]="result.name"
+        [description]="result.artists[0].name"
+        [routerUrl]="'/track/' + result.id"
+        [imageUrl]="result.album.images[0]?.url"
+      ></as-card>
+    </ng-container>
+    <!-- Playlists -->
+    <ng-container *ngIf="result.type === mediaTypes.playlist">
+      <as-card
+        *ngIf="i + 1 === results.length"
+        [title]="result.name"
+        [description]="result.type | titlecase"
+        [routerUrl]="'/playlist/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+        (intersectionListener)="loadMore()"
+        #lastItem
+      ></as-card>
+      <as-card
+        *ngIf="i + 1 !== results.length"
+        [title]="result.name"
+        [description]="result.type | titlecase"
+        [routerUrl]="'/playlist/' + result.id"
+        [imageUrl]="result.images[0]?.url"
+      ></as-card>
+    </ng-container>
+  </ng-container>
+</div>

@@ -1,20 +1,14 @@
-import { Image } from '../models';
-
-export interface Categories {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
-  items: Category[];
-}
+import { Image, MediaResponse } from '.';
 
 export interface Category {
   href: string;
   icons: Image[];
   id: string;
   name: string;
+}
+
+export interface Categories extends MediaResponse {
+  items: Category[];
 }
 
 export interface CategoriesResponse {

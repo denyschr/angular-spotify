@@ -1,0 +1,35 @@
+<as-top-bar></as-top-bar>
+<main class="page">
+  <div class="page__container">
+    <ng-container *ngIf="{albums: albums$ | async, albumError: albumError$ | async} as vm">
+      <ng-container *ngIf="!vm.albumError && vm.albums as albums; else loading">
+        <div class="grid-container">
+          <div class="common-grid col-span-full" *ngIf="albums.length; else emptyContent">
+            <ng-container *ngFor="let item of albums; trackById">
+              <as-card
+                [title]="item.name"
+                [description]="item.artists[0].name"
+                [routerUrl]="'/album/' + item.id"
+                [imageUrl]="item.images[0]?.url"
+              ></as-card>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+      <span *ngIf="vm.albumError as error">{{ error }}</span>
+
+      <ng-template #emptyContent>
+        <as-empty-content
+          [title]="'Albums you save will appear here'"
+          [description]="'Save albums by tapping the add icon'"
+          [routerUrl]="'/search'"
+          [buttonText]="'Find albums'"
+        ></as-empty-content>
+      </ng-template>
+
+      <ng-template #loading>
+        <as-loading-spinner *ngIf="!vm.albumError"></as-loading-spinner>
+      </ng-template>
+    </ng-container>
+  </div>
+</main>

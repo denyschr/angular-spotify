@@ -1,35 +1,66 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { StandardPageLayoutComponent } from '@components';
+import { authGuard } from '@guards';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./core/pages/home/home.module').then((m) => m.HomeModule)
+    redirectTo: '/home',
+    pathMatch: 'full'
   },
   {
-    path: 'search',
-    loadChildren: () => import('./core/pages/search/search.module').then((m) => m.SearchModule)
+    path: 'login',
+    loadChildren: () => import('./core/auth').then(m => m.LoginModule),
+    canMatch: [authGuard({ isAuthenticated: false, otherwise: '' })]
   },
   {
-    path: 'artist/:id',
-    loadChildren: () => import('./core/pages/artist/artist.module').then((m) => m.ArtistModule)
-  },
-  {
-    path: 'album/:id',
-    loadChildren: () => import('./core/pages/album/album.module').then((m) => m.AlbumModule)
-  },
-  {
-    path: 'pageNotFound',
-    loadChildren: () => import('./core/pages/page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule)
+    path: '',
+    component: StandardPageLayoutComponent,
+    canMatch: [authGuard({ isAuthenticated: true, otherwise: '/login' })],
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./modules/home/home').then(m => m.HomeModule)
+      },
+      {
+        path: 'search',
+        loadChildren: () => import('./modules/search/search').then(m => m.SearchModule)
+      },
+      {
+        path: 'library',
+        loadChildren: () => import('./modules/library/library').then(m => m.LibraryModule)
+      },
+      {
+        path: 'album/:id',
+        loadChildren: () => import('./modules/album/album').then(m => m.AlbumModule)
+      },
+      {
+        path: 'artist/:id',
+        loadChildren: () => import('./modules/artist/artist').then(m => m.ArtistModule)
+      },
+      {
+        path: 'playlist/:id',
+        loadChildren: () => import('./modules/playlist/playlist').then(m => m.PlaylistModule)
+      },
+      {
+        path: 'track/:id',
+        loadChildren: () => import('./modules/track/track').then(m => m.TrackModule)
+      }
+    ]
   },
   {
     path: '**',
-    redirectTo: 'pageNotFound'
+    redirectTo: 'not-found'
+  },
+  {
+    path: 'not-found',
+    loadChildren: () => import('./modules/not-found/not-found').then(m => m.NotFoundModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

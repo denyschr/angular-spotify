@@ -1,0 +1,15 @@
+@import "mixins";
+@import "vars";
+
+.search-nav {
+	top: var(--top-bar-height);
+	z-index: 50;
+	margin: toRem(-8) toRem(-$containerOffset) 0;
+	padding: toRem(8) toRem($containerOffset) toRem(14);
+	// .search-nav__list
+	&__list {
+		gap: toRem(12);
+		padding-bottom: toRem(14);
+		overflow-x: auto;
+	}
+}

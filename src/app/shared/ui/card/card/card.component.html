@@ -1,0 +1,17 @@
+<article class="card relative">
+  <a [routerLink]="routerUrl" class="card__content">
+    <div class="card__top">
+      <div class="card__img card__img-ibg" [ngClass]="roundedImage ? '_rounded' : ''">
+        <img [src]="imageUrl | notFoundImage" alt />
+      </div>
+    </div>
+    <div class="card__body flex-col-start">
+      <span class="card__title truncate truncate-one-line text-body-medium" [title]="title">
+        {{ title }}
+      </span>
+      <div class="card__description truncate truncate-one-line text-body-small">
+        {{ description }}
+      </div>
+    </div>
+  </a>
+</article>

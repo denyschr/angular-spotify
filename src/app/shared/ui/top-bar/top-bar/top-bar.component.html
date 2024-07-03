@@ -1,0 +1,25 @@
+<header class="top-bar sticky" aria-label="Top bar">
+  <div class="top-bar__lining lining" aria-hidden="true"></div>
+  <div class="top-bar__container flex-sb-center">
+    <div class="top-bar__control nav-controls">
+      <button
+        class="nav-controls__button nav-controls__button--prev _icon-chevron"
+        title="Go back"
+        aria-label="Go back"
+        (click)="goBack()"
+      ></button>
+      <button
+        class="nav-controls__button nav-controls__button--next _icon-chevron"
+        title="Go forward"
+        aria-label="Go forward"
+        (click)="goForward()"
+      ></button>
+    </div>
+    <div class="top-bar__content-wrapper flex-row-center">
+      <ng-content select="as-search-bar"></ng-content>
+    </div>
+    <div class="top-bar__user-block">
+      <as-user-profile-picture></as-user-profile-picture>
+    </div>
+  </div>
+</header>

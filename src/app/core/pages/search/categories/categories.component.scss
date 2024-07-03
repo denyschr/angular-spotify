@@ -1,9 +1,0 @@
-@import "mixins";
-
-.section {
-	&__categories {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(toRem(180), 1fr));
-		gap: toRem(24);
-	}
-}

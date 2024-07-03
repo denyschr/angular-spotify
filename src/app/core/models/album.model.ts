@@ -1,43 +1,60 @@
-import { Image, ItemCollection } from '../models';
+import {
+  MediaResponse,
+  MediaItemContent,
+  MediaType,
+  Restrictions,
+  ExternalUrls,
+  Tracks,
+  Copyright,
+  ExternalIds,
+  ExactDate
+} from '.';
 
-export interface Album {
+export interface Album extends MediaItemContent {
   album_type: AlbumType;
-  artists: ArtistAlbum[];
-  available_markets: string[];
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  images: Image[];
-  name: string;
-  release_date: string;
-  release_date_precision: string;
   total_tracks: number;
-  type: 'album';
-  uri: string;
+  available_markets: string[];
+  release_date: string;
+  release_date_precision: ExactDate;
+  restrictions: Restrictions;
+  type: typeof MediaType.album;
+  artists: AlbumArtist[];
+  tracks: Tracks;
+  copyrights: Copyright;
+  externalIds: ExternalIds;
+  genres: string[];
+  label: string;
+  popularity: number;
 }
 
-export interface ArtistAlbum {
+export const AlbumType = {
+  album: 'album',
+  compilation: 'compilation',
+  single: 'single'
+} as const;
+
+export type AlbumType = (typeof AlbumType)[keyof typeof AlbumType];
+
+export interface AlbumArtist {
   external_urls: ExternalUrls;
   href: string;
   id: string;
   name: string;
-  type: string;
   uri: string;
+  type: string;
 }
 
-export interface ExternalUrls {
-  spotify: string;
+export interface SavedAlbum {
+  added_at: string;
+  album: Album;
 }
 
-export enum AlbumType {
-  Album = 'album',
-  Compilation = 'compilation',
-  Single = 'single',
-  Ep = 'ep'
-}
-
-export interface Albums extends ItemCollection<Album> {
+export interface Albums extends MediaResponse {
   items: Album[];
+}
+
+export interface UserSavedAlbums extends MediaResponse {
+  items: SavedAlbum[];
 }
 
 export interface AlbumsResponse {

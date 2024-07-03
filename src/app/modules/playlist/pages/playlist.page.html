@@ -1,0 +1,17 @@
+<as-top-bar></as-top-bar>
+<main class="page">
+  <div class="page__container">
+    <ng-container *ngIf="playlist$ | async as playlist">
+      <as-media-summary
+        [type]="'Playlist'"
+        [title]="playlist.name"
+        [uri]="playlist.uri"
+        [imageUrl]="playlist.images[0]?.url"
+        [description]="playlist.description"
+        [creator]="playlist.owner.display_name"
+        [trackCount]="playlist.tracks.total"
+        [followerCount]="playlist.followers.total"
+      ></as-media-summary>
+    </ng-container>
+  </div>
+</main>

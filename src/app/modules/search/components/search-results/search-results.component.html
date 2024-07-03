@@ -1,0 +1,36 @@
+<ng-container
+  *ngIf="{
+    allResults: allResults$ | async,
+    filteredResults: filteredResults$ | async,
+    resultError: resultError$ | async
+  } as vm"
+>
+  <ng-container *ngIf="!vm.resultError && vm.allResults as allResults; else loading">
+    <ng-container *ngIf="allResults.total; else noResults">
+      <as-search-nav-bar></as-search-nav-bar>
+      <as-search-all-results
+        class="grid-container"
+        *ngIf="selectedSectionType === sectionTypes.all; else filteredResults"
+        [results]="allResults.results"
+      ></as-search-all-results>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #filteredResults>
+    <ng-container *ngIf="vm.filteredResults as filteredResults; else loading">
+      <as-search-filtered-results
+        class="col-span-full"
+        *ngIf="filteredResults.length"
+        [results]="filteredResults"
+      ></as-search-filtered-results>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #loading>
+    <as-loading-spinner *ngIf="!vm.resultError; else noResults"></as-loading-spinner>
+  </ng-template>
+
+  <ng-template #noResults>
+    <as-no-results [query]="searchTerm"></as-no-results>
+  </ng-template>
+</ng-container>

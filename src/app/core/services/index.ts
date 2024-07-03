@@ -1,7 +1,6 @@
-export { NewReleasesService } from './new-releases.service';
-export { CategoriesService } from './categories.service';
-export { SearchService } from './search.service';
-export { ArtistService } from './artist.service';
-export { artistResolver } from './artist.resolver';
-export { AlbumService } from './album.service';
-export { albumResolver } from './album.resolver';
+export { AuthService } from './auth.service';
+export { JwtService } from './jwt.service';
+export { apiResolver } from './api.resolver';
+export { CacheService } from './cache.service';
+export { UserService } from './user.service';
+export { NavigationService } from './navigation.service';

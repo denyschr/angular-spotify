@@ -1,0 +1,57 @@
+<!-- Artists -->
+<section class="section col-span-full" *ngIf="results?.artists?.items?.length">
+  <h2 class="section__title text-title-small">Artists</h2>
+  <div class="section__items common-grid">
+    <ng-container *ngFor="let item of results!.artists.items; trackById">
+      <as-card
+        [title]="item.name"
+        [description]="item.type | titlecase"
+        [routerUrl]="'/artist/' + item.id"
+        [imageUrl]="item.images[0]?.url"
+        [roundedImage]="true"
+      ></as-card>
+    </ng-container>
+  </div>
+</section>
+<!-- Albums -->
+<section class="section col-span-full" *ngIf="results?.albums?.items?.length">
+  <h2 class="section__title text-title-small">Albums</h2>
+  <div class="section__items common-grid">
+    <ng-container *ngFor="let item of results!.albums.items; trackById">
+      <as-card
+        [title]="item.name"
+        [description]="item.artists[0].name"
+        [routerUrl]="'/album/' + item.id"
+        [imageUrl]="item.images[0]?.url"
+      ></as-card>
+    </ng-container>
+  </div>
+</section>
+<!-- Tracks -->
+<section class="section col-span-full" *ngIf="results?.tracks?.items?.length">
+  <h2 class="section__title text-title-small">Tracks</h2>
+  <div class="section__items common-grid">
+    <ng-container *ngFor="let item of results!.tracks.items; trackById">
+      <as-card
+        [title]="item.name"
+        [description]="item.artists[0].name"
+        [routerUrl]="'/track/' + item.id"
+        [imageUrl]="item.album.images[0]?.url"
+      ></as-card>
+    </ng-container>
+  </div>
+</section>
+<!-- Playlists -->
+<section class="section col-span-full" *ngIf="results?.playlists?.items?.length">
+  <h2 class="section__title text-title-small">Playlists</h2>
+  <div class="section__items common-grid">
+    <ng-container *ngFor="let item of results!.playlists.items; trackById">
+      <as-card
+        [title]="item.name"
+        [description]="item.type | titlecase"
+        [routerUrl]="'/playlist/' + item.id"
+        [imageUrl]="item.images[0]?.url"
+      ></as-card>
+    </ng-container>
+  </div>
+</section>

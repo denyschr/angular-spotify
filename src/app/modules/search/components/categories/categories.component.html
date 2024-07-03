@@ -1,0 +1,21 @@
+<ng-container
+  *ngIf="{ categories: categories$ | async, categoryError: categoryError$ | async } as vm"
+>
+  <ng-container *ngIf="!vm.categoryError && vm.categories as categories; else loading">
+    <div class="grid-container">
+      <section class="section col-span-full">
+        <h2 class="section__title text-title-small">Browse All</h2>
+        <div class="section__items common-grid">
+          <ng-container *ngFor="let item of categories; trackById">
+            <as-category [category]="item"></as-category>
+          </ng-container>
+        </div>
+      </section>
+    </div>
+  </ng-container>
+  <span *ngIf="vm.categoryError as error">{{ error }}</span>
+
+  <ng-template #loading>
+    <as-loading-spinner *ngIf="!vm.categoryError"></as-loading-spinner>
+  </ng-template>
+</ng-container>

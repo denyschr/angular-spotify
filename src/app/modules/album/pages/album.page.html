@@ -1,0 +1,16 @@
+<as-top-bar></as-top-bar>
+<main class="page">
+  <div class="page__container">
+    <ng-container *ngIf="album$ | async as album">
+      <as-media-summary
+        [type]="'Album'"
+        [title]="album.name"
+        [uri]="album.uri"
+        [imageUrl]="album.images[0]?.url"
+        [creator]="album.artists[0]?.name"
+        [releaseDate]="album.release_date"
+        [trackCount]="album.tracks.total"
+      ></as-media-summary>
+    </ng-container>
+  </div>
+</main>

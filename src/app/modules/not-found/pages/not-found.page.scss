@@ -1,0 +1,18 @@
+@import "mixins";
+@import "vars";
+
+.not-found {
+	height: 100%;
+	// .not-found__block
+	&__block {
+		@include adaptiveValue("padding", 32, 16, 0, $containerWidth, 480);
+	}
+	// .not-found__content
+	&__content {
+		@include adaptiveValue("row-gap", 25, 16, 0, $containerWidth, 320);
+	}
+	// .not-found__text
+	&__text {
+		color: var(--text-silver);
+	}
+}

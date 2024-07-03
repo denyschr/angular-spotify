@@ -1,0 +1,41 @@
+@import "mixins";
+
+:host {
+	flex-shrink: 0;
+}
+
+.user-profile {
+	width: toRem(34);
+	height: toRem(34);
+	// transform: scale(1.01);
+	border-radius: 50%;
+	background-color: var(--background-ghost-white);
+	@media (any-hover: hover) {
+		&:hover {
+			transform: scale(1.04);
+		}
+	}
+	// .user-profile__figure
+	&__figure {
+		flex-basis: toRem(26);
+		width: toRem(26);
+		height: toRem(26);
+		margin: 0;
+		border-radius: 50%;
+		overflow: hidden;
+		// .user-profile__figure--unset
+		&--unset {
+			color: var(--text-press);
+			background: var(--background-cyan);
+		}
+	}
+	// .user-profile__img
+	&__img {
+		width: toRem(26);
+		height: toRem(26);
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}

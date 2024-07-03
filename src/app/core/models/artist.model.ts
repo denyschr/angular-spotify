@@ -1,27 +1,20 @@
-import { ExternalUrls, Image, ItemCollection } from '../models';
+import { Followers, MediaResponse, MediaItemContent, MediaType } from '.';
 
-export interface Artist {
-  external_urls: ExternalUrls;
+export interface Artist extends MediaItemContent {
   followers: Followers;
   genres: string[];
-  href: string;
-  id: string;
-  images: Image[];
-  name: string;
   popularity: number;
-  type: 'artist';
-  uri: string;
+  type: typeof MediaType.artist;
 }
 
-export interface Artists extends ItemCollection<Artist> {
+export interface Artists extends MediaResponse {
   items: Artist[];
 }
 
-export interface Followers {
-  href: null | string;
-  total: number;
+export interface UserTopArtists extends MediaResponse {
+  items: Artist[];
 }
 
 export interface ArtistsResponse {
-  artists: Artist[];
+  artists: Artists;
 }

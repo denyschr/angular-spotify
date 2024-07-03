@@ -8,11 +8,11 @@
 .main-view {
 	position: relative;
 	grid-area: main-view;
-	background: var(--background-base);
+	overflow-x: hidden;
 }
 
 .page {
-	margin: toRem(8) 0 toRem(30);
+	margin: toRem(8) 0 toRem(20);
 }
 
 .grid-container {

@@ -1,0 +1,8 @@
+@import "mixins";
+@import "vars";
+
+.message {
+	@media (max-width: $mobileSmall) {
+		display: none;
+	}
+}

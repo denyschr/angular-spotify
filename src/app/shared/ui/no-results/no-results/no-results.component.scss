@@ -1,0 +1,6 @@
+@import "mixins";
+@import "vars";
+
+.no-results {
+	@include adaptiveValue("padding", 26, 10, 0, $containerWidth, 480);
+}

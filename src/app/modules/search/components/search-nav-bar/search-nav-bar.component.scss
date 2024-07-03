@@ -9,5 +9,7 @@
 	// .search-nav__list
 	&__list {
 		gap: toRem(12);
+		padding-bottom: toRem(14);
+		overflow-x: auto;
 	}
 }

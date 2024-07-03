@@ -1,23 +1,29 @@
 @import "mixins";
+@import "vars";
 
 :host {
 	grid-area: left-sidebar;
 }
 
 .left-sidebar {
-	--left-sidebar-offset: 1.125rem;
 	gap: toRem(24);
 	width: var(--left-sidebar-width);
 	height: 100vh;
-	padding: var(--left-sidebar-offset);
+	padding: toRem(18);
 	background-color: var(--background-press);
+	@media (max-width: $tablet) {
+		--left-sidebar-width: 4.5rem;
+		padding: toRem(14) toRem(16);
+	}
+	// .left-sidebar__top
+	&__top {
+		@media (max-width: $tablet) {
+			display: none;
+		}
+	}
 	// .left-sidebar__body
 	&__body {
 		flex-grow: 1;
-		margin: 0 calc(-1 * var(--left-sidebar-offset));
-		padding: 0 var(--left-sidebar-offset);
-		overflow-x: hidden;
-		overflow-y: auto;
 	}
 	// .left-sidebar__list
 	&__list {
@@ -26,7 +32,6 @@
 	}
 	// .left-sidebar__link
 	&__link {
-		gap: toRem(16);
 		margin-inline: toRem(-6);
 		padding: toRem(10) toRem(12);
 		border-radius: var(--corner-radius-larger);
@@ -45,6 +50,23 @@
 				background-color: var(--background-misty-white);
 			}
 		}
+		@media (min-width: $tablet) {
+			gap: toRem(16);
+		}
+		@media (max-width: $tablet) {
+			justify-content: center;
+			padding: toRem(12) toRem(10);
+			margin-inline: toRem(-5);
+			span {
+				display: none;
+			}
+		}
+	}
+	// .left-sidebar__bottom
+	&__bottom {
+		@media (max-width: $tablet) {
+			align-self: center;
+		}
 	}
 	// .left-sidebar__logout
 	&__logout {
@@ -57,6 +79,11 @@
 		@media (any-hover: hover) {
 			&:hover {
 				color: var(--text-base);
+			}
+		}
+		@media (max-width: $tablet) {
+			span {
+				display: none;
 			}
 		}
 	}

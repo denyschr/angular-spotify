@@ -12,7 +12,7 @@
           [routerLink]="['/home']"
           routerLinkActive="_active"
         >
-          Home
+          <span>Home</span>
         </a>
       </li>
       <li class="left-sidebar__item">
@@ -21,7 +21,7 @@
           [routerLink]="['/search']"
           routerLinkActive="_active"
         >
-          Search
+          <span>Search</span>
         </a>
       </li>
       <li class="left-sidebar__item">
@@ -30,14 +30,14 @@
           [routerLink]="['/library']"
           routerLinkActive="_active"
         >
-          Your library
+          <span>Your library</span>
         </a>
       </li>
     </ul>
   </div>
   <div class="left-sidebar__bottom">
     <button class="left-sidebar__logout flex-row-center _icon-logout" (click)="onLogout()">
-      Logout
+      <span>Logout</span>
     </button>
   </div>
 </nav>

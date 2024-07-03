@@ -1,12 +1,10 @@
-<div class="empty text-center inset-center">
-  <div class="empty__container grid-row-center">
-    <h1 class="empty__title text-title-medium">{{ title }}</h1>
-    <p class="empty__description text-body-medium break-words">{{ description }}</p>
-    <a
-      [routerLink]="routerUrl"
-      class="empty__button button button--primary"
-      *ngIf="buttonText && routerUrl"
-      >{{ buttonText }}</a
-    >
-  </div>
+<div class="empty inset-center grid-row-center text-center">
+  <h1 class="empty__title text-title-medium">{{ title }}</h1>
+  <p class="empty__description text-body-medium break-words">{{ description }}</p>
+  <a
+    [routerLink]="routerUrl"
+    class="empty__button button button--primary"
+    *ngIf="buttonText && routerUrl"
+    >{{ buttonText }}</a
+  >
 </div>

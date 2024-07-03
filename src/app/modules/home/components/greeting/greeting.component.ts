@@ -12,6 +12,6 @@ export class GreetingComponent {
     const now = new Date();
     const hours = now.getHours();
     const text = hours < 12 ? 'Morning 🌞' : hours < 18 ? 'Afternoon 🌤' : 'Evening 🌙';
-    return `Good ${text} ${randomEmoji()}`;
+    return `Good ${text}${randomEmoji()}`;
   }
 }

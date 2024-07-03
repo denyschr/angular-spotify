@@ -17,6 +17,9 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(toRem(200), 1fr));
 	gap: toRem(14);
+	@media (max-width: $mobile) {
+		grid-template-columns: repeat(auto-fill, minmax(toRem(170), 1fr));
+	}
 }
 
 .col-span-full {
@@ -72,23 +75,24 @@
 
 // Spacing //
 .mb-5 {
-	margin-bottom: toRem(20);
+	// margin-bottom: toRem(20);
+	@include adaptiveValue("margin-bottom", 20, 10, 0, 1024, 768);
 }
 
 // Text styles //
 .text-body-medium,
 .text-body-medium-bold {
-	font-size: var(--text-size-base);
+	font-size: $textSizeBase + px;
 }
 
 .text-body-small,
 .text-body-small-bold {
-	font-size: var(--text-size-smaller);
+	@include adaptiveValue("font-size", $textSizeSmaller, 13, 0, 1024, 480);
 }
 
 .text-body-marginal,
 .text-body-marginal-bold {
-	font-size: var(--text-size-smaller-2);
+	font-size: $textSizeSmaller2 + px;
 }
 
 .text-body-medium-bold,
@@ -98,15 +102,15 @@
 }
 
 .text-title-large {
-	font-size: var(--text-size-larger-3);
+	@include adaptiveValue("font-size", $textSizeLarger3, 36, 0, $containerWidth, 480);
 }
 
 .text-title-medium {
-	font-size: var(--text-size-larger-2);
+	@include adaptiveValue("font-size", $textSizeLarger2, 26, 0, $containerWidth, 768);
 }
 
 .text-title-small {
-	font-size: var(--text-size-larger);
+	@include adaptiveValue("font-size", $textSizeLarger, 20, 0, 1024, 768);
 }
 
 .text-title-large,
@@ -139,7 +143,7 @@
 .section {
 	display: flex;
 	flex-direction: column;
-	row-gap: var(--section-internal-gap);
+	@include adaptiveValue("row-gap", 20, 14, 0, 1024, 768);
 }
 
 // Positioning //

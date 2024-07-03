@@ -1,4 +1,5 @@
 @import "mixins";
+@import "vars";
 
 .top-bar {
 	z-index: 50;
@@ -10,5 +11,16 @@
 	// .top-bar__content-wrapper
 	&__content-wrapper {
 		flex-grow: 1;
+	}
+	// .top-bar__control
+	&__control {
+		@media (max-width: $tablet) {
+			.nav-controls__button--next {
+				display: none;
+			}
+		}
+		@media (max-width: $mobileSmall) {
+			display: none;
+		}
 	}
 }

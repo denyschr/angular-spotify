@@ -1,8 +1,7 @@
 @import "mixins";
+@import "vars";
 
 .empty {
-	// .empty__container
-	&__container {
-		row-gap: toRem(16);
-	}
+	row-gap: toRem(16);
+	@include adaptiveValue("padding", 26, 10, 0, $containerWidth, 480);
 }

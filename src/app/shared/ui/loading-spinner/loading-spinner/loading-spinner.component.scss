@@ -5,14 +5,15 @@
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: toRem(48);
-	height: toRem(48);
-	border: 5px solid var(--background-cyan);
-	border-bottom-color: transparent;
-	border-radius: 50%;
-	display: inline-block;
-	box-sizing: border-box;
-	animation: rotation 1s linear infinite;
+	&__item {
+		display: inline-block;
+		width: toRem(48);
+		height: toRem(48);
+		border: 5px solid var(--background-cyan);
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		animation: rotation 1s linear infinite;
+	}
 }
 
 @keyframes rotation {

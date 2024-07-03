@@ -6,9 +6,9 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 export class OpacityScrollDirective {
   constructor(private _elementRef: ElementRef<HTMLDivElement>) {}
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('scroll', ['$event'])
   onScroll(): void {
-    const scrollOffset = window.scrollY;
+    const scrollOffset = this._elementRef.nativeElement.scrollTop;
     if (scrollOffset > 10) {
       this._elementRef.nativeElement.style.setProperty('--top-bar-opacity', '1');
     } else {

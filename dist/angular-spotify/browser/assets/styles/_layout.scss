@@ -1,0 +1,22 @@
+.wrapper {
+	display: grid;
+	grid-template-areas: "left-sidebar main-view";
+	height: 100%;
+	grid-template-columns: auto 1fr;
+}
+
+.main-view {
+	position: relative;
+	grid-area: main-view;
+	overflow-x: hidden;
+}
+
+.page {
+	margin: toRem(8) 0 toRem(20);
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--min-column-width), 1fr));
+	gap: toRem(32) toRem(12);
+}

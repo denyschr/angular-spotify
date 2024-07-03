@@ -1,0 +1,89 @@
+*,
+::after,
+::before {
+	box-sizing: border-box;
+}
+
+body,
+html {
+	height: 100%;
+}
+
+body {
+	min-width: toRem($minWidth);
+	background: var(--background-base);
+	color: var(--text-base);
+	font-family: var(--font-family-base), sans-serif;
+	font-size: var(--text-size-base);
+	font-weight: var(--font-weight-base);
+}
+
+img {
+	max-width: 100%;
+	object-fit: cover;
+	vertical-align: top;
+}
+
+a {
+	display: inline-block;
+	color: inherit;
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	margin: 0;
+}
+
+button {
+	cursor: pointer;
+	color: inherit;
+	background-color: transparent;
+}
+
+button,
+input,
+textarea {
+	font-size: inherit;
+	line-height: inherit;
+	border: none;
+}
+
+iframe {
+	border: none;
+}
+
+[class*="_container"] {
+	padding: 0 toRem($containerOffset);
+	max-width: toRem($containerWidth);
+}
+
+[class*="-ibg"] {
+	position: relative;
+	overflow: hidden;
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+}

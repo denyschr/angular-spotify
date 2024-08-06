@@ -29,21 +29,9 @@
 
 ## Demo
 
-<video width="100%" height="100%" controls>
-  <source src="src/assets/readme/angular-spotify-demo-home-album-pages.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/06fca6d3-7ddb-4531-8234-f95b3018179b
 
-<video width="100%" height="100%" controls>
-  <source src="src/assets/readme/angular-spotify-demo-search-page.mp4" type="video/mp4">
-</video>
-
-<video width="100%" height="100%" controls>
-  <source src="src/assets/readme/angular-spotify-demo-library-artist-pages.mp4" type="video/mp4">
-</video>
-
-<video width="100%" height="100%" controls>
-  <source src="src/assets/readme/angular-spotify-demo-adaptive.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/c0a87965-2c1a-43f4-967e-2acb912993b2
 
 ## Getting started
 

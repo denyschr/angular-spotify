@@ -13,7 +13,7 @@
 	}
 	// .media-summary__img
 	&__img {
-		flex: 0 1 toRem(200);
+		flex: 0 0 toRem(200);
 		aspect-ratio: 200 / 200;
 		overflow: hidden;
 		border-radius: var(--corner-radius-larger);

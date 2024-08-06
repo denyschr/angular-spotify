@@ -1,27 +1,98 @@
-# Angular Spotify
+<h1 align="center">Angular Spotify</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
+<p align="center">
+  <img src="src/assets/readme/angular.svg" alt="Angular logo" width="60px" height="60px"/>
+  <img src="src/assets/readme/spotify.svg" alt="Spotify logo" width="60px" height="60px"/>
+  <br>
+  <em>A simple music web application that integrates with Spotify API to provide basic music playback and discovery features. Built with Angular 17+ and Angular Modules.</em>
+  <br>
+</p>
 
-## Development server
+<p align="center">
+  <a href="https://angular-spotify-denyschr.netlify.app/"><strong>angular-spotify</strong></a>
+  <br>
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p align="center">
+  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular logo" />&nbsp;
+  <img src="https://img.shields.io/badge/RxJS-B7178C?style=for-the-badge&logo=ReactiveX&logoColor=white" alt="RxJS logo" />&nbsp;
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="typescript" alt="TypeScript logo" />
+  <img src="https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white" alt="SCSS logo" />&nbsp;
+  <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E" alt="Prettier logo" />&nbsp;
+  <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" alt="Eslint logo" />&nbsp;
+  <img src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white&style=for-the-badge" alt="Git logo" />&nbsp;
+  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="NPM package manager logo" />&nbsp;
+  <img src="https://img.shields.io/badge/Spotify_API-1ED760?&style=for-the-badge&logo=spotify&logoColor=white" alt="Spotify logo" />&nbsp;
+</p>
 
-## Code scaffolding
+<hr>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Demo
 
-## Build
+<video controls>
+  <source src="src/assets/readme/angular-spotify-demo-home-album-pages.mp4" type="video/mp4">
+</video>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<video controls>
+  <source src="src/assets/readme/angular-spotify-demo-search-page.mp4" type="video/mp4">
+</video>
 
-## Running unit tests
+<video controls>
+  <source src="src/assets/readme/angular-spotify-demo-library-artist-pages.mp4" type="video/mp4">
+</video>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<video controls>
+  <source src="src/assets/readme/angular-spotify-demo-adaptive.mp4" type="video/mp4">
+</video>
 
-## Running end-to-end tests
+## Getting started
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+To get started with the project, follow these steps:
 
-## Further help
+1. Open your terminal and clone the repository:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+git clone https://github.com/denyschr/angular-spotify.git
+```
+
+2. Go to the root directory of the project:
+
+```bash
+cd angular-spotify
+```
+
+3. Install the necessary dependencies:
+
+```bash
+npm install
+```
+
+4. Run the project:
+
+```bash
+ng serve
+```
+
+> ##### You can also run this project by using `npm run start` or `npx ng serve` (if you're using [nvm](https://github.com/nvm-sh/nvm))
+
+5. Open a dev server with the browser:
+
+```bash
+http://localhost:4200/
+```
+
+6. Enjoy!
+
+## Authorization code flow
+
+Being as it's risky to store the client secret on the client side, I followed the `authorization code flow with PKCE`.
+
+View [Authorization Code PKCE Guide](https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow) for more details.
+
+## Unit/e2e testing
+
+Automated tests were skipped for this project
+
+## License
+
+This project is licensed under the [MIT](LICENSE) license

@@ -29,19 +29,19 @@
 
 ## Demo
 
-<video controls>
+<video width="100%" height="100%" controls>
   <source src="src/assets/readme/angular-spotify-demo-home-album-pages.mp4" type="video/mp4">
 </video>
 
-<video controls>
+<video width="100%" height="100%" controls>
   <source src="src/assets/readme/angular-spotify-demo-search-page.mp4" type="video/mp4">
 </video>
 
-<video controls>
+<video width="100%" height="100%" controls>
   <source src="src/assets/readme/angular-spotify-demo-library-artist-pages.mp4" type="video/mp4">
 </video>
 
-<video controls>
+<video width="100%" height="100%" controls>
   <source src="src/assets/readme/angular-spotify-demo-adaptive.mp4" type="video/mp4">
 </video>
 
